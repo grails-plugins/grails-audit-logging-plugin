@@ -82,24 +82,24 @@ environments:
     development:
         dataSource:
             dbCreate: "create-drop"
-            url: "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url: "jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         dataSources:
             second:
                 dbCreate: "update"
-                url: "jdbc:h2:mem:testDb2;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+                url: "jdbc:h2:mem:testDb2;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
     test:
         #we test with several configured datasources. See GPAUDITLOGGING-64
         dataSource:
             dbCreate: "update"
-            url: "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url: "jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         dataSources:
             second:
                 dbCreate: "update"
-                url: "jdbc:h2:mem:testDb2;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+                url: "jdbc:h2:mem:testDb2;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
     production:
         dataSource:
             dbCreate: "update"
-            url: "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url: "jdbc:h2:prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             properties:
                maxActive: -1
                minEvictableIdleTimeMillis: 1800000
@@ -113,4 +113,4 @@ environments:
         dataSources:
             second:
                 dbCreate: "update"
-            url: "jdbc:h2:mem:testDb2;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url: "jdbc:h2:mem:testDb2;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"

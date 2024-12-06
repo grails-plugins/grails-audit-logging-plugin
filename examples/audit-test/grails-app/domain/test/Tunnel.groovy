@@ -7,6 +7,6 @@ class Tunnel implements Auditable {
     String description
 
     static constraints = {
-        description maxSize:1073741824, nullable:true
+        description maxSize:1000000000, nullable:true
     }
 }
