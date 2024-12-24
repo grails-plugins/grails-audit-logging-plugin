@@ -131,14 +131,12 @@ jobs:
       - name: "🐘 Setup Gradle"
         uses: gradle/actions/setup-gradle@v4
       - name: "📜 Generate Documentation"
-        id: docs
         env:
           DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
           DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
         working-directory: ./plugin
         run: ../gradlew docs
       - name: "🚀 Publish to Github Pages"
-        id: docs
         if: success()
         uses: grails/github-pages-deploy-action@v2
         env:
