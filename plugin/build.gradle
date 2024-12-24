@@ -25,6 +25,8 @@ apply plugin: "org.grails.grails-gsp"
 compileJava.options.release = 17
 
 dependencies {
+    implementation platform("org.grails:grails-bom:$grailsVersion")
+
     profile "org.grails.profiles:web-plugin"
     compileOnly 'org.springframework.boot:spring-boot-starter-logging'
     compileOnly "org.springframework.boot:spring-boot-starter-actuator"
@@ -50,16 +52,5 @@ dependencies {
 }
 
 bootJar.enabled = false
-
-apply plugin: "org.grails.grails-publish"
-grailsPublish {
-  githubSlug = 'grails-plugins/grails-audit-logging-plugin'
-  license {
-    name = 'Apache-2.0'
-  }
-  title = "Grails Audit-Logging Plugin"
-  desc = "Grails Audit-Logging Plugin for Grails 7+"
-  developers = [robertoschwald:"Robert Oschwald", longwa:"Aaron Long", elkr:"Elmar Kretzer"]
-}
 
 apply from: "${rootProject.projectDir}/gradle/docs.gradle"

@@ -1,3 +1,13 @@
+buildscript {
+  repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url "https://repo.grails.org/grails/core" }
+  }
+  dependencies {
+    classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
+  }
+}
+
 allprojects {
     repositories {
       maven { url "https://repo.grails.org/grails/core" }
@@ -5,3 +15,25 @@ allprojects {
 //      mavenLocal() // for local testing, do not commit uncommented
     }
 }
+
+version project.projectVersion
+group "org.grails.plugins"
+
+subprojects { Project project ->
+  project.version project.projectVersion
+  project.group "org.grails.plugins"
+
+  if(project.name.endsWith('audit-logging')) {
+    apply plugin: "org.grails.grails-publish"
+    grailsPublish {
+      githubSlug = 'grails-plugins/grails-audit-logging-plugin'
+      license {
+        name = 'Apache-2.0'
+      }
+      title = "Grails Audit-Logging Plugin"
+      desc = "Grails Audit-Logging Plugin for Grails 7+"
+      developers = [robertoschwald:"Robert Oschwald", longwa:"Aaron Long", elkr:"Elmar Kretzer"]
+    }
+  }
+}
+

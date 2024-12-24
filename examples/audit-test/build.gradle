@@ -33,6 +33,9 @@ configurations {
 }
 
 dependencies {
+
+    implementation platform("org.grails:grails-bom:$grailsVersion")
+
     developmentOnly "org.springframework.boot:spring-boot-devtools"
     implementation "org.grails:grails-core"
     implementation "org.grails:grails-logging"
