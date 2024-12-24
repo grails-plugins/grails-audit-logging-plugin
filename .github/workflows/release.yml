@@ -40,7 +40,7 @@ jobs:
         id: release_version
         run: echo "value=${GITHUB_REF:11}" >> $GITHUB_OUTPUT
       - name: "⚙️ Run pre-release"
-        uses: micronaut-projects/github-actions/pre-release@master
+        uses: grails/github-actions/pre-release@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: "🧩 Run Assemble"
@@ -49,7 +49,7 @@ jobs:
         env:
           DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
           DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
-        run: ./gradlew assemble
+        run: ./gradlew -U assemble
       - name: "📝 Generate secring file"
         env:
           SECRING_FILE: ${{ secrets.SECRING_FILE }}
@@ -61,7 +61,7 @@ jobs:
           NEXUS_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PUBLISH_PASSWORD }}
           NEXUS_PUBLISH_URL: ${{ secrets.NEXUS_PUBLISH_RELEASE_URL }}
           NEXUS_PUBLISH_STAGING_PROFILE_ID: ${{ secrets.NEXUS_PUBLISH_STAGING_PROFILE_ID }}
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
           SIGNING_PASSPHRASE: ${{ secrets.SIGNING_PASSPHRASE }}
           SECRING_FILE: ${{ secrets.SECRING_FILE }}
           DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
@@ -107,7 +107,7 @@ jobs:
           releaseSonatypeStagingRepository
       - name: "⚙️Run post-release"
         if: success()
-        uses: micronaut-projects/github-actions/post-release@master
+        uses: grails/github-actions/post-release@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
