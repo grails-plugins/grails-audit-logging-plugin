@@ -32,7 +32,8 @@ subprojects { Project project ->
       }
       title = "Grails Audit-Logging Plugin"
       desc = "Grails Audit-Logging Plugin for Grails 7+"
-      developers = [robertoschwald:"Robert Oschwald", longwa:"Aaron Long", elkr:"Elmar Kretzer"]
+      developers = [robertoschwald:"Robert Oschwald", longwa:"Aaron Long", elkr:"Elmar Kretzer",
+                    jamesfredley:"James Fredley", jdaugherty:"James Daugherty"]
     }
   }
 }
