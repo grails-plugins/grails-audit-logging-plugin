@@ -1,54 +1,44 @@
-buildscript {
-    repositories {
-        maven { url "https://repo.grails.org/grails/core" }
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
-    }
-}
-
 plugins {
     id "org.asciidoctor.jvm.convert" version "$asciidoctorJvmVersion"
     id "org.asciidoctor.jvm.pdf" version "$asciidoctorJvmVersion"
     id "org.asciidoctor.jvm.epub" version "$asciidoctorJvmVersion"
 }
 
-version project.projectVersion
-group "org.grails.plugins"
+version = project.projectVersion
+group = "org.grails.plugins"
 
 apply plugin: "eclipse"
 apply plugin: "idea"
-apply plugin: "org.grails.grails-plugin"
-apply plugin: "org.grails.grails-gsp"
+apply plugin: "org.apache.grails.gradle.grails-plugin"
+apply plugin: 'org.apache.grails.gradle.grails-gsp'
 
 compileJava.options.release = 17
 
 dependencies {
-    implementation platform("org.grails:grails-bom:$grailsVersion")
+    implementation platform("org.apache.grails:grails-bom:$grailsVersion")
 
-    profile "org.grails.profiles:web-plugin"
+    profile "org.apache.grails.profiles:web-plugin"
     compileOnly 'org.springframework.boot:spring-boot-starter-logging'
     compileOnly "org.springframework.boot:spring-boot-starter-actuator"
     compileOnly "org.springframework.boot:spring-boot-autoconfigure"
     compileOnly "org.springframework.boot:spring-boot-starter-tomcat"
-    compileOnly "org.grails:grails-web-boot"
-    compileOnly "org.grails:grails-core"
-    compileOnly "org.grails:grails-logging"
-    compileOnly "org.grails:grails-plugin-rest"
-    compileOnly "org.grails:grails-plugin-i18n"
-    compileOnly "org.grails:grails-plugin-services"
-    compileOnly "org.grails:grails-plugin-url-mappings"
-    compileOnly "org.grails:grails-plugin-interceptors"
-    compileOnly "org.grails.plugins:gsp"
-    compileOnly "org.grails:grails-console"
-    compileOnly "org.grails:grails-plugin-services"
-    compileOnly "org.grails:grails-plugin-domain-class"
+    compileOnly "org.apache.grails:grails-web-boot"
+    compileOnly "org.apache.grails:grails-core"
+    compileOnly "org.apache.grails:grails-logging"
+    compileOnly "org.apache.grails:grails-rest-transforms"
+    compileOnly "org.apache.grails:grails-i18n"
+    compileOnly "org.apache.grails:grails-services"
+    compileOnly "org.apache.grails:grails-url-mappings"
+    compileOnly "org.apache.grails:grails-interceptors"
+    compileOnly "org.apache.grails:grails-gsp"
+    compileOnly "org.apache.grails:grails-console"
+    compileOnly "org.apache.grails:grails-services"
+    compileOnly "org.apache.grails:grails-domain-class"
 
     // TODO: We need to make this configurable/pluggable
-    compileOnly "org.grails.plugins:hibernate5"
+    compileOnly "org.apache.grails:grails-data-hibernate5"
 
-    testCompileOnly "org.grails:grails-web-testing-support"
+    testCompileOnly "org.apache.grails:grails-testing-support-web"
 }
 
 bootJar.enabled = false
