@@ -11,12 +11,12 @@ buildscript {
 }
 
 allprojects {
-    repositories {
-      mavenCentral()
-      maven { url = "https://repository.apache.org/content/groups/snapshots/" }
-      maven { url = 'https://repo.grails.org/grails/core' }
+  repositories {
+    mavenCentral()
+    maven { url = "https://repository.apache.org/content/groups/snapshots/" }
+    maven { url = 'https://repo.grails.org/grails/core' }
 //      mavenLocal() // for local testing, do not commit uncommented
-    }
+  }
 }
 
 version = project.projectVersion
@@ -40,4 +40,3 @@ subprojects { Project project ->
     }
   }
 }
-

@@ -7,9 +7,9 @@ plugins {
 version = project.projectVersion
 group = "org.grails.plugins"
 
-apply plugin: "eclipse"
-apply plugin: "idea"
-apply plugin: "org.apache.grails.gradle.grails-plugin"
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.apache.grails.gradle.grails-plugin'
 apply plugin: 'org.apache.grails.gradle.grails-gsp'
 
 compileJava.options.release = 17
