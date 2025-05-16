@@ -4,6 +4,7 @@ import grails.plugins.orm.auditable.resolvers.AuditRequestResolver
 import grails.util.GrailsNameUtils
 import grails.util.Holders
 import groovy.transform.CompileStatic
+import jakarta.persistence.Transient
 import org.grails.datastore.gorm.GormEntity
 import org.grails.datastore.mapping.dirty.checking.DirtyCheckable
 import org.grails.datastore.mapping.model.PersistentProperty
@@ -11,8 +12,6 @@ import org.grails.datastore.mapping.model.PersistentEntity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.NoSuchBeanDefinitionException
-
-import javax.persistence.Transient
 
 import static grails.plugins.orm.auditable.AuditLogListenerUtil.makeMap
 /**
