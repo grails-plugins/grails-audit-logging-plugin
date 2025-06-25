@@ -6,7 +6,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.apache.grails.gradle.grails-web'
 apply plugin: 'org.apache.grails.gradle.grails-gsp'
-apply plugin: 'asset-pipeline'
+apply plugin: 'cloud.wondrify.asset-pipeline'
 
 assets {
     minifyJs = true
@@ -51,7 +51,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
     implementation "org.springframework.boot:spring-boot-starter-validation"
     console "org.apache.grails:grails-console"
-    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails"
+    runtimeOnly "cloud.wondrify:asset-pipeline-grails"
     runtimeOnly "com.h2database:h2"
     runtimeOnly "org.apache.tomcat:tomcat-jdbc"
     runtimeOnly "org.fusesource.jansi:jansi"
