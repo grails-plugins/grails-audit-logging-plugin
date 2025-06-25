@@ -1,20 +1,42 @@
 buildscript {
   repositories {
-    maven { url = "https://repository.apache.org/content/groups/snapshots/" }
-    maven { url = "https://repo.grails.org/grails/core" }
+    maven {
+      url = 'https://repository.apache.org/content/groups/snapshots'
+      content {
+        includeVersionByRegex 'org[.]apache[.]((grails)|(groovy)).*', '.*', '.*-SNAPSHOT'
+      }
+    }
+    maven {
+      url = 'https://central.sonatype.com/repository/maven-snapshots'
+      content {
+        includeVersionByRegex 'cloud[.]wondrify', '.*', '.*-SNAPSHOT'
+      }
+    }
+    maven { url = 'https://repo.grails.org/grails/restricted' }
   }
   dependencies {
     classpath platform("org.apache.grails:grails-bom:$grailsVersion")
     classpath "org.apache.grails:grails-gradle-plugins"
-    classpath "com.bertramlabs.plugins:asset-pipeline-gradle"
+    classpath "cloud.wondrify:asset-pipeline-gradle"
   }
 }
 
 allprojects {
   repositories {
     mavenCentral()
-    maven { url = "https://repository.apache.org/content/groups/snapshots/" }
-    maven { url = 'https://repo.grails.org/grails/core' }
+    maven {
+      url = 'https://repository.apache.org/content/groups/snapshots'
+      content {
+        includeVersionByRegex 'org[.]apache[.]((grails)|(groovy)).*', '.*', '.*-SNAPSHOT'
+      }
+    }
+    maven {
+      url = 'https://central.sonatype.com/repository/maven-snapshots'
+      content {
+        includeVersionByRegex 'cloud[.]wondrify', '.*', '.*-SNAPSHOT'
+      }
+    }
+    maven { url = 'https://repo.grails.org/grails/restricted' }
 //      mavenLocal() // for local testing, do not commit uncommented
   }
 }
