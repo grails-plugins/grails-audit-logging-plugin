@@ -40,6 +40,10 @@ dependencies {
     testCompileOnly "org.apache.grails:grails-testing-support-web"
 }
 
+grails {
+    springDependencyManagement = false
+}
+
 bootJar.enabled = false
 
 apply from: "${rootProject.projectDir}/gradle/docs.gradle"
