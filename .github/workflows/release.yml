@@ -48,10 +48,11 @@ jobs:
         uses: grails/github-actions/pre-release@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: "📝 Generate secring file"
+      - name: "🔐 Generate key file for artifact signing"
         env:
-          SECRING_FILE: ${{ secrets.SECRING_FILE }}
-        run: echo $SECRING_FILE | base64 -d > ${{ github.workspace }}/secring.gpg
+            SECRING_FILE: ${{ secrets.SECRING_FILE }}
+        run: |
+            printf "%s" "$SECRING_FILE" | base64 -d > "${{ github.workspace }}/secring.gpg"
       - name: "🧩 Run Assemble"
         if: success()
         id: assemble
