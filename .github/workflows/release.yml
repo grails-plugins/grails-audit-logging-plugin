@@ -47,7 +47,7 @@ jobs:
       - name: "⚙️ Run pre-release"
         uses: grails/github-actions/pre-release@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}=
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: "📝 Generate secring file"
         env:
           SECRING_FILE: ${{ secrets.SECRING_FILE }}
