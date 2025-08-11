@@ -14,6 +14,7 @@ jobs:
     outputs:
       release_version: ${{ steps.release_version.outputs.value }}
       target_branch: ${{ steps.extract_branch.outputs.value }}
+      extract_repository_name: ${{ steps.extract_repository_name.outputs.repository_name }}
     env:
       GIT_USER_NAME: 'grails-build'
       GIT_USER_EMAIL: 'grails-build@users.noreply.github.com'
@@ -22,6 +23,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
+      - name: "Extract repository name"
+        id: extract_repository_name
+        run: |
+            echo "repository_name=${GITHUB_REPOSITORY##*/}" >> $GITHUB_OUTPUT
       - name: "☕️ Setup JDK"
         uses: actions/setup-java@v4
         with:
@@ -42,33 +47,35 @@ jobs:
       - name: "⚙️ Run pre-release"
         uses: grails/github-actions/pre-release@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: "🧩 Run Assemble"
-        if: success()
-        id: assemble
-        env:
-          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
-          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
-        run: ./gradlew -U assemble
+          token: ${{ secrets.GITHUB_TOKEN }}=
       - name: "📝 Generate secring file"
         env:
           SECRING_FILE: ${{ secrets.SECRING_FILE }}
         run: echo $SECRING_FILE | base64 -d > ${{ github.workspace }}/secring.gpg
-      - name: "🚀 Publish to Sonatype OSSRH"
+      - name: "🧩 Run Assemble"
+        if: success()
+        id: assemble
+        env:
+            DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
+            DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
+        run: ./gradlew -U assemble -Psigning.secretKeyRingFile=${{ github.workspace }}/secring.gpg -Psigning.keyId=${{ secrets.SIGNING_KEY }}
+      - name: "🚀 Publish to Maven Central"
         id: publish
         env:
+          GRAILS_PUBLISH_RELEASE: 'true'
           NEXUS_PUBLISH_USERNAME: ${{ secrets.NEXUS_PUBLISH_USERNAME }}
           NEXUS_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PUBLISH_PASSWORD }}
           NEXUS_PUBLISH_URL: ${{ secrets.NEXUS_PUBLISH_RELEASE_URL }}
           NEXUS_PUBLISH_STAGING_PROFILE_ID: ${{ secrets.NEXUS_PUBLISH_STAGING_PROFILE_ID }}
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY_ID }}
+          NEXUS_PUBLISH_DESCRIPTION: '${{ steps.extract_repository_name.outputs.repository_name }}:${{ steps.release_version.outputs.value }}'
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSPHRASE: ${{ secrets.SIGNING_PASSPHRASE }}
-          SECRING_FILE: ${{ secrets.SECRING_FILE }}
           DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
           DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
         run: >
           ./gradlew
-          -Psigning.secretKeyRingFile=${{ github.workspace }}/secring.gpg 
+          -Psigning.keyId=${{ secrets.SIGNING_KEY }}
+          -Psigning.secretKeyRingFile=${{ github.workspace }}/secring.gpg
           publishToSonatype 
           closeSonatypeStagingRepository
   release:
@@ -93,14 +100,16 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
             develocity-access-key: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
-      - name: "🏆Nexus Staging Close And Release"
+      - name: "🏆 Release staging repository"
         env:
+          GRAILS_PUBLISH_RELEASE: 'true'
           DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
           DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
           NEXUS_PUBLISH_USERNAME: ${{ secrets.NEXUS_PUBLISH_USERNAME }}
           NEXUS_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PUBLISH_PASSWORD }}
           NEXUS_PUBLISH_URL: ${{ secrets.NEXUS_PUBLISH_RELEASE_URL }}
           NEXUS_PUBLISH_STAGING_PROFILE_ID: ${{ secrets.NEXUS_PUBLISH_STAGING_PROFILE_ID }}
+          NEXUS_PUBLISH_DESCRIPTION: '${{ needs.publish.outputs.extract_repository_name }}:${{ needs.publish.outputs.release_version }}'
         run: >
           ./gradlew
           findSonatypeStagingRepository
