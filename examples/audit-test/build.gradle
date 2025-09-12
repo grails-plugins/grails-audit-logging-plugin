@@ -28,13 +28,13 @@ dependencies {
     implementation "org.apache.grails:grails-core"
     implementation "org.apache.grails:grails-logging"
     implementation "org.apache.grails:grails-databinding"
-    implementation "org.apache.grails:grails-i18n"
     implementation "org.apache.grails:grails-interceptors"
     implementation "org.apache.grails:grails-rest-transforms"
     implementation "org.apache.grails:grails-services"
     implementation "org.apache.grails:grails-url-mappings"
     implementation "org.apache.grails:grails-web-boot"
     implementation "org.apache.grails:grails-gsp"
+    implementation "org.apache.grails:grails-layout"
     implementation "org.apache.grails:grails-data-hibernate5"
 
     implementation "org.hibernate:hibernate-ehcache:$hibernate5Version", {
