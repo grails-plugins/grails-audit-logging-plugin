@@ -2,12 +2,10 @@
 === Dependencies
 Add to your build.gradle project dependencies block:
 
-WARNING: Due to the move to Maven Central, the plugin groupId has changed from org.grails.plugin to com.symentis.
-
 [source,groovy]
 ----
 dependencies {
-   compile 'com.symentis:audit-logging:{VERSION}'
+   compile 'org.grails.plugins:audit-logging:{VERSION}'
 }
 ----
 Then run the following to refresh gradle dependencies: 

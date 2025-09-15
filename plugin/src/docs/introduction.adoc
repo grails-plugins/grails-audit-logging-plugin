@@ -9,6 +9,7 @@ It also provides a convenient way to add Update and Create user stamping by exte
 [cols="1,2",width="50%",options="header,footer"]
 |====================
 |Grails Version  | Audit Logging Plugin Version
+|7.0.x | 6.0.x
 |4.0.0 and later | 5.0.0 (participating in Transactions). This is the recommended version if you use Grails 4.
 |4.0.x | 4.0.x
 |3.3.x | 3.0.x
@@ -21,7 +22,7 @@ It also provides a convenient way to add Update and Create user stamping by exte
 === GORM Compatibility
 
 This plugin is GORM agnostic, so you can use it with the GORM implementation of your choice
-(Hibernate 4 or 5, MongoDB, etc.).
+(Hibernate 5, MongoDB, etc.).
 
 Please note, that only Hibernate5 is tested during development. If an issue occurs with your ORM mapper,
 please file a GitHub issue.

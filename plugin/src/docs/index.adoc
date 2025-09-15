@@ -19,8 +19,6 @@ Other formats: link:audit-logging-{VERSION}.pdf[PDF], link:audit-logging-{VERSIO
 
 include::introduction.adoc[]
 
-include::changelog.adoc[]
-
 include::installation.adoc[]
 
 include::upgrading.adoc[]
@@ -32,3 +30,5 @@ include::usage.adoc[]
 include::stamping.adoc[]
 
 include::implementation.adoc[]
+
+include::changelog.adoc[]
