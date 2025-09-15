@@ -534,7 +534,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="details">
 <span id="author" class="author">Robert Oschwald</span><br>
 <span id="revnumber">version 6.0.0-SNAPSHOT,</span>
-<span id="revdate">2025-09-12</span>
+<span id="revdate">2025-09-15</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -545,63 +545,63 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#gorm-compatibility">1.2. GORM Compatibility</a></li>
 </ul>
 </li>
-<li><a href="#change-log">2. Change Log</a></li>
-<li><a href="#installation">3. Installation</a>
+<li><a href="#installation">2. Installation</a>
 <ul class="sectlevel2">
-<li><a href="#dependencies">3.1. Dependencies</a></li>
-<li><a href="#create-audit-domain-artifact">3.2. Create Audit Domain Artifact</a></li>
-<li><a href="#prepare-your-domain-classes-for-auditing">3.3. Prepare your Domain classes for Auditing</a></li>
+<li><a href="#dependencies">2.1. Dependencies</a></li>
+<li><a href="#create-audit-domain-artifact">2.2. Create Audit Domain Artifact</a></li>
+<li><a href="#prepare-your-domain-classes-for-auditing">2.3. Prepare your Domain classes for Auditing</a></li>
 </ul>
 </li>
-<li><a href="#upgrading-to-5-0-x">4. Upgrading to 5.0.x</a></li>
-<li><a href="#upgrading-to-4-0-x">5. Upgrading to 4.0.x</a></li>
-<li><a href="#upgrading-to-3-0-x">6. Upgrading to 3.0.x</a>
+<li><a href="#upgrading-to-5-0-x">3. Upgrading to 5.0.x</a></li>
+<li><a href="#upgrading-to-4-0-x">4. Upgrading to 4.0.x</a></li>
+<li><a href="#upgrading-to-3-0-x">5. Upgrading to 3.0.x</a>
 <ul class="sectlevel2">
-<li><a href="#domain-classes">6.1. Domain Classes</a></li>
-<li><a href="#configuration-changes">6.2. Configuration Changes</a></li>
-<li><a href="#transactional-behavior">6.3. Transactional Behavior</a></li>
-<li><a href="#handlers-removed">6.4. Handlers Removed</a></li>
-<li><a href="#actor-closure">6.5. Actor Closure</a></li>
-<li><a href="#stampable-trait">6.6. Stampable Trait</a></li>
+<li><a href="#domain-classes">5.1. Domain Classes</a></li>
+<li><a href="#configuration-changes">5.2. Configuration Changes</a></li>
+<li><a href="#transactional-behavior">5.3. Transactional Behavior</a></li>
+<li><a href="#handlers-removed">5.4. Handlers Removed</a></li>
+<li><a href="#actor-closure">5.5. Actor Closure</a></li>
+<li><a href="#stampable-trait">5.6. Stampable Trait</a></li>
 </ul>
 </li>
-<li><a href="#configuration">7. Configuration</a>
+<li><a href="#configuration">6. Configuration</a>
 <ul class="sectlevel2">
-<li><a href="#verbose-mode">7.1. Verbose mode</a></li>
-<li><a href="#logging-of-associated-ids">7.2. Logging of Associated Ids</a></li>
-<li><a href="#property-value-masking">7.3. Property Value Masking</a></li>
-<li><a href="#verbose-log-truncation-length">7.4. Verbose Log Truncation Length</a></li>
-<li><a href="#disable-all-auditing">7.5. Disable All Auditing</a></li>
-<li><a href="#log-full-class-name">7.6. Log Full Class Name</a></li>
-<li><a href="#ignoring-specific-events">7.7. Ignoring Specific Events</a></li>
-<li><a href="#runtime-overrides">7.8. Runtime Overrides</a></li>
-<li><a href="#example-configuration">7.9. Example Configuration</a></li>
+<li><a href="#verbose-mode">6.1. Verbose mode</a></li>
+<li><a href="#logging-of-associated-ids">6.2. Logging of Associated Ids</a></li>
+<li><a href="#property-value-masking">6.3. Property Value Masking</a></li>
+<li><a href="#verbose-log-truncation-length">6.4. Verbose Log Truncation Length</a></li>
+<li><a href="#disable-all-auditing">6.5. Disable All Auditing</a></li>
+<li><a href="#log-full-class-name">6.6. Log Full Class Name</a></li>
+<li><a href="#ignoring-specific-events">6.7. Ignoring Specific Events</a></li>
+<li><a href="#runtime-overrides">6.8. Runtime Overrides</a></li>
+<li><a href="#example-configuration">6.9. Example Configuration</a></li>
 </ul>
 </li>
-<li><a href="#usage">8. Usage</a>
+<li><a href="#usage">7. Usage</a>
 <ul class="sectlevel2">
-<li><a href="#basic">8.1. Basic</a></li>
-<li><a href="#context-overrides">8.2. Context Overrides</a></li>
-<li><a href="#domain-overrides">8.3. Domain Overrides</a></li>
-<li><a href="#customized-auditable-trait">8.4. Customized Auditable Trait</a></li>
-<li><a href="#request-resolvers">8.5. Request Resolvers</a></li>
+<li><a href="#basic">7.1. Basic</a></li>
+<li><a href="#context-overrides">7.2. Context Overrides</a></li>
+<li><a href="#domain-overrides">7.3. Domain Overrides</a></li>
+<li><a href="#customized-auditable-trait">7.4. Customized Auditable Trait</a></li>
+<li><a href="#request-resolvers">7.5. Request Resolvers</a></li>
 </ul>
 </li>
-<li><a href="#stamping">9. Stamping</a>
+<li><a href="#stamping">8. Stamping</a>
 <ul class="sectlevel2">
-<li><a href="#stamping-configuration">9.1. Stamping Configuration</a></li>
+<li><a href="#stamping-configuration">8.1. Stamping Configuration</a></li>
 </ul>
 </li>
-<li><a href="#implementation">10. Implementation</a></li>
-<li><a href="#auditing-and-transactions">11. Auditing and Transactions</a>
+<li><a href="#implementation">9. Implementation</a></li>
+<li><a href="#auditing-and-transactions">10. Auditing and Transactions</a>
 <ul class="sectlevel2">
-<li><a href="#auditlogeventlistener">11.1. AuditLogEventListener</a></li>
-<li><a href="#stampeventlistener">11.2. StampEventListener</a></li>
-<li><a href="#plugin-descriptor">11.3. Plugin Descriptor</a></li>
-<li><a href="#auditable-trait">11.4. Auditable trait</a></li>
-<li><a href="#stampable-trait-2">11.5. Stampable trait</a></li>
+<li><a href="#auditlogeventlistener">10.1. AuditLogEventListener</a></li>
+<li><a href="#stampeventlistener">10.2. StampEventListener</a></li>
+<li><a href="#plugin-descriptor">10.3. Plugin Descriptor</a></li>
+<li><a href="#auditable-trait">10.4. Auditable trait</a></li>
+<li><a href="#stampable-trait-2">10.5. Stampable trait</a></li>
 </ul>
 </li>
+<li><a href="#change-log">11. Change Log</a></li>
 </ul>
 </div>
 </div>
@@ -636,6 +636,10 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.0.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.0.x</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.0.0 and later</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0 (participating in Transactions). This is the recommended version if you use Grails 4.</p></td>
@@ -673,7 +677,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h3 id="gorm-compatibility"><a class="anchor" href="#gorm-compatibility"></a>1.2. GORM Compatibility</h3>
 <div class="paragraph">
 <p>This plugin is GORM agnostic, so you can use it with the GORM implementation of your choice
-(Hibernate 4 or 5, MongoDB, etc.).</p>
+(Hibernate 5, MongoDB, etc.).</p>
 </div>
 <div class="paragraph">
 <p>Please note, that only Hibernate5 is tested during development. If an issue occurs with your ORM mapper,
@@ -687,7 +691,1155 @@ If you use this plugin to log MongoDB transactions, you must configure a SQL Dat
 </div>
 </div>
 <div class="sect1">
-<h2 id="change-log"><a class="anchor" href="#change-log"></a>2. Change Log</h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="dependencies"><a class="anchor" href="#dependencies"></a>2.1. Dependencies</h3>
+<div class="paragraph">
+<p>Add to your build.gradle project dependencies block:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
+   compile <span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins:audit-logging:{VERSION}</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then run the following to refresh gradle dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="gradle">gradle classes</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+After installing the plugin, you must perform the following command to let the plugin create the audit-logging domain class and register it in application.groovy within your project.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-audit-domain-artifact"><a class="anchor" href="#create-audit-domain-artifact"></a>2.2. Create Audit Domain Artifact</h3>
+<div class="literalblock">
+<div class="content">
+<pre>grails audit-quickstart &lt;your.package.name&gt; &lt;YourAuditLogEventClassName&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>grails audit-quickstart org.myaudit.example AuditTrail</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create the Audit Domain class and adds to application.groovy:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>grails.plugin.auditLog.auditDomainClassName = 'org.myaudit.example.AuditTrail'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once created, you should open the generated file to adjust the <code>mappings</code> and <code>constraints</code> to suit your needs. Next, setup additional plugin config. See</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Be sure to respect the existing nullability constraints or the plugin may not work correctly. You must update your db schema either by DDL, or using the database-migration plugin (recommended)
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since version 4.0.2 the dateCreated / lastUpdated fields can be of any type which is supported by the Grails DefaultTimestampProvider. By default, they are defined as java.util.Date in the created audit domain artifact. Both fields must be of same type.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prepare-your-domain-classes-for-auditing"><a class="anchor" href="#prepare-your-domain-classes-for-auditing"></a>2.3. Prepare your Domain classes for Auditing</h3>
+<div class="paragraph">
+<p>For every Domain class you want to be audited, implement the Auditable Trait.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
+
+<span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable {
+    <span class="predefined-type">String</span> whatever
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you additionally want to enable stamping, implement the Stampable Trait:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
+
+ <span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable, Stampable {
+     <span class="predefined-type">String</span> whatever
+     ...
+ }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="upgrading-to-5-0-x"><a class="anchor" href="#upgrading-to-5-0-x"></a>3. Upgrading to 5.0.x</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The 5.0.0 version has some significant changes to the 4.0.x version.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The configuration keys are the same as in 4.0.x</p>
+</li>
+<li>
+<p>The mechanism to audit log transaction data has changed. We now participate in transactions and queue up audit logs. The audit logs are flushed with the current transaction. If the current transaction fails, no audit logs of this transaction are committed. Due to this major change, the plugin is currently not ORM agnostic and for now depends on Hibernate. As the plugin itself does not support other GORM implementations like Mongo (see #179), this shouldn&#8217;t affect current projects.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="upgrading-to-4-0-x"><a class="anchor" href="#upgrading-to-4-0-x"></a>4. Upgrading to 4.0.x</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The 4.0.0 version of the plugin is backwards compatible with 3.0.x. Any existing configuration and customization should work out of the box.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="upgrading-to-3-0-x"><a class="anchor" href="#upgrading-to-3-0-x"></a>5. Upgrading to 3.0.x</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The 3.0.x version of the plugin is a major rewrite of the codebase. Therefore you need to upgrade your code for this version.</p>
+</div>
+<div class="sect2">
+<h3 id="domain-classes"><a class="anchor" href="#domain-classes"></a>5.1. Domain Classes</h3>
+<div class="paragraph">
+<p>Prior versions of the plugin used a static property syntax to enable and customize logging:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Legacy enable/disable</span>
+<span class="directive">static</span> auditable = <span class="predefined-constant">true</span>
+
+<span class="comment">// Legacy whitelist</span>
+<span class="directive">static</span> auditable = [<span class="key">auditableProperties</span>: [<span class="string"><span class="delimiter">'</span><span class="content">name</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">famous</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdated</span><span class="delimiter">'</span></span>]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Starting with version 3.0.0, the plugin uses an <code>Auditable</code> trait and/or a <code>Stampable</code> trait as both a marker as well as a way to configure and override auditing behavior.</p>
+</div>
+<div class="paragraph">
+<p>For the first example, just adding <code>implements Auditable</code> will enable the default behavior.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
+<span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable {
+  ..
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the second example above, you simply override the appropriate method on the <code>Auditable</code> trait, in this case the method is <code>getLogIncluded()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogIncluded() {
+    [<span class="string"><span class="delimiter">'</span><span class="content">name</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">famous</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdated</span><span class="delimiter">'</span></span>]
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The getter methods on <code>Auditable</code> all follow the <code>getLog*()</code> format to minimize collisions with user methods. Typically they are <code>getLog&lt;Configuration Name&gt;()</code> followed by whatever the configurable value (included, excluded, mask) with a few exceptions.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration-changes"><a class="anchor" href="#configuration-changes"></a>5.2. Configuration Changes</h3>
+<div class="paragraph">
+<p>To support unifying the configuration, trait, and context usage, some of the configuration properties have been renamed. The following table should help to map old values and types to the new ones:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Prior Name</th>
+<th class="tableblock halign-left valign-top">New Name</th>
+<th class="tableblock halign-left valign-top">New Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auditableProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defaultIgnore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excluded</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ignore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excluded</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defaultMask</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mask</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nonVerboseDelete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verboseEvents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;AuditEventType&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transactional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inherits existing transactionality</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">actorClosure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use AuditRequestResolver</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">actorKey</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use AuditRequestResolver</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessionAttribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use AuditRequestResolver</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handlersOnly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use Grails callback methods</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stampAlways</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use a <code>TraitInjector</code> with <code>Stampable</code></p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="sect2">
+<h3 id="transactional-behavior"><a class="anchor" href="#transactional-behavior"></a>5.3. Transactional Behavior</h3>
+<div class="paragraph">
+<p>Previously, the audit logging plugin had a <code>transactional</code> flag that indicated whether to include the audit log saves in a transaction. However, the audit logging plugin should really just participate (or not) in existing transactions and not make any attempts to control transactionality at that grain. For most usage, you want your Audit domain instances to be atomically created in the same transaction as the changes that are triggering them. If there&#8217;s no existing transaction for the changes, it&#8217;s not clear why there <em>should</em> be a transaction just for the audit events or vice versa.</p>
+</div>
+<div class="paragraph">
+<p>The Audit instances are still saved in a new session within any existing transaction.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handlers-removed"><a class="anchor" href="#handlers-removed"></a>5.4. Handlers Removed</h3>
+<div class="paragraph">
+<p>The handler callbacks such as <code>onChange</code>, <code>onSave</code>, etc. have been removed starting with version 3.0.0.</p>
+</div>
+<div class="paragraph">
+<p>This behavior is already provided by Grails now using the <code>before*</code> and <code>after*</code> callback methods.</p>
+</div>
+<div class="paragraph">
+<p>For example, you could do something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> <span class="function">beforeInsert</span>() {
+    <span class="keyword">def</span> dirtyAudit = getAuditableDirtyPropertyNames()
+
+    <span class="comment">// Do something special if certain properties are dirty, etc.</span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="actor-closure"><a class="anchor" href="#actor-closure"></a>5.5. Actor Closure</h3>
+<div class="paragraph">
+<p>The actor closure has been replaced with a more formalized <code>AuditRequestResolver</code> strategy for resolving actor and URI information.</p>
+</div>
+<div class="paragraph">
+<p>By default, the plugin uses the <code>DefaultAuditRequestResolver</code>, which gets Principal information from the current Grails web request context. This is essentially the same as the prior default actor closure.</p>
+</div>
+<div class="paragraph">
+<p>If your application uses Spring Security, the plugin will register an instance of the <code>SpringSecurityRequestResolver</code> which will use the <code>springSecurityService</code> to resolve the current principal.</p>
+</div>
+<div class="paragraph">
+<p>For other security frameworks, you can implement the <code>AuditRequestResolver</code> interface and register a bean named <code>auditRequestResolver</code> to override the resolver provided by the plugin.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stampable-trait"><a class="anchor" href="#stampable-trait"></a>5.6. Stampable Trait</h3>
+<div class="paragraph">
+<p>The <code>@Stamp</code> annotation was removed in favor of a <code>Stampable</code> trait. This keeps the usage more in line with the direction of Grails in general as well as simplifying the implementation and usage.</p>
+</div>
+<div class="paragraph">
+<p>However, there are some limitations to implementing this as a trait:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Property names are <code>dateCreated, lastUpdated, createdBy, lastUpdatedBy</code> and are not configurable</p>
+</li>
+<li>
+<p>If you want to customized the constraints, you must do so in your domain class</p>
+</li>
+<li>
+<p>The values are technically populated on the <code>ValidationEvent</code> since they are non-nullable and must be populated prior to the default property validation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>stampAlways</code> has been removed. If you want to mark <strong>all</strong> of your domain objects as stampable, you could define the following <code>TraitInjector</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@CompileStatic</span>
+<span class="type">class</span> <span class="class">StampableTraitInjector</span> <span class="directive">implements</span> TraitInjector {
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">Class</span> getTrait() {
+        Stampable
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">String</span><span class="type">[]</span> getArtefactTypes() {
+        [<span class="string"><span class="delimiter">'</span><span class="content">Domain</span><span class="delimiter">'</span></span>] <span class="keyword">as</span> <span class="predefined-type">String</span><span class="type">[]</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>6. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin configuration can be specified in the application.groovy file.
+It supports Environments blocks for environment-specific configuration.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Since version 2.0.0, the configuration key has changed from "auditLog" to "grails.plugins.auditLog".
+If you use the old configuration key, the plugin will log a notice.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 30%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Property</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Default Value</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.auditDomainClassName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>(Required)</strong> Use <code>grails audit-quickstart</code> to create</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Domain Class Name for the Audit Domain class.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to true, audit logging is completely disabled (no listeners are registered).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.verbose</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Column by column change logging in insert and delete events (enabled by default). You can disable it if you are not interested in value changes, or if you want to set verbosity based on event type (see verboseEvents setting below)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.verboseEvents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[INSERT, UPDATE, DELETE]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums. Enables verbose logging on a per-event type basis. If <code>verbose = true</code> (default), all event types are logged verbosely, regardless of this setting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.ignoreEvents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums that can be used to disable logging on a per-event type basis. For example, setting <code>[AuditEventType.DELETE]</code> would disable audit logging for all DELETE events only.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.failOnError</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the save of the Audit domain fails, enabling this will cause the failure to be thrown out of the listener potentially failing the entire transaction.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.logIds</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to true, object-ids of associated objects are logged.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.logFullClassName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log the full entity name including the package name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.defaultActor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'SYS'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default actor (user) to log if no user context can be found using the configured <code>AuditRequestResolver</code> implementation (see below).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.excluded</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['version', 'lastUpdated', 'lastUpdatedBy']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These properties are not logged and will not trigger verbose logging when changed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code> (all persistent properties)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is a global whitelist of properties to log and will override anything in the excluded list. A null value indicates that all persistent properties not in the <code>excluded</code> list specifically should be logged.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.mask</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['password']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any property with this name will be masked using the <code>propertyMask</code> attribute (below).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.propertyMask</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**********</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String to use when masking properties.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.truncateLength</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxSize</code> of <code>newValue</code>/<code>oldValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow overriding the maximum length allowed in the <code>oldValue</code> and <code>newValue</code> fields before truncating. This property defaults to the max size allowed by the <code>constraint</code>, so it&#8217;s best to just control it that way.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.stampEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable stamping support for entities with the <code>Stampable</code> trait (dateCreated, lastUpdated, createdBy, lastUpdatedBy).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.usePersistentDirtyPropertyValues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By default, the old persistent value is obtained using getPersistentValue(). On newer Grails versions, this could fail. If the original value is always NULL in your case, you can set this property to "false", so getOriginalValue() is used.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can view the above defaults in the <code>DefaultAuditLogConfig.groovy</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="verbose-mode"><a class="anchor" href="#verbose-mode"></a>6.1. Verbose mode</h3>
+<div class="paragraph">
+<p>When enabled (default), per-property logging is enabled for all operations.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>grails.plugin.auditLog.verbose = true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or you can enable verbose logging for specific event types using:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>grails.plugin.auditLog.verboseEvents = [AuditEventType.UPDATE]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If both verbose=true and verboseEvents are set, verbose has precedence.</p>
+</div>
+<div class="paragraph">
+<p>If verbose=true, or verboseEvents contains AuditEventType.DELETE, deletion of an entity will cause
+all properties of the deleted entity to be logged, except associations (Collections), as this is
+currently not possible. See issue #153</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Verbose logging will insert 1 row of data per property of your domain object for all or verboseEvents type operations. This can result in a large amount of additional data, sometimes far more than the actual operation itself. Consider disabling verbose mode for bulk operations using the <code>AuditLogContext.withoutVerboseAuditLog { }</code> closure.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-of-associated-ids"><a class="anchor" href="#logging-of-associated-ids"></a>6.2. Logging of Associated Ids</h3>
+<div class="paragraph">
+<p>You can log the object-ids of associated objects. Logging will be performed in the format: "[id:&lt;objId&gt;]objDetails".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.logIds = <span class="predefined-constant">true</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This setting is enabled by default.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="property-value-masking"><a class="anchor" href="#property-value-masking"></a>6.3. Property Value Masking</h3>
+<div class="paragraph">
+<p>You can configure properties to mask on a per-Domain-Class base. If properties are defined as masked, their values are not stored into the audit log table if verbose mode is enabled. Instead, a mask of "<strong><strong></strong><strong></strong></strong>" will be logged.</p>
+</div>
+<div class="paragraph">
+<p>By default, "password" properties are masked. You can mask property fields in domain classes like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogMask() {
+    [<span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">otherField</span><span class="delimiter">'</span></span>]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="verbose-log-truncation-length"><a class="anchor" href="#verbose-log-truncation-length"></a>6.4. Verbose Log Truncation Length</h3>
+<div class="paragraph">
+<p>If you enabled verbose mode, you can configure the truncation length of detail information in the oldValue and newValue
+columns (Default is 255). Configure the truncateLength in application.groovy:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">truncateLength = <span class="integer">400</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you set truncateLength to a value &gt; 255 you must ensure that oldValue and newValue fields in your audit-log domain class are large enough. Example setting with the same maxSize constraints as the former "largeValueColumnTypes" setting:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="directive">static</span> constraints = {
+    <span class="comment">// For large column support (as in &lt; 1.0.6 plugin versions)</span>
+    oldValue(<span class="key">nullable</span>: <span class="predefined-constant">true</span>, <span class="key">maxSize</span>: <span class="integer">65534</span>)
+    newValue(<span class="key">nullable</span>: <span class="predefined-constant">true</span>, <span class="key">maxSize</span>: <span class="integer">65534</span>)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you forget to set the constraints in your AuditLog class while setting truncateLength &gt; 255,
+a truncation warning may occur and only partial information is logged.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="disable-all-auditing"><a class="anchor" href="#disable-all-auditing"></a>6.5. Disable All Auditing</h3>
+<div class="paragraph">
+<p>You can disable auditing by config. If you disable auditing, event handlers are still triggered but no changes are comitted to the audit log table. This can be used e.g. if you need to bootstrap many objects and want to programmatically disable auditing to not slow down the bootstrap process or if you want to audit log by Enviroment.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.disabled = <span class="predefined-constant">true</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This setting is "false" by default (auditing is enabled).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="log-full-class-name"><a class="anchor" href="#log-full-class-name"></a>6.6. Log Full Class Name</h3>
+<div class="paragraph">
+<p>By default, only the entity class name is logged. If you want to log the entity full name (including the package name), you can enable full logging. Thanks to tcrossland for this feature.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.logFullClassName = <span class="predefined-constant">true</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This setting is "true" by default (full name is logged).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ignoring-specific-events"><a class="anchor" href="#ignoring-specific-events"></a>6.7. Ignoring Specific Events</h3>
+<div class="paragraph">
+<p>To ignore certain events on a per-domain base, override the <code>getLogIgnoreEvents()</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="predefined-type">Collection</span>&lt;AuditEventType&gt; getLogIgnoreEvents() {
+    [AuditEventType.INSERT]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also ignore them either globally with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.ignoreEvents = [AuditEventType.INSERT]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or for a specific logging context by using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">AuditLogContext.withConfig(ignoreEvents = [AuditEventType.INSERT]) {
+    <span class="comment">//</span>
+    <span class="comment">// Anything here will only log UPDATE and DELETE events</span>
+    <span class="comment">//</span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="runtime-overrides"><a class="anchor" href="#runtime-overrides"></a>6.8. Runtime Overrides</h3>
+<div class="paragraph">
+<p>See the <a href="#context-overrides">Context Overrides</a> for help using <code>AuditLogContext</code> to override configuration for a block.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-configuration"><a class="anchor" href="#example-configuration"></a>6.9. Example Configuration</h3>
+<div class="paragraph">
+<p>Example <code>application.groovy</code> configuration with various settings as described above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// AuditLog Plugin config</span>
+grails {
+    plugin {
+        auditLog {
+            auditDomainClassName = <span class="string"><span class="delimiter">'</span><span class="content">my.example.project.MyAuditTrail</span><span class="delimiter">'</span></span>
+            verbose = <span class="predefined-constant">false</span>
+            verboseEvents = [AuditEventType.UPDATE, AuditEventType.INSERT]
+            failOnError = <span class="predefined-constant">true</span>
+            excluded = [<span class="string"><span class="delimiter">'</span><span class="content">version</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdated</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdatedBy</span><span class="delimiter">'</span></span>]
+            mask = [<span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>]
+            logIds = <span class="predefined-constant">true</span>
+            stampEnabled = <span class="predefined-constant">true</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>7. Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the grails-audit-logging plugin in several ways.</p>
+</div>
+<div class="sect2">
+<h3 id="basic"><a class="anchor" href="#basic"></a>7.1. Basic</h3>
+<div class="paragraph">
+<p>To enable auditing using the default configuration, simply implement the <code>Auditable</code> trait.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Author</span> <span class="directive">implements</span> Auditable {
+    <span class="predefined-type">String</span> name
+    <span class="predefined-type">Integer</span> age
+
+    <span class="directive">static</span> hasMany = [<span class="key">books</span>: <span class="predefined-type">Book</span>]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will enable auditing for the domain using your configuration in <code>grails.plugin.auditLog</code> merged with the defaults from <code>DefaultAuditLogConfig.groovy</code> (in the plugin jar).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="context-overrides"><a class="anchor" href="#context-overrides"></a>7.2. Context Overrides</h3>
+<div class="paragraph">
+<p>There are many scenarios where you want to use a default configuration for most operations, but need to explicitly override for certain scenarios.</p>
+</div>
+<div class="paragraph">
+<p>One fairly common example is the need to disable audit logging completely for a particular set of changes. This is often the case for bulk operations or operations that might be performed "by the system" such as cleanup, purge, expiration jobs, etc.</p>
+</div>
+<div class="sect3">
+<h4 id="audit-log-context"><a class="anchor" href="#audit-log-context"></a>7.2.1. Audit Log Context</h4>
+<div class="paragraph">
+<p>You can use the <code>AuditLogContext</code> object to override almost any configuration parameter for a given block</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Enable verbose logging with full class name excluding only properties named 'ssn'</span>
+AuditLogContext.withConfig(<span class="key">verbose</span>: <span class="predefined-constant">true</span>, <span class="key">logFullClassName</span>: <span class="predefined-constant">true</span>, <span class="key">excluded</span>: [<span class="string"><span class="delimiter">'</span><span class="content">ssn</span><span class="delimiter">'</span></span>]) { ... }
+
+<span class="comment">// Disable verbose logging</span>
+AuditLogContext.withConfig(<span class="key">verbose</span>: <span class="predefined-constant">false</span>) { ... }
+
+<span class="comment">// Disable all logging</span>
+AuditLogContext.withConfig(<span class="key">disabled</span>: <span class="predefined-constant">true</span>) { ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The last two are so common, there&#8217;s a method that does them by name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Disable verbose logging</span>
+AuditLogContext.withoutVerboseAuditLog { ... }
+
+<span class="comment">// Disable all logging</span>
+AuditLogContext.withoutAuditLog { ... }</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The AuditLogContext stores the context using ThreadLocal, so configuration is only present for the current thread. If you start something asynchronously, be sure you setup the context within the new execution thread.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="domain-overrides"><a class="anchor" href="#domain-overrides"></a>7.3. Domain Overrides</h3>
+<div class="paragraph">
+<p>The context gives you programmatic control over configuration of auditing but you can go even finer grained, if needed, to control auditing on a per-entity basis.</p>
+</div>
+<div class="paragraph">
+<p>To override auditing for a specific entity or based on runtime values, just override the trait method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Assuming this domain has a status attribute, disable auditing for anything not active, for example</span>
+<span class="annotation">@Override</span>
+<span class="type">boolean</span> isAuditable() {
+    <span class="local-variable">this</span>.status == ACTIVE
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another example is to override which properties get ignored for a specific entity:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogExcluded() {
+    [<span class="string"><span class="delimiter">'</span><span class="content">myField</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">version</span><span class="delimiter">'</span></span>]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Control the specific whitelist of attributes logged:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogIncluded() {
+    [<span class="string"><span class="delimiter">'</span><span class="content">whiteListField1</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">whiteListField2</span><span class="delimiter">'</span></span>]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Customize the id that is logged for the entity, for example instead of using Author&#8217;s <code>id</code> property, log the Author&#8217;s name and age as <code>Tolkien:85</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="predefined-type">String</span> getLogEntityId() {
+    <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>name<span class="inline-delimiter">}</span></span><span class="content">:</span><span class="inline"><span class="inline-delimiter">${</span>age<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The ability to override and augment the default behavior provided by the trait is what makes the trait implementation so flexible.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Most of the <code>Auditable</code> methods rely on the AuditLogContext for defaults. If you override the trait method, ensure you consider the keeping the default behavior if you are supplementing.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="customized-auditable-trait"><a class="anchor" href="#customized-auditable-trait"></a>7.4. Customized Auditable Trait</h3>
+<div class="paragraph">
+<p>You could also extend the trait entirely to override the default auditing behavior:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">trait MyAuditable&lt;D&gt; <span class="directive">extends</span> Auditable&lt;D&gt; {
+    <span class="comment">// Customize formatting behavior for new and old values</span>
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">String</span> convertLoggedPropertyToString(<span class="predefined-type">String</span> propertyName, <span class="predefined-type">Object</span> value) {
+        <span class="keyword">if</span> (value <span class="keyword">instanceof</span> MySpecialThing) {
+            <span class="keyword">return</span> ((MySpecialThing)value).formatAsString()
+        }
+        <span class="local-variable">super</span>.convertLoggedPropertyToString(propertyName, value)
+    }
+
+    <span class="comment">// Customize to populate custom attributes on the audit log entity</span>
+    <span class="annotation">@Override</span>
+    <span class="type">boolean</span> beforeSaveLog(<span class="predefined-type">Object</span> auditEntity) {
+        auditEntity.naturalKey = getNaturalKey()
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="request-resolvers"><a class="anchor" href="#request-resolvers"></a>7.5. Request Resolvers</h3>
+<div class="paragraph">
+<p>Audit logging usually requires auditing the user and/or request context for a specific action. The plugin supports a pluggable method of resolving request context by registering an <code>auditRequestResolver</code> bean that applications can override if needed.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Spring-Security-Core plugin between version 3.2.1 and 4.0.1 has been set to MODE_INHERITABLETHREADLOCAL. This can lead to current actor problems, as it might keep the former security context. This setting was changed back to the secure MODE_THREADLOCAL in Spring-Security-Core 4.0.1. If you use a Spring-Security-Core plugin and see weird actor behavior, either upgrade the Spring-Security-Core plugin, or explicitly set the SecurityContextHolder strategy to MODE_THREADLOCAL.
+<a href="https://github.com/grails/grails-spring-security-core/issues/587" class="bare">https://github.com/grails/grails-spring-security-core/issues/587</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="audit-request-resolvers"><a class="anchor" href="#audit-request-resolvers"></a>7.5.1. Audit Request Resolvers</h4>
+<div class="paragraph">
+<p>The plugin ships with two resolvers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">DefaultAuditRequestResolver</span> <span class="directive">implements</span> AuditRequestResolver { ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">SpringSecurityRequestResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver { ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default resolver uses the <code>principal</code> in the active GrailsWebRequest to resolve the Actor name and Request URI for logging purposes.</p>
+</div>
+<div class="paragraph">
+<p>If a bean named <code>springSecurityService</code> is available, the second resolver is registered which uses the <code>currentUser()</code> method to resolve the user context.</p>
+</div>
+<div class="paragraph">
+<p>For other authentication strategies, you can implement and override the <code>auditRequestResolver</code> bean with your own implementation of:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">interface</span> AuditRequestResolver {
+    <span class="comment">/**
+     * @return the current actor
+     */</span>
+    <span class="predefined-type">String</span> getCurrentActor()
+
+    <span class="comment">/**
+     * @return the current request URI or null if no active request
+     */</span>
+    <span class="predefined-type">String</span> getCurrentURI()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just register your resolver in <code>resources.groovy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">beans = {
+    auditRequestResolver(CustomAuditRequestResolver) {
+        customService = ref(<span class="string"><span class="delimiter">'</span><span class="content">customService</span><span class="delimiter">'</span></span>)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below are a few examples for other common security frameworks.</p>
+</div>
+<div class="sect4">
+<h5 id="acegi-plugin"><a class="anchor" href="#acegi-plugin"></a>Acegi Plugin</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">/**
+ * @author Jorge Aguilera
+ */</span>
+<span class="type">class</span> <span class="class">AcegiAuditResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver {
+    <span class="keyword">def</span> authenticateService
+
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">String</span> getCurrentActor() {
+        authenticateService?.principal()?.username ?: <span class="local-variable">super</span>.getCurrentActor()
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cas-authentication"><a class="anchor" href="#cas-authentication"></a>CAS Authentication</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">edu.yale.its.tp.cas.client.filter.CASFilter</span>
+
+<span class="type">class</span> <span class="class">CASAuditResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver {
+    <span class="keyword">def</span> authenticateService
+
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">String</span> getCurrentActor() {
+        GrailsWebRequest request = GrailsWebRequest.lookup()
+        request?.session?.getAttribute(CASFilter.CAS_FILTER_USER)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="shiro-plugin"><a class="anchor" href="#shiro-plugin"></a>Shiro Plugin</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Component</span>(<span class="string"><span class="delimiter">'</span><span class="content">auditRequestResolver</span><span class="delimiter">'</span></span>)
+<span class="type">class</span> <span class="class">ShiroAuditResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver {
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">String</span> getCurrentActor() {
+        org.apache.shiro.SecurityUtils.getSubject()?.getPrincipal()
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stamping"><a class="anchor" href="#stamping"></a>8. Stamping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Stamping adds the following attributes to a domain object via the <code>Stampable</code> trait:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">trait Stampable&lt;D&gt; <span class="directive">extends</span> GormEntity&lt;D&gt; {
+    <span class="predefined-type">Date</span> dateCreated
+    <span class="predefined-type">Date</span> lastUpdated
+
+    <span class="predefined-type">String</span> createdBy
+    <span class="predefined-type">String</span> lastUpdatedBy
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The attributes will assume the default constraints, which should be fine for most cases.</p>
+</div>
+<div class="paragraph">
+<p>You can configure the <code>constraints</code> and <code>mappings</code> block as usual in your domain class to customize the stampable properties.</p>
+</div>
+<div class="sect2">
+<h3 id="stamping-configuration"><a class="anchor" href="#stamping-configuration"></a>8.1. Stamping Configuration</h3>
+<div class="paragraph">
+<p>Previous versions used an AST transformation to apply the stamping and could allow more configuration.
+For now, the stamping support has been boiled down to just the basic trait attributes and the ability to disable the plugin globally.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Enable or disable stamping</span>
+grails.plugin.auditLog.stampEnabled = <span class="predefined-constant">true</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you disable stamping but have <code>Stampable</code> entities, they will likely fail validation since the plugin will not be populating the fields which are still added to the domain objects. The main reason to disable stamping is to prevent the listener registration in the case that you just aren&#8217;t using the <code>Stampable</code> support.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you want to mark <strong>all</strong> of your domain objects as stampable, you could define the following <code>TraitInjector</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@CompileStatic</span>
+<span class="type">class</span> <span class="class">StampableTraitInjector</span> <span class="directive">implements</span> TraitInjector {
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">Class</span> getTrait() {
+        Stampable
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="predefined-type">String</span><span class="type">[]</span> getArtefactTypes() {
+        [<span class="string"><span class="delimiter">'</span><span class="content">Domain</span><span class="delimiter">'</span></span>] <span class="keyword">as</span> <span class="predefined-type">String</span><span class="type">[]</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>9. Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most of the plugin code is marked as @CompileStatic.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="auditing-and-transactions"><a class="anchor" href="#auditing-and-transactions"></a>10. Auditing and Transactions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All audit events for the current transaction are queued up.
+They are flushed after the transaction has successfully been committed.
+This allows the AuditLogListener to use its own session and transaction.</p>
+</div>
+<div class="sect2">
+<h3 id="auditlogeventlistener"><a class="anchor" href="#auditlogeventlistener"></a>10.1. AuditLogEventListener</h3>
+<div class="paragraph">
+<p>The Audit Logging plugin registers a PersistenceEventListener (<code>AuditLogListener</code>) bean per datasource, which listens to GORM events.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stampeventlistener"><a class="anchor" href="#stampeventlistener"></a>10.2. StampEventListener</h3>
+<div class="paragraph">
+<p>The plugin registers a separate StampEventListener that responds to validate events. Ideally, we would stamp when an insert or update event occurs, but since the attributes are non-null by default, we need to populate them before the default validation is triggered.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="plugin-descriptor"><a class="anchor" href="#plugin-descriptor"></a>10.3. Plugin Descriptor</h3>
+<div class="paragraph">
+<p>The Plugin Descriptor (AuditLogListenerGrailsPlugin) configures the plugin during startup.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configures the plugin either by default values - see DefaultAuditLogConfig.groovy - or by user configured settings.</p>
+</li>
+<li>
+<p>Registers a PersistenceEventListener bean per datasource</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="auditable-trait"><a class="anchor" href="#auditable-trait"></a>10.4. Auditable trait</h3>
+<div class="paragraph">
+<p>Enabling auditing on a Domain class is done by implementing the <code>Auditable</code> trait.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stampable-trait-2"><a class="anchor" href="#stampable-trait-2"></a>10.5. Stampable trait</h3>
+<div class="paragraph">
+<p>Enabling stamping on a Domain class is done by implementing the <code>Stampable</code> trait.
+This trait adds the properties dateCreated, lastUpdated, createdBy and lastUpdatedBy
+to the domain class.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="change-log"><a class="anchor" href="#change-log"></a>11. Change Log</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1235,1174 +2387,11 @@ If you use this plugin to log MongoDB transactions, you must configure a SQL Dat
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="installation"><a class="anchor" href="#installation"></a>3. Installation</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="dependencies"><a class="anchor" href="#dependencies"></a>3.1. Dependencies</h3>
-<div class="paragraph">
-<p>Add to your build.gradle project dependencies block:</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Due to the move to Maven Central, the plugin groupId has changed from org.grails.plugin to com.symentis.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
-   compile <span class="string"><span class="delimiter">'</span><span class="content">com.symentis:audit-logging:{VERSION}</span><span class="delimiter">'</span></span>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then run the following to refresh gradle dependencies:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="gradle">gradle classes</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-After installing the plugin, you must perform the following command to let the plugin create the audit-logging domain class and register it in application.groovy within your project.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="create-audit-domain-artifact"><a class="anchor" href="#create-audit-domain-artifact"></a>3.2. Create Audit Domain Artifact</h3>
-<div class="literalblock">
-<div class="content">
-<pre>grails audit-quickstart &lt;your.package.name&gt; &lt;YourAuditLogEventClassName&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>grails audit-quickstart org.myaudit.example AuditTrail</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will create the Audit Domain class and adds to application.groovy:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>grails.plugin.auditLog.auditDomainClassName = 'org.myaudit.example.AuditTrail'</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once created, you should open the generated file to adjust the <code>mappings</code> and <code>constraints</code> to suit your needs. Next, setup additional plugin config. See</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Be sure to respect the existing nullability constraints or the plugin may not work correctly. You must update your db schema either by DDL, or using the database-migration plugin (recommended)
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Since version 4.0.2 the dateCreated / lastUpdated fields can be of any type which is supported by the Grails DefaultTimestampProvider. By default, they are defined as java.util.Date in the created audit domain artifact. Both fields must be of same type.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="prepare-your-domain-classes-for-auditing"><a class="anchor" href="#prepare-your-domain-classes-for-auditing"></a>3.3. Prepare your Domain classes for Auditing</h3>
-<div class="paragraph">
-<p>For every Domain class you want to be audited, implement the Auditable Trait.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
-
-<span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable {
-    <span class="predefined-type">String</span> whatever
-    ...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you additionally want to enable stamping, implement the Stampable Trait:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
-
- <span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable, Stampable {
-     <span class="predefined-type">String</span> whatever
-     ...
- }</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="upgrading-to-5-0-x"><a class="anchor" href="#upgrading-to-5-0-x"></a>4. Upgrading to 5.0.x</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>The 5.0.0 version has some significant changes to the 4.0.x version.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The groupId of the plugin has changed from org.grails.plugin to com.symentis</p>
-</li>
-<li>
-<p>The configuration keys are the same as in 4.0.x</p>
-</li>
-<li>
-<p>The mechanism to audit log transaction data has changed. We now participate in transactions and queue up audit logs. The audit logs are flushed with the current transaction. If the current transaction fails, no audit logs of this transaction are committed. Due to this major change, the plugin is currently not ORM agnostic and for now depends on Hibernate. As the plugin itself does not support other GORM implementations like Mongo (see #179), this shouldn&#8217;t affect current projects.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="upgrading-to-4-0-x"><a class="anchor" href="#upgrading-to-4-0-x"></a>5. Upgrading to 4.0.x</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The 4.0.0 version of the plugin is backwards compatible with 3.0.x. Any existing configuration and customization should work out of the box.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="upgrading-to-3-0-x"><a class="anchor" href="#upgrading-to-3-0-x"></a>6. Upgrading to 3.0.x</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The 3.0.x version of the plugin is a major rewrite of the codebase. Therefore you need to upgrade your code for this version.</p>
-</div>
-<div class="sect2">
-<h3 id="domain-classes"><a class="anchor" href="#domain-classes"></a>6.1. Domain Classes</h3>
-<div class="paragraph">
-<p>Prior versions of the plugin used a static property syntax to enable and customize logging:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Legacy enable/disable</span>
-<span class="directive">static</span> auditable = <span class="predefined-constant">true</span>
-
-<span class="comment">// Legacy whitelist</span>
-<span class="directive">static</span> auditable = [<span class="key">auditableProperties</span>: [<span class="string"><span class="delimiter">'</span><span class="content">name</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">famous</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdated</span><span class="delimiter">'</span></span>]]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Starting with version 3.0.0, the plugin uses an <code>Auditable</code> trait and/or a <code>Stampable</code> trait as both a marker as well as a way to configure and override auditing behavior.</p>
-</div>
-<div class="paragraph">
-<p>For the first example, just adding <code>implements Auditable</code> will enable the default behavior.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
-<span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable {
-  ..
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For the second example above, you simply override the appropriate method on the <code>Auditable</code> trait, in this case the method is <code>getLogIncluded()</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
-<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogIncluded() {
-    [<span class="string"><span class="delimiter">'</span><span class="content">name</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">famous</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdated</span><span class="delimiter">'</span></span>]
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The getter methods on <code>Auditable</code> all follow the <code>getLog*()</code> format to minimize collisions with user methods. Typically they are <code>getLog&lt;Configuration Name&gt;()</code> followed by whatever the configurable value (included, excluded, mask) with a few exceptions.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuration-changes"><a class="anchor" href="#configuration-changes"></a>6.2. Configuration Changes</h3>
-<div class="paragraph">
-<p>To support unifying the configuration, trait, and context usage, some of the configuration properties have been renamed. The following table should help to map old values and types to the new ones:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Prior Name</th>
-<th class="tableblock halign-left valign-top">New Name</th>
-<th class="tableblock halign-left valign-top">New Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auditableProperties</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">included</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defaultIgnore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">excluded</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ignore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">excluded</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defaultMask</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mask</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;String&gt;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nonVerboseDelete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">verboseEvents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection&lt;AuditEventType&gt;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">transactional</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Inherits existing transactionality</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">actorClosure</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use AuditRequestResolver</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">actorKey</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use AuditRequestResolver</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sessionAttribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use AuditRequestResolver</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">handlersOnly</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Grails callback methods</p></td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">stampAlways</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Removed</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use a <code>TraitInjector</code> with <code>Stampable</code></p></td>
-</tr>
-</tfoot>
-</table>
-</div>
-<div class="sect2">
-<h3 id="transactional-behavior"><a class="anchor" href="#transactional-behavior"></a>6.3. Transactional Behavior</h3>
-<div class="paragraph">
-<p>Previously, the audit logging plugin had a <code>transactional</code> flag that indicated whether to include the audit log saves in a transaction. However, the audit logging plugin should really just participate (or not) in existing transactions and not make any attempts to control transactionality at that grain. For most usage, you want your Audit domain instances to be atomically created in the same transaction as the changes that are triggering them. If there&#8217;s no existing transaction for the changes, it&#8217;s not clear why there <em>should</em> be a transaction just for the audit events or vice versa.</p>
-</div>
-<div class="paragraph">
-<p>The Audit instances are still saved in a new session within any existing transaction.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="handlers-removed"><a class="anchor" href="#handlers-removed"></a>6.4. Handlers Removed</h3>
-<div class="paragraph">
-<p>The handler callbacks such as <code>onChange</code>, <code>onSave</code>, etc. have been removed starting with version 3.0.0.</p>
-</div>
-<div class="paragraph">
-<p>This behavior is already provided by Grails now using the <code>before*</code> and <code>after*</code> callback methods.</p>
-</div>
-<div class="paragraph">
-<p>For example, you could do something like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> <span class="function">beforeInsert</span>() {
-    <span class="keyword">def</span> dirtyAudit = getAuditableDirtyPropertyNames()
-
-    <span class="comment">// Do something special if certain properties are dirty, etc.</span>
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="actor-closure"><a class="anchor" href="#actor-closure"></a>6.5. Actor Closure</h3>
-<div class="paragraph">
-<p>The actor closure has been replaced with a more formalized <code>AuditRequestResolver</code> strategy for resolving actor and URI information.</p>
-</div>
-<div class="paragraph">
-<p>By default, the plugin uses the <code>DefaultAuditRequestResolver</code>, which gets Principal information from the current Grails web request context. This is essentially the same as the prior default actor closure.</p>
-</div>
-<div class="paragraph">
-<p>If your application uses Spring Security, the plugin will register an instance of the <code>SpringSecurityRequestResolver</code> which will use the <code>springSecurityService</code> to resolve the current principal.</p>
-</div>
-<div class="paragraph">
-<p>For other security frameworks, you can implement the <code>AuditRequestResolver</code> interface and register a bean named <code>auditRequestResolver</code> to override the resolver provided by the plugin.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="stampable-trait"><a class="anchor" href="#stampable-trait"></a>6.6. Stampable Trait</h3>
-<div class="paragraph">
-<p>The <code>@Stamp</code> annotation was removed in favor of a <code>Stampable</code> trait. This keeps the usage more in line with the direction of Grails in general as well as simplifying the implementation and usage.</p>
-</div>
-<div class="paragraph">
-<p>However, there are some limitations to implementing this as a trait:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Property names are <code>dateCreated, lastUpdated, createdBy, lastUpdatedBy</code> and are not configurable</p>
-</li>
-<li>
-<p>If you want to customized the constraints, you must do so in your domain class</p>
-</li>
-<li>
-<p>The values are technically populated on the <code>ValidationEvent</code> since they are non-nullable and must be populated prior to the default property validation.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The <code>stampAlways</code> has been removed. If you want to mark <strong>all</strong> of your domain objects as stampable, you could define the following <code>TraitInjector</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@CompileStatic</span>
-<span class="type">class</span> <span class="class">StampableTraitInjector</span> <span class="directive">implements</span> TraitInjector {
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">Class</span> getTrait() {
-        Stampable
-    }
-
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">String</span><span class="type">[]</span> getArtefactTypes() {
-        [<span class="string"><span class="delimiter">'</span><span class="content">Domain</span><span class="delimiter">'</span></span>] <span class="keyword">as</span> <span class="predefined-type">String</span><span class="type">[]</span>
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="configuration"><a class="anchor" href="#configuration"></a>7. Configuration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The plugin configuration can be specified in the application.groovy file.
-It supports Environments blocks for environment-specific configuration.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Since version 2.0.0, the configuration key has changed from "auditLog" to "grails.plugins.auditLog".
-If you use the old configuration key, the plugin will log a notice.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 30%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Property</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Default Value</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Meaning</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.auditDomainClassName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>(Required)</strong> Use <code>grails audit-quickstart</code> to create</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Domain Class Name for the Audit Domain class.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.disabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set to true, audit logging is completely disabled (no listeners are registered).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.verbose</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Column by column change logging in insert and delete events (enabled by default). You can disable it if you are not interested in value changes, or if you want to set verbosity based on event type (see verboseEvents setting below)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.verboseEvents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[INSERT, UPDATE, DELETE]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums. Enables verbose logging on a per-event type basis. If <code>verbose = true</code> (default), all event types are logged verbosely, regardless of this setting.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.ignoreEvents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums that can be used to disable logging on a per-event type basis. For example, setting <code>[AuditEventType.DELETE]</code> would disable audit logging for all DELETE events only.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.failOnError</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If the save of the Audit domain fails, enabling this will cause the failure to be thrown out of the listener potentially failing the entire transaction.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.logIds</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set to true, object-ids of associated objects are logged.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.logFullClassName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Log the full entity name including the package name</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.defaultActor</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'SYS'</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The default actor (user) to log if no user context can be found using the configured <code>AuditRequestResolver</code> implementation (see below).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.excluded</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['version', 'lastUpdated', 'lastUpdatedBy']</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">These properties are not logged and will not trigger verbose logging when changed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.included</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code> (all persistent properties)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is a global whitelist of properties to log and will override anything in the excluded list. A null value indicates that all persistent properties not in the <code>excluded</code> list specifically should be logged.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.mask</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['password']</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Any property with this name will be masked using the <code>propertyMask</code> attribute (below).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.propertyMask</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**********</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">String to use when masking properties.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.truncateLength</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxSize</code> of <code>newValue</code>/<code>oldValue</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allow overriding the maximum length allowed in the <code>oldValue</code> and <code>newValue</code> fields before truncating. This property defaults to the max size allowed by the <code>constraint</code>, so it&#8217;s best to just control it that way.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.stampEnabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enable stamping support for entities with the <code>Stampable</code> trait (dateCreated, lastUpdated, createdBy, lastUpdatedBy).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.usePersistentDirtyPropertyValues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">By default, the old persistent value is obtained using getPersistentValue(). On newer Grails versions, this could fail. If the original value is always NULL in your case, you can set this property to "false", so getOriginalValue() is used.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can view the above defaults in the <code>DefaultAuditLogConfig.groovy</code>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="verbose-mode"><a class="anchor" href="#verbose-mode"></a>7.1. Verbose mode</h3>
-<div class="paragraph">
-<p>When enabled (default), per-property logging is enabled for all operations.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>grails.plugin.auditLog.verbose = true</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or you can enable verbose logging for specific event types using:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>grails.plugin.auditLog.verboseEvents = [AuditEventType.UPDATE]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If both verbose=true and verboseEvents are set, verbose has precedence.</p>
-</div>
-<div class="paragraph">
-<p>If verbose=true, or verboseEvents contains AuditEventType.DELETE, deletion of an entity will cause
-all properties of the deleted entity to be logged, except associations (Collections), as this is
-currently not possible. See issue #153</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Verbose logging will insert 1 row of data per property of your domain object for all or verboseEvents type operations. This can result in a large amount of additional data, sometimes far more than the actual operation itself. Consider disabling verbose mode for bulk operations using the <code>AuditLogContext.withoutVerboseAuditLog { }</code> closure.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging-of-associated-ids"><a class="anchor" href="#logging-of-associated-ids"></a>7.2. Logging of Associated Ids</h3>
-<div class="paragraph">
-<p>You can log the object-ids of associated objects. Logging will be performed in the format: "[id:&lt;objId&gt;]objDetails".</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.logIds = <span class="predefined-constant">true</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This setting is enabled by default.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="property-value-masking"><a class="anchor" href="#property-value-masking"></a>7.3. Property Value Masking</h3>
-<div class="paragraph">
-<p>You can configure properties to mask on a per-Domain-Class base. If properties are defined as masked, their values are not stored into the audit log table if verbose mode is enabled. Instead, a mask of "<strong><strong></strong><strong></strong></strong>" will be logged.</p>
-</div>
-<div class="paragraph">
-<p>By default, "password" properties are masked. You can mask property fields in domain classes like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
-<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogMask() {
-    [<span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">otherField</span><span class="delimiter">'</span></span>]
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="verbose-log-truncation-length"><a class="anchor" href="#verbose-log-truncation-length"></a>7.4. Verbose Log Truncation Length</h3>
-<div class="paragraph">
-<p>If you enabled verbose mode, you can configure the truncation length of detail information in the oldValue and newValue
-columns (Default is 255). Configure the truncateLength in application.groovy:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">truncateLength = <span class="integer">400</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>When you set truncateLength to a value &gt; 255 you must ensure that oldValue and newValue fields in your audit-log domain class are large enough. Example setting with the same maxSize constraints as the former "largeValueColumnTypes" setting:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="directive">static</span> constraints = {
-    <span class="comment">// For large column support (as in &lt; 1.0.6 plugin versions)</span>
-    oldValue(<span class="key">nullable</span>: <span class="predefined-constant">true</span>, <span class="key">maxSize</span>: <span class="integer">65534</span>)
-    newValue(<span class="key">nullable</span>: <span class="predefined-constant">true</span>, <span class="key">maxSize</span>: <span class="integer">65534</span>)
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When you forget to set the constraints in your AuditLog class while setting truncateLength &gt; 255,
-a truncation warning may occur and only partial information is logged.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="disable-all-auditing"><a class="anchor" href="#disable-all-auditing"></a>7.5. Disable All Auditing</h3>
-<div class="paragraph">
-<p>You can disable auditing by config. If you disable auditing, event handlers are still triggered but no changes are comitted to the audit log table. This can be used e.g. if you need to bootstrap many objects and want to programmatically disable auditing to not slow down the bootstrap process or if you want to audit log by Enviroment.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.disabled = <span class="predefined-constant">true</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This setting is "false" by default (auditing is enabled).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="log-full-class-name"><a class="anchor" href="#log-full-class-name"></a>7.6. Log Full Class Name</h3>
-<div class="paragraph">
-<p>By default, only the entity class name is logged. If you want to log the entity full name (including the package name), you can enable full logging. Thanks to tcrossland for this feature.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.logFullClassName = <span class="predefined-constant">true</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This setting is "true" by default (full name is logged).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ignoring-specific-events"><a class="anchor" href="#ignoring-specific-events"></a>7.7. Ignoring Specific Events</h3>
-<div class="paragraph">
-<p>To ignore certain events on a per-domain base, override the <code>getLogIgnoreEvents()</code> method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
-<span class="predefined-type">Collection</span>&lt;AuditEventType&gt; getLogIgnoreEvents() {
-    [AuditEventType.INSERT]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also ignore them either globally with:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">grails.plugin.auditLog.ignoreEvents = [AuditEventType.INSERT]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Or for a specific logging context by using:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">AuditLogContext.withConfig(ignoreEvents = [AuditEventType.INSERT]) {
-    <span class="comment">//</span>
-    <span class="comment">// Anything here will only log UPDATE and DELETE events</span>
-    <span class="comment">//</span>
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="runtime-overrides"><a class="anchor" href="#runtime-overrides"></a>7.8. Runtime Overrides</h3>
-<div class="paragraph">
-<p>See the <a href="#context-overrides">Context Overrides</a> for help using <code>AuditLogContext</code> to override configuration for a block.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="example-configuration"><a class="anchor" href="#example-configuration"></a>7.9. Example Configuration</h3>
-<div class="paragraph">
-<p>Example <code>application.groovy</code> configuration with various settings as described above:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// AuditLog Plugin config</span>
-grails {
-    plugin {
-        auditLog {
-            auditDomainClassName = <span class="string"><span class="delimiter">'</span><span class="content">my.example.project.MyAuditTrail</span><span class="delimiter">'</span></span>
-            verbose = <span class="predefined-constant">false</span>
-            verboseEvents = [AuditEventType.UPDATE, AuditEventType.INSERT]
-            failOnError = <span class="predefined-constant">true</span>
-            excluded = [<span class="string"><span class="delimiter">'</span><span class="content">version</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdated</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">lastUpdatedBy</span><span class="delimiter">'</span></span>]
-            mask = [<span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>]
-            logIds = <span class="predefined-constant">true</span>
-            stampEnabled = <span class="predefined-constant">true</span>
-        }
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>8. Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can use the grails-audit-logging plugin in several ways.</p>
-</div>
-<div class="sect2">
-<h3 id="basic"><a class="anchor" href="#basic"></a>8.1. Basic</h3>
-<div class="paragraph">
-<p>To enable auditing using the default configuration, simply implement the <code>Auditable</code> trait.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Author</span> <span class="directive">implements</span> Auditable {
-    <span class="predefined-type">String</span> name
-    <span class="predefined-type">Integer</span> age
-
-    <span class="directive">static</span> hasMany = [<span class="key">books</span>: <span class="predefined-type">Book</span>]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will enable auditing for the domain using your configuration in <code>grails.plugin.auditLog</code> merged with the defaults from <code>DefaultAuditLogConfig.groovy</code> (in the plugin jar).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="context-overrides"><a class="anchor" href="#context-overrides"></a>8.2. Context Overrides</h3>
-<div class="paragraph">
-<p>There are many scenarios where you want to use a default configuration for most operations, but need to explicitly override for certain scenarios.</p>
-</div>
-<div class="paragraph">
-<p>One fairly common example is the need to disable audit logging completely for a particular set of changes. This is often the case for bulk operations or operations that might be performed "by the system" such as cleanup, purge, expiration jobs, etc.</p>
-</div>
-<div class="sect3">
-<h4 id="audit-log-context"><a class="anchor" href="#audit-log-context"></a>8.2.1. Audit Log Context</h4>
-<div class="paragraph">
-<p>You can use the <code>AuditLogContext</code> object to override almost any configuration parameter for a given block</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Enable verbose logging with full class name excluding only properties named 'ssn'</span>
-AuditLogContext.withConfig(<span class="key">verbose</span>: <span class="predefined-constant">true</span>, <span class="key">logFullClassName</span>: <span class="predefined-constant">true</span>, <span class="key">excluded</span>: [<span class="string"><span class="delimiter">'</span><span class="content">ssn</span><span class="delimiter">'</span></span>]) { ... }
-
-<span class="comment">// Disable verbose logging</span>
-AuditLogContext.withConfig(<span class="key">verbose</span>: <span class="predefined-constant">false</span>) { ... }
-
-<span class="comment">// Disable all logging</span>
-AuditLogContext.withConfig(<span class="key">disabled</span>: <span class="predefined-constant">true</span>) { ... }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The last two are so common, there&#8217;s a method that does them by name:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Disable verbose logging</span>
-AuditLogContext.withoutVerboseAuditLog { ... }
-
-<span class="comment">// Disable all logging</span>
-AuditLogContext.withoutAuditLog { ... }</code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The AuditLogContext stores the context using ThreadLocal, so configuration is only present for the current thread. If you start something asynchronously, be sure you setup the context within the new execution thread.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="domain-overrides"><a class="anchor" href="#domain-overrides"></a>8.3. Domain Overrides</h3>
-<div class="paragraph">
-<p>The context gives you programmatic control over configuration of auditing but you can go even finer grained, if needed, to control auditing on a per-entity basis.</p>
-</div>
-<div class="paragraph">
-<p>To override auditing for a specific entity or based on runtime values, just override the trait method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Assuming this domain has a status attribute, disable auditing for anything not active, for example</span>
-<span class="annotation">@Override</span>
-<span class="type">boolean</span> isAuditable() {
-    <span class="local-variable">this</span>.status == ACTIVE
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Another example is to override which properties get ignored for a specific entity:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
-<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogExcluded() {
-    [<span class="string"><span class="delimiter">'</span><span class="content">myField</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">version</span><span class="delimiter">'</span></span>]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Control the specific whitelist of attributes logged:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
-<span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; getLogIncluded() {
-    [<span class="string"><span class="delimiter">'</span><span class="content">whiteListField1</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">whiteListField2</span><span class="delimiter">'</span></span>]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Customize the id that is logged for the entity, for example instead of using Author&#8217;s <code>id</code> property, log the Author&#8217;s name and age as <code>Tolkien:85</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
-<span class="predefined-type">String</span> getLogEntityId() {
-    <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>name<span class="inline-delimiter">}</span></span><span class="content">:</span><span class="inline"><span class="inline-delimiter">${</span>age<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The ability to override and augment the default behavior provided by the trait is what makes the trait implementation so flexible.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Most of the <code>Auditable</code> methods rely on the AuditLogContext for defaults. If you override the trait method, ensure you consider the keeping the default behavior if you are supplementing.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="customized-auditable-trait"><a class="anchor" href="#customized-auditable-trait"></a>8.4. Customized Auditable Trait</h3>
-<div class="paragraph">
-<p>You could also extend the trait entirely to override the default auditing behavior:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">trait MyAuditable&lt;D&gt; <span class="directive">extends</span> Auditable&lt;D&gt; {
-    <span class="comment">// Customize formatting behavior for new and old values</span>
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">String</span> convertLoggedPropertyToString(<span class="predefined-type">String</span> propertyName, <span class="predefined-type">Object</span> value) {
-        <span class="keyword">if</span> (value <span class="keyword">instanceof</span> MySpecialThing) {
-            <span class="keyword">return</span> ((MySpecialThing)value).formatAsString()
-        }
-        <span class="local-variable">super</span>.convertLoggedPropertyToString(propertyName, value)
-    }
-
-    <span class="comment">// Customize to populate custom attributes on the audit log entity</span>
-    <span class="annotation">@Override</span>
-    <span class="type">boolean</span> beforeSaveLog(<span class="predefined-type">Object</span> auditEntity) {
-        auditEntity.naturalKey = getNaturalKey()
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="request-resolvers"><a class="anchor" href="#request-resolvers"></a>8.5. Request Resolvers</h3>
-<div class="paragraph">
-<p>Audit logging usually requires auditing the user and/or request context for a specific action. The plugin supports a pluggable method of resolving request context by registering an <code>auditRequestResolver</code> bean that applications can override if needed.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Spring-Security-Core plugin between version 3.2.1 and 4.0.1 has been set to MODE_INHERITABLETHREADLOCAL. This can lead to current actor problems, as it might keep the former security context. This setting was changed back to the secure MODE_THREADLOCAL in Spring-Security-Core 4.0.1. If you use a Spring-Security-Core plugin and see weird actor behavior, either upgrade the Spring-Security-Core plugin, or explicitly set the SecurityContextHolder strategy to MODE_THREADLOCAL.
-<a href="https://github.com/grails/grails-spring-security-core/issues/587" class="bare">https://github.com/grails/grails-spring-security-core/issues/587</a></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="audit-request-resolvers"><a class="anchor" href="#audit-request-resolvers"></a>8.5.1. Audit Request Resolvers</h4>
-<div class="paragraph">
-<p>The plugin ships with two resolvers:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">DefaultAuditRequestResolver</span> <span class="directive">implements</span> AuditRequestResolver { ... }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">SpringSecurityRequestResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver { ... }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The default resolver uses the <code>principal</code> in the active GrailsWebRequest to resolve the Actor name and Request URI for logging purposes.</p>
-</div>
-<div class="paragraph">
-<p>If a bean named <code>springSecurityService</code> is available, the second resolver is registered which uses the <code>currentUser()</code> method to resolve the user context.</p>
-</div>
-<div class="paragraph">
-<p>For other authentication strategies, you can implement and override the <code>auditRequestResolver</code> bean with your own implementation of:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">interface</span> AuditRequestResolver {
-    <span class="comment">/**
-     * @return the current actor
-     */</span>
-    <span class="predefined-type">String</span> getCurrentActor()
-
-    <span class="comment">/**
-     * @return the current request URI or null if no active request
-     */</span>
-    <span class="predefined-type">String</span> getCurrentURI()
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Just register your resolver in <code>resources.groovy</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">beans = {
-    auditRequestResolver(CustomAuditRequestResolver) {
-        customService = ref(<span class="string"><span class="delimiter">'</span><span class="content">customService</span><span class="delimiter">'</span></span>)
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Below are a few examples for other common security frameworks.</p>
-</div>
-<div class="sect4">
-<h5 id="acegi-plugin"><a class="anchor" href="#acegi-plugin"></a>Acegi Plugin</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">/**
- * @author Jorge Aguilera
- */</span>
-<span class="type">class</span> <span class="class">AcegiAuditResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver {
-    <span class="keyword">def</span> authenticateService
-
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">String</span> getCurrentActor() {
-        authenticateService?.principal()?.username ?: <span class="local-variable">super</span>.getCurrentActor()
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="cas-authentication"><a class="anchor" href="#cas-authentication"></a>CAS Authentication</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">edu.yale.its.tp.cas.client.filter.CASFilter</span>
-
-<span class="type">class</span> <span class="class">CASAuditResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver {
-    <span class="keyword">def</span> authenticateService
-
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">String</span> getCurrentActor() {
-        GrailsWebRequest request = GrailsWebRequest.lookup()
-        request?.session?.getAttribute(CASFilter.CAS_FILTER_USER)
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="shiro-plugin"><a class="anchor" href="#shiro-plugin"></a>Shiro Plugin</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Component</span>(<span class="string"><span class="delimiter">'</span><span class="content">auditRequestResolver</span><span class="delimiter">'</span></span>)
-<span class="type">class</span> <span class="class">ShiroAuditResolver</span> <span class="directive">extends</span> DefaultAuditRequestResolver {
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">String</span> getCurrentActor() {
-        org.apache.shiro.SecurityUtils.getSubject()?.getPrincipal()
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="stamping"><a class="anchor" href="#stamping"></a>9. Stamping</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Stamping adds the following attributes to a domain object via the <code>Stampable</code> trait:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">trait Stampable&lt;D&gt; <span class="directive">extends</span> GormEntity&lt;D&gt; {
-    <span class="predefined-type">Date</span> dateCreated
-    <span class="predefined-type">Date</span> lastUpdated
-
-    <span class="predefined-type">String</span> createdBy
-    <span class="predefined-type">String</span> lastUpdatedBy
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The attributes will assume the default constraints, which should be fine for most cases.</p>
-</div>
-<div class="paragraph">
-<p>You can configure the <code>constraints</code> and <code>mappings</code> block as usual in your domain class to customize the stampable properties.</p>
-</div>
-<div class="sect2">
-<h3 id="stamping-configuration"><a class="anchor" href="#stamping-configuration"></a>9.1. Stamping Configuration</h3>
-<div class="paragraph">
-<p>Previous versions used an AST transformation to apply the stamping and could allow more configuration.
-For now, the stamping support has been boiled down to just the basic trait attributes and the ability to disable the plugin globally.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// Enable or disable stamping</span>
-grails.plugin.auditLog.stampEnabled = <span class="predefined-constant">true</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-If you disable stamping but have <code>Stampable</code> entities, they will likely fail validation since the plugin will not be populating the fields which are still added to the domain objects. The main reason to disable stamping is to prevent the listener registration in the case that you just aren&#8217;t using the <code>Stampable</code> support.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If you want to mark <strong>all</strong> of your domain objects as stampable, you could define the following <code>TraitInjector</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@CompileStatic</span>
-<span class="type">class</span> <span class="class">StampableTraitInjector</span> <span class="directive">implements</span> TraitInjector {
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">Class</span> getTrait() {
-        Stampable
-    }
-
-    <span class="annotation">@Override</span>
-    <span class="predefined-type">String</span><span class="type">[]</span> getArtefactTypes() {
-        [<span class="string"><span class="delimiter">'</span><span class="content">Domain</span><span class="delimiter">'</span></span>] <span class="keyword">as</span> <span class="predefined-type">String</span><span class="type">[]</span>
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="implementation"><a class="anchor" href="#implementation"></a>10. Implementation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Most of the plugin code is marked as @CompileStatic.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="auditing-and-transactions"><a class="anchor" href="#auditing-and-transactions"></a>11. Auditing and Transactions</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>All audit events for the current transaction are queued up.
-They are flushed after the transaction has successfully been committed.
-This allows the AuditLogListener to use its own session and transaction.</p>
-</div>
-<div class="sect2">
-<h3 id="auditlogeventlistener"><a class="anchor" href="#auditlogeventlistener"></a>11.1. AuditLogEventListener</h3>
-<div class="paragraph">
-<p>The Audit Logging plugin registers a PersistenceEventListener (<code>AuditLogListener</code>) bean per datasource, which listens to GORM events.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="stampeventlistener"><a class="anchor" href="#stampeventlistener"></a>11.2. StampEventListener</h3>
-<div class="paragraph">
-<p>The plugin registers a separate StampEventListener that responds to validate events. Ideally, we would stamp when an insert or update event occurs, but since the attributes are non-null by default, we need to populate them before the default validation is triggered.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="plugin-descriptor"><a class="anchor" href="#plugin-descriptor"></a>11.3. Plugin Descriptor</h3>
-<div class="paragraph">
-<p>The Plugin Descriptor (AuditLogListenerGrailsPlugin) configures the plugin during startup.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Configures the plugin either by default values - see DefaultAuditLogConfig.groovy - or by user configured settings.</p>
-</li>
-<li>
-<p>Registers a PersistenceEventListener bean per datasource</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="auditable-trait"><a class="anchor" href="#auditable-trait"></a>11.4. Auditable trait</h3>
-<div class="paragraph">
-<p>Enabling auditing on a Domain class is done by implementing the <code>Auditable</code> trait.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="stampable-trait-2"><a class="anchor" href="#stampable-trait-2"></a>11.5. Stampable trait</h3>
-<div class="paragraph">
-<p>Enabling stamping on a Domain class is done by implementing the <code>Stampable</code> trait.
-This trait adds the properties dateCreated, lastUpdated, createdBy and lastUpdatedBy
-to the domain class.</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 6.0.0-SNAPSHOT<br>
-Last updated 2025-09-12 03:05:00 UTC
+Last updated 2025-09-15 20:57:19 UTC
 </div>
 </div>
 </body>
