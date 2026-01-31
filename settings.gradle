@@ -7,7 +7,7 @@ def isCI = System.getenv().containsKey('CI')
 def isLocal = !isCI
 
 develocity {
-  server = 'https://ge.grails.org'
+  server = 'https://develocity.apache.org'
   buildScan {
     tag('grails')
     tag('grails-forge')
