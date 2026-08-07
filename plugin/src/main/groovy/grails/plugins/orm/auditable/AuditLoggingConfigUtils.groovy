@@ -75,7 +75,7 @@ class AuditLoggingConfigUtils {
 
     /** Force a reload of the auditLog configuration. */
     static void reloadAuditConfig() {
-        reloadAuditConfig(ReflectionUtils.application.config)
+        reloadAuditConfig(ReflectionUtils.getApplicationConfig())
     }
 
     /** Force a reload of the auditLog configuration from the supplied application config. */

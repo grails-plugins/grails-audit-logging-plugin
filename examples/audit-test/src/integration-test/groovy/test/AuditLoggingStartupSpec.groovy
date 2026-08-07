@@ -3,6 +3,7 @@ package test
 import grails.core.GrailsApplication
 import grails.plugins.orm.auditable.AuditLoggingConfigUtils
 import grails.plugins.orm.auditable.AuditLoggingGrailsPlugin
+import grails.plugins.orm.auditable.ReflectionUtils
 import grails.plugins.orm.auditable.resolvers.AuditRequestResolver
 import grails.plugins.orm.auditable.resolvers.DefaultAuditRequestResolver
 import grails.testing.mixin.integration.Integration
@@ -19,6 +20,25 @@ class AuditLoggingStartupSpec extends Specification {
         AuditLoggingConfigUtils.auditConfig.defaultActor == 'SYS'
         AuditLoggingConfigUtils.auditConfig.stampEnabled
         AuditLoggingConfigUtils.auditConfig.verbose
+    }
+
+    void 'fails clearly when audit configuration is accessed before plugin initialization'() {
+        given:
+        GrailsApplication application = ReflectionUtils.application
+        AuditLoggingConfigUtils.resetAuditConfig()
+        ReflectionUtils.application = null
+
+        when:
+        AuditLoggingConfigUtils.auditConfig
+
+        then:
+        IllegalStateException exception = thrown()
+        exception.message == 'AuditLoggingGrailsPlugin/BeanRegistrar initialization must complete before accessing audit configuration'
+
+        cleanup:
+        ReflectionUtils.application = application
+        AuditLoggingConfigUtils.resetAuditConfig()
+        AuditLoggingConfigUtils.reloadAuditConfig()
     }
 
     void 'reloads audit configuration after a config change'() {

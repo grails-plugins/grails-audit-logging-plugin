@@ -56,8 +56,15 @@ class ReflectionUtils {
         o ? o as List : []
     }
 
+    static Config getApplicationConfig() {
+        if (!application) {
+            throw new IllegalStateException('AuditLoggingGrailsPlugin/BeanRegistrar initialization must complete before accessing audit configuration')
+        }
+        application.config
+    }
+
     static ConfigObject getAuditConfig() {
-        getAuditConfig(application.config)
+        getAuditConfig(getApplicationConfig())
     }
 
     static ConfigObject getAuditConfig(Config grailsConfig) {
