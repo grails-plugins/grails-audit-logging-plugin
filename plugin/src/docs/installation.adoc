@@ -1,63 +1,76 @@
 == Installation
-=== Dependencies
-Add to your build.gradle project dependencies block:
+
+=== Prerequisites
+
+The 7.x plugin line supports Grails 8 and Java 21 only. Use the 6.x plugin line for Grails 7 applications.
+
+=== Repository and Runtime Dependency
+
+Applications use only the runtime plugin dependency. During 7.0.x snapshot development, configure the Grails restricted repository and add the snapshot version in `build.gradle`:
+
+[source,groovy,subs="attributes+"]
+----
+repositories {
+    maven { url = uri('https://repo.grails.org/grails/restricted') }
+}
+
+dependencies {
+    implementation 'org.grails.plugins:audit-logging:{version}'
+}
+----
+
+When released 7.x artifacts are available, use the released version from Maven Central. The snapshot is not a final release, and availability depends on publication.
+
+=== Automatic CLI Companion
+
+Do not add `org.grails.plugins:audit-logging-cli` to the application. The runtime JAR advertises that companion with the `Grails-Cli-Artifact` manifest entry. Grails 8 provisions the companion only for CLI execution, so its dependencies stay out of `bootRun`, `bootJar`, and `bootWar`.
+
+=== Create the Audit Domain Artifact
+
+For a new application, run quickstart once with the direct Grails CLI:
+
+[source,shell]
+----
+grails audit-quickstart org.example.audit AuditLogEvent
+----
+
+Or start the interactive shell and run the same command:
+
+[source,shell]
+----
+./gradlew shell
+grails> audit-quickstart org.example.audit AuditLogEvent
+----
+
+The command creates the audit domain class and registers it with `grails.plugin.auditLog.auditDomainClassName`. Open the generated class to adjust mappings and constraints for the application. Preserve its required nullability constraints, then update the database schema through DDL or the database-migration plugin.
+
+The generated `dateCreated` and `lastUpdated` properties default to `java.util.Date`. Both properties may use any type supported by Grails' `DefaultTimestampProvider`, but they must use the same type.
+
+`audit-quickstart` is a legacy script packaged in `META-INF/commands`, not an `ApplicationCommand`. Do not use `runCommand` or expect a generated `auditQuickstart` Gradle task.
+
+=== Next Steps
+
+Add the `Auditable` trait to every domain class that should be audited:
 
 [source,groovy]
 ----
-dependencies {
-   compile 'org.grails.plugins:audit-logging:{VERSION}'
-}
-----
-Then run the following to refresh gradle dependencies: 
-
-[source,gradle]
-----
-gradle classes
-----
-
-NOTE: After installing the plugin, you must perform the following command to let the plugin create the audit-logging domain class and register it in application.groovy within your project.
-
-=== Create Audit Domain Artifact
-
-    grails audit-quickstart <your.package.name> <YourAuditLogEventClassName>
-
-For example:
-
-    grails audit-quickstart org.myaudit.example AuditTrail
-
-This will create the Audit Domain class and adds to application.groovy:
-
-    grails.plugin.auditLog.auditDomainClassName = 'org.myaudit.example.AuditTrail'
-    
-Once created, you should open the generated file to adjust the `mappings` and `constraints` to suit your needs. Next, setup additional plugin config. See
-
-WARNING: Be sure to respect the existing nullability constraints or the plugin may not work correctly. You must update your db schema either by DDL, or using the database-migration plugin (recommended)
-
-NOTE: Since version 4.0.2 the dateCreated / lastUpdated fields can be of any type which is supported by the Grails DefaultTimestampProvider. By default, they are defined as java.util.Date in the created audit domain artifact. Both fields must be of same type.
-
-=== Prepare your Domain classes for Auditing
-
-For every Domain class you want to be audited, implement the Auditable Trait.
-
-For example:
-
-```groovy
 import grails.plugins.orm.auditable.Auditable
 
 class MyDomain implements Auditable {
-    String whatever
-    ...
+    String value
 }
-```
+----
 
+To enable stamping, add the `Stampable` trait as well:
 
-If you additionally want to enable stamping, implement the Stampable Trait:
-
-```groovy
+[source,groovy]
+----
 import grails.plugins.orm.auditable.Auditable
+import grails.plugins.orm.auditable.Stampable
 
- class MyDomain implements Auditable, Stampable {
-     String whatever
-     ...
- }
-```
+class MyDomain implements Auditable, Stampable {
+    String value
+}
+----
+
+See <<configuration,Configuration>> to configure audit behavior.

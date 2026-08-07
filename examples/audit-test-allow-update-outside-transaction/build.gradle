@@ -32,16 +32,8 @@ dependencies {
     implementation "org.apache.grails:grails-url-mappings"
     implementation "org.apache.grails:grails-web-boot"
     implementation "org.apache.grails:grails-gsp"
-    implementation "org.apache.grails:grails-layout"
+    implementation "org.apache.grails:grails-sitemesh3"
     implementation "org.apache.grails:grails-data-hibernate5"
-
-    implementation "org.hibernate:hibernate-ehcache:$hibernate5Version", {
-      // exclude javax variant of hibernate-core
-      exclude group: 'org.hibernate', module: 'hibernate-core'
-    }
-    implementation "org.jboss.spec.javax.transaction:jboss-transaction-api_1.3_spec:$jbossTransactionApiVersion", {
-      // required for hibernate-ehcache to work with javax variant of hibernate-core excluded
-    }
 
     implementation "org.apache.grails:grails-scaffolding"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
@@ -50,11 +42,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
     implementation "org.springframework.boot:spring-boot-starter-validation"
-    console "org.apache.grails:grails-console"
     runtimeOnly "cloud.wondrify:asset-pipeline-grails"
     runtimeOnly "com.h2database:h2"
-    runtimeOnly "org.apache.tomcat:tomcat-jdbc"
-    runtimeOnly "org.fusesource.jansi:jansi"
+    runtimeOnly "com.zaxxer:HikariCP"
     integrationTestImplementation testFixtures("org.apache.grails:grails-geb")
     testImplementation "org.apache.grails:grails-testing-support-datamapping"
     testImplementation "org.apache.grails:grails-testing-support-web"
@@ -63,6 +53,8 @@ dependencies {
     implementation project(":audit-logging")
     profile "org.apache.grails.profiles:web"
 }
+
+compileJava.options.release = 21
 
 test {
     testLogging {

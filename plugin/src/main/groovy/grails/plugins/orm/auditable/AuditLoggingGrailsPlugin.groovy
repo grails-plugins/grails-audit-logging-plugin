@@ -23,7 +23,9 @@ import grails.plugins.orm.auditable.resolvers.DefaultAuditRequestResolver
 import grails.plugins.orm.auditable.resolvers.SpringSecurityRequestResolver
 import groovy.util.logging.Slf4j
 import org.grails.datastore.mapping.core.Datastore
-import org.springframework.beans.factory.NoSuchBeanDefinitionException
+import org.springframework.beans.factory.BeanRegistrar
+import org.springframework.beans.factory.BeanRegistry
+import org.springframework.core.env.Environment
 /**
  * @author Robert Oschwald
  * @author Aaron Long
@@ -42,7 +44,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException
 @Slf4j
 @SuppressWarnings("GroovyUnusedDeclaration")
 class AuditLoggingGrailsPlugin extends Plugin {
-    def grailsVersion = '7.0.0 > *'
+    def grailsVersion = '8.0.0 > *'
 
     def title = "Audit Logging Plugin"
     def authorEmail = "roos@symentis.com"
@@ -104,24 +106,27 @@ class AuditLoggingGrailsPlugin extends Plugin {
     }
 
     @Override
-    Closure doWithSpring() {{->
-        // Must load config before the application context has been refreshed
-        AuditLoggingConfigUtils.resetAuditConfig()
-        AuditLoggingConfigUtils.reloadAuditConfig()
+    BeanRegistrar beanRegistrar() {
+        { BeanRegistry registry, Environment environment ->
+            ReflectionUtils.application = grailsApplication
+            AuditLoggingConfigUtils.resetSecondaryConfigs()
+            AuditLoggingConfigUtils.resetAuditConfig()
+            AuditLoggingConfigUtils.reloadAuditConfig(grailsApplication.config)
 
-        try {
-            if (applicationContext.getBean("springSecurityService")) {
+            if (manager.hasGrailsPlugin('springSecurityCore') || applicationContext.containsBean('springSecurityService')) {
                 log.debug("Audit logging detected spring security, using spring security request resolver")
-                auditRequestResolver(SpringSecurityRequestResolver) {
-                    springSecurityService = ref('springSecurityService')
+                registry.registerBean('auditRequestResolver', SpringSecurityRequestResolver) { spec ->
+                    spec.supplier { context ->
+                        new SpringSecurityRequestResolver(springSecurityService: context.bean('springSecurityService', Object))
+                    }
                 }
             }
-        }
-        catch(NoSuchBeanDefinitionException ignored) {
-            log.debug("Audit logging using default request resolver")
-            auditRequestResolver(DefaultAuditRequestResolver)
-        }
-    }}
+            else {
+                log.debug("Audit logging using default request resolver")
+                registry.registerBean('auditRequestResolver', DefaultAuditRequestResolver)
+            }
+        } as BeanRegistrar
+    }
 
     @Override
     void onConfigChange(Map<String, Object> event) {

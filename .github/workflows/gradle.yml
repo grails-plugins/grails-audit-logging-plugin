@@ -13,53 +13,57 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: ['17', '21']
     steps:
       - name: "📥 Checkout the repository"
         uses: actions/checkout@v4
       - name: "☕️ Setup JDK"
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'liberica'
-          java-version: ${{ matrix.java }}
+          java-version: '21'
       - name: "🐘 Setup Gradle"
         uses: gradle/actions/setup-gradle@v4
       - name: "🔨 Run Base Tests"
-        env:
-          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
-          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
-          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
-        run: ./gradlew check --continue
+        run: >
+          ./gradlew
+          :audit-logging:check
+          :examples:audit-test:check
+          :examples:audit-test:integrationTest
+          :examples:audit-test-allow-update-outside-transaction:check
+          :examples:audit-test-allow-update-outside-transaction:integrationTest
+          --continue
       - name: "☄️ Upload Base Tests Results - audit-test"
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: testreport-audit-test-${{ matrix.java }}
+          name: testreport-audit-test-21
           path: examples/audit-test/build/reports/tests
       - name: "☄️ Upload Base Tests Results - audit-test-allow-update-outside-transaction"
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: testreport-audit-test-allow-update-outside-transaction-${{ matrix.java }}
+          name: testreport-audit-test-allow-update-outside-transaction-21
           path: examples/audit-test-allow-update-outside-transaction/build/reports/tests
       - name: "🔨 Run audit-test Outside of Transaction Tests"
         if: ${{ always() }}
-        env:
-          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
-          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_USER }}
-          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.DEVELOCITY_BUILD_CACHE_NODE_KEY }}
-        run: ./gradlew :examples:audit-test:check -Daudit-test.AuditTrail.datasource=DEFAULT --continue
+        run: ./gradlew --system-prop audit-test.AuditTrail.datasource=default :examples:audit-test:check --continue
       - name: "☄️ Upload audit-test Outside of Transaction Tests Results"
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: testreport-audit-test-single-datasource-${{ matrix.java }}
+          name: testreport-audit-test-single-datasource-21
           path: examples/audit-test/build/reports/tests
+  test-gradle-wrapper:
+    runs-on: windows-latest
+    steps:
+      - name: "📥 Checkout the repository"
+        uses: actions/checkout@v4
+      - name: "Test Gradle wrapper Java discovery"
+        shell: pwsh
+        run: pwsh -NoProfile -File .github/scripts/Test-GradleWrapper.ps1
   publish:
-    if: github.event_name == 'push'
-    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/7.0.x'
+    needs: [build, test-gradle-wrapper]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -67,10 +71,10 @@ jobs:
       - name: "📥 Checkout the repository"
         uses: actions/checkout@v4
       - name: "☕️ Setup JDK"
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'liberica'
-          java-version: '17'
+          java-version: '21'
       - name: "🐘 Setup Gradle"
         uses: gradle/actions/setup-gradle@v4
       - name: "📤 Publish to Snapshot (repo.grails.org)"
@@ -80,14 +84,12 @@ jobs:
           MAVEN_PUBLISH_USERNAME: ${{ secrets.MAVEN_PUBLISH_USERNAME }}
           MAVEN_PUBLISH_PASSWORD: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}
           MAVEN_PUBLISH_URL: ${{ secrets.MAVEN_PUBLISH_SNAPSHOT_URL }}
-        working-directory: ./plugin
-        run: ../gradlew publish
+        run: ./gradlew :audit-logging:publish
       - name: "📜 Generate Documentation"
         if: success()
         env:
           DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
-        working-directory: ./plugin
-        run: ../gradlew docs
+        run: ./gradlew :audit-logging:docs
       - name: "🚀 Publish to Github Pages"
         if: success()
         uses: grails/github-pages-deploy-action@grails
