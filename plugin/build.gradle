@@ -10,12 +10,12 @@ group = "org.grails.plugins"
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.apache.grails.gradle.grails-plugin'
+apply plugin: 'org.apache.grails.gradle.grails-plugin-cli'
 apply plugin: 'org.apache.grails.gradle.grails-gsp'
 
-compileJava.options.release = 17
+compileJava.options.release = 21
 
 dependencies {
-    compileOnly platform("org.apache.grails:grails-bom:$grailsVersion")
     compileOnly "org.apache.grails:grails-dependencies-starter-web"
 
     // TODO: We need to make this configurable/pluggable
@@ -25,7 +25,65 @@ dependencies {
 }
 
 grails {
-    springDependencyManagement = false
+    cliArtifact {
+        automaticModuleName = 'org.grails.plugins.audit.logging.cli'
+    }
+}
+
+tasks.register('verifyCliPackaging') {
+    group = 'verification'
+    description = 'Verifies runtime and CLI companion archive and publication separation.'
+    dependsOn 'jar', 'cliJar', 'generatePomFileForMavenPublication', 'generatePomFileForCliPublication'
+
+    doLast {
+        def runtimeJar = tasks.named('jar').get().archiveFile.get().asFile
+        def cliJar = tasks.named('cliJar').get().archiveFile.get().asFile
+        def runtimePom = layout.buildDirectory.file('publications/maven/pom-default.xml').get().asFile
+        def cliPom = layout.buildDirectory.file('publications/cli/pom-default.xml').get().asFile
+        def require = { boolean condition, String message ->
+            if (!condition) {
+                throw new GradleException(message)
+            }
+        }
+        def hasEntry = { File archive, String entryName ->
+            new java.util.jar.JarFile(archive).withCloseable { jar ->
+                jar.getEntry(entryName) != null
+            }
+        }
+        def manifestAttribute = { File archive, String attributeName ->
+            new java.util.jar.JarFile(archive).withCloseable { jar ->
+                jar.manifest.mainAttributes.getValue(attributeName)
+            }
+        }
+
+        require(!hasEntry(runtimeJar, 'META-INF/commands/audit-quickstart.groovy'),
+                "Runtime jar must not contain audit-quickstart: ${runtimeJar}")
+        require(hasEntry(cliJar, 'META-INF/commands/audit-quickstart.groovy'),
+                "CLI jar must contain audit-quickstart: ${cliJar}")
+        require(hasEntry(runtimeJar, 'META-INF/templates/AuditLogEvent.groovy.template'),
+                "Runtime jar must contain the AuditLogEvent template: ${runtimeJar}")
+        require(manifestAttribute(cliJar, 'Automatic-Module-Name') == 'org.grails.plugins.audit.logging.cli',
+                "CLI jar must declare its automatic module name: ${cliJar}")
+        require(manifestAttribute(runtimeJar, 'Grails-Cli-Artifact') == 'org.grails.plugins:audit-logging-cli',
+                "Runtime jar must advertise the audit-logging CLI companion: ${runtimeJar}")
+
+        def pom = new groovy.xml.XmlSlurper().parse(runtimePom)
+        boolean hasCoreCliDependency = pom.dependencies.dependency.any {
+            it.groupId.text() == 'org.apache.grails' && it.artifactId.text() == 'grails-core-cli'
+        }
+        require(!hasCoreCliDependency,
+                "Runtime POM must not declare grails-core-cli: ${runtimePom}")
+
+        def cliDependencies = new groovy.xml.XmlSlurper().parse(cliPom).dependencies.dependency
+        require(cliDependencies.any { it.groupId.text() == 'org.grails.plugins' && it.artifactId.text() == 'audit-logging' },
+                "CLI POM must depend on the audit-logging runtime artifact: ${cliPom}")
+        require(cliDependencies.any { it.groupId.text() == 'org.apache.grails' && it.artifactId.text() == 'grails-core-cli' },
+                "CLI POM must depend on grails-core-cli: ${cliPom}")
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifyCliPackaging')
 }
 
 bootJar.enabled = false

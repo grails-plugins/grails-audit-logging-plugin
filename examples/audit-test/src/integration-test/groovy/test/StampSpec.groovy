@@ -36,10 +36,11 @@ class StampSpec extends Specification {
 
         when:
         train.number = "20"
+        train.lastUpdatedBy = 'Before update'
         train.save(flush: true)
 
         then:
-        train.dateCreated != train.lastUpdated
+        train.lastUpdatedBy == 'Aaron'
     }
 
     void 'Stamp inserted with default request resolver'() {
@@ -57,10 +58,11 @@ class StampSpec extends Specification {
 
         when:
         train.number = "20"
+        train.lastUpdatedBy = 'Before update'
         train.save(flush: true)
 
         then:
-        train.dateCreated != train.lastUpdated
+        train.lastUpdatedBy == 'SYS'
     }
 }
 

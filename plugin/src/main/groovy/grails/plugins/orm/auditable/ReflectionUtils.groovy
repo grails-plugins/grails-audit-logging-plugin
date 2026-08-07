@@ -16,11 +16,11 @@ package grails.plugins.orm.auditable
 
 import grails.config.Config
 import grails.core.GrailsApplication
-import grails.util.Holders
 import groovy.util.logging.Slf4j
 import org.grails.config.NavigableMap
 import org.grails.config.PropertySourcesConfig
 import org.springframework.core.env.MapPropertySource
+import org.springframework.core.env.MutablePropertySources
 import org.springframework.core.env.PropertySource
 /**
  * Helper methods that use dynamic Groovy
@@ -57,11 +57,24 @@ class ReflectionUtils {
     }
 
     static ConfigObject getAuditConfig() {
-        Config grailsConfig = getApplication().config
+        getAuditConfig(application.config)
+    }
+
+    static ConfigObject getAuditConfig(Config grailsConfig) {
         if (grailsConfig.getProperty('auditLog', NavigableMap)) {
             log.error "Your auditLog configuration settings use the old prefix 'auditLog' but must now use 'grails.plugin.auditLog'"
         }
         grailsConfig.getProperty("grails.plugin.auditLog", NavigableMap) as ConfigObject
+    }
+
+    static Config removeAuditConfigPropertySource(Config config) {
+        if (config.is(application?.config)) {
+            MutablePropertySources propertySources = application.mainContext.environment.propertySources
+            propertySources.remove('AuditConfig')
+            application.config = new PropertySourcesConfig(propertySources)
+            return application.config
+        }
+        config
     }
 
     static void setAuditConfig(ConfigObject c) {
@@ -72,14 +85,7 @@ class ReflectionUtils {
         def propertySources = application.mainContext.environment.propertySources
         propertySources.addFirst propertySource
 
-        getApplication().config = new PropertySourcesConfig(propertySources)
-    }
-
-    private static GrailsApplication getApplication() {
-        if (!application) {
-            application = Holders.grailsApplication
-        }
-        application
+        application.config = new PropertySourcesConfig(propertySources)
     }
 
 }

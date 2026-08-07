@@ -14,7 +14,7 @@
  */
 package grails.plugins.orm.auditable
 
-import grails.core.GrailsApplication
+import grails.config.Config
 import grails.util.Environment
 import groovy.util.logging.Slf4j
 
@@ -26,7 +26,7 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class AuditLoggingConfigUtils {
     private static ConfigObject _auditConfig
-    private static GrailsApplication application
+    private static final List<String> secondaryConfigs = []
 
     // Constructor. Static methods only
     private AuditLoggingConfigUtils() {}
@@ -57,18 +57,34 @@ class AuditLoggingConfigUtils {
         log.trace 'reset auditLog config'
     }
 
+    static synchronized void resetSecondaryConfigs() {
+        secondaryConfigs.clear()
+    }
+
     /**
      * Allow a secondary plugin to add config attributes.
      * @param className the name of the config class.
      */
     static synchronized void loadSecondaryConfig(String className) {
         mergeConfig auditConfig, className
+        if (!secondaryConfigs.contains(className)) {
+            secondaryConfigs << className
+        }
         log.trace 'loaded secondary config {}', className
     }
 
     /** Force a reload of the auditLog configuration. */
     static void reloadAuditConfig() {
-        mergeConfig ReflectionUtils.auditConfig, 'DefaultAuditLogConfig'
+        reloadAuditConfig(ReflectionUtils.application.config)
+    }
+
+    /** Force a reload of the auditLog configuration from the supplied application config. */
+    static void reloadAuditConfig(Config config) {
+        Config refreshedConfig = ReflectionUtils.removeAuditConfigPropertySource(config)
+        mergeConfig ReflectionUtils.getAuditConfig(refreshedConfig), 'DefaultAuditLogConfig'
+        secondaryConfigs.each { String className ->
+            mergeConfig auditConfig, className
+        }
         log.trace 'reloaded auditLog config'
     }
 
