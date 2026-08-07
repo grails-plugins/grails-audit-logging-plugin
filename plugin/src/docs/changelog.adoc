@@ -1,7 +1,12 @@
 == Change Log
 * 7.0.0-SNAPSHOT
-** Development line for Grails 8.0.x and Java 21.
-** Added automatic discovery of the `audit-logging-cli` companion from the runtime plugin dependency.
+** Raised the supported baseline to Grails 8 and Java 21. Grails 7 applications should remain on plugin 6.x.
+** Split CLI support into the `audit-logging-cli` companion. The runtime plugin advertises the companion so Grails provisions it for CLI commands without adding CLI dependencies to application runtime or packaged artifacts.
+** Updated plugin registration for the Grails 8 BeanRegistrar lifecycle.
+** Updated the build toolchain, example application, and CI to the Grails 8 and Java 21 baseline.
+** Improved configuration reload behavior so runtime configuration changes are applied consistently.
+** Fixed Windows wrapper termination and diagnostics when Java cannot be discovered.
+** Existing audit domain customizations and `grails.plugin.auditLog.*` configuration remain supported. Do not rerun quickstart during an upgrade; manage any intentional audit-domain redesign manually.
 
 * 6.0.0
 ** Updated for Grails 7

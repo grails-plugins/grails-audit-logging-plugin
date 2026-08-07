@@ -94,8 +94,7 @@ If `audit-quickstart` is unavailable:
 | --- | --- |
 | Grails 8.0.x | [7.0.x branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/7.0.x) |
 | Grails 7.0.x | [6.0.x branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/6.0.x) |
-| Grails 4.0.10+ | [5.0.x branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/5.0.x) |
-| Grails up to 4.0.9 | [4.x_maintenance branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/4.x_maintenance) |
+| Grails 4.0.x | [5.0.x branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/5.0.x) (recommended); [4.x_maintenance](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/4.x_maintenance) remains available through Grails 4.0.9 |
 | Grails 3.3.x | [3.x_maintenance branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/3.x_maintenance) |
 | Grails 3.0.x-3.2.x | [2.x_maintenance branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/2.x_maintenance) |
 | Grails 2.x | [1.x_maintenance branch](https://github.com/grails-plugins/grails-audit-logging-plugin/tree/1.x_maintenance) |
