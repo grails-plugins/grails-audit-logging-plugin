@@ -533,75 +533,85 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Grails Audit Logging Plugin</h1>
 <div class="details">
 <span id="author" class="author">Robert Oschwald</span><br>
-<span id="revnumber">version 6.0.1-SNAPSHOT,</span>
-<span id="revdate">2026-01-31</span>
+<span id="revnumber">version 7.0.0-SNAPSHOT,</span>
+<span id="revdate">2026-08-07</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#description">1. Description</a>
 <ul class="sectlevel2">
-<li><a href="#compatibility">1.1. Compatibility</a></li>
-<li><a href="#gorm-compatibility">1.2. GORM Compatibility</a></li>
+<li><a href="#grails-8-runtime-and-cli-architecture">1.1. Grails 8 Runtime and CLI Architecture</a></li>
+<li><a href="#compatibility">1.2. Compatibility</a></li>
+<li><a href="#gorm-compatibility">1.3. GORM Compatibility</a></li>
 </ul>
 </li>
 <li><a href="#installation">2. Installation</a>
 <ul class="sectlevel2">
-<li><a href="#dependencies">2.1. Dependencies</a></li>
-<li><a href="#create-audit-domain-artifact">2.2. Create Audit Domain Artifact</a></li>
-<li><a href="#prepare-your-domain-classes-for-auditing">2.3. Prepare your Domain classes for Auditing</a></li>
+<li><a href="#prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#repository-and-runtime-dependency">2.2. Repository and Runtime Dependency</a></li>
+<li><a href="#automatic-cli-companion">2.3. Automatic CLI Companion</a></li>
+<li><a href="#create-the-audit-domain-artifact">2.4. Create the Audit Domain Artifact</a></li>
+<li><a href="#next-steps">2.5. Next Steps</a></li>
 </ul>
 </li>
-<li><a href="#upgrading-to-5-0-x">3. Upgrading to 5.0.x</a></li>
-<li><a href="#upgrading-to-4-0-x">4. Upgrading to 4.0.x</a></li>
-<li><a href="#upgrading-to-3-0-x">5. Upgrading to 3.0.x</a>
+<li><a href="#upgrading-to-7-0-x">3. Upgrading to 7.0.x</a>
 <ul class="sectlevel2">
-<li><a href="#domain-classes">5.1. Domain Classes</a></li>
-<li><a href="#configuration-changes">5.2. Configuration Changes</a></li>
-<li><a href="#transactional-behavior">5.3. Transactional Behavior</a></li>
-<li><a href="#handlers-removed">5.4. Handlers Removed</a></li>
-<li><a href="#actor-closure">5.5. Actor Closure</a></li>
-<li><a href="#stampable-trait">5.6. Stampable Trait</a></li>
+<li><a href="#6-x-to-7-x-checklist">3.1. 6.x to 7.x Checklist</a></li>
+<li><a href="#breaking-changes">3.2. Breaking Changes</a></li>
+<li><a href="#unchanged-behavior">3.3. Unchanged Behavior</a></li>
 </ul>
 </li>
-<li><a href="#configuration">6. Configuration</a>
+<li><a href="#upgrading-to-5-0-x">4. Upgrading to 5.0.x</a></li>
+<li><a href="#upgrading-to-4-0-x">5. Upgrading to 4.0.x</a></li>
+<li><a href="#upgrading-to-3-0-x">6. Upgrading to 3.0.x</a>
 <ul class="sectlevel2">
-<li><a href="#verbose-mode">6.1. Verbose mode</a></li>
-<li><a href="#logging-of-associated-ids">6.2. Logging of Associated Ids</a></li>
-<li><a href="#property-value-masking">6.3. Property Value Masking</a></li>
-<li><a href="#verbose-log-truncation-length">6.4. Verbose Log Truncation Length</a></li>
-<li><a href="#disable-all-auditing">6.5. Disable All Auditing</a></li>
-<li><a href="#log-full-class-name">6.6. Log Full Class Name</a></li>
-<li><a href="#ignoring-specific-events">6.7. Ignoring Specific Events</a></li>
-<li><a href="#runtime-overrides">6.8. Runtime Overrides</a></li>
-<li><a href="#example-configuration">6.9. Example Configuration</a></li>
+<li><a href="#domain-classes">6.1. Domain Classes</a></li>
+<li><a href="#configuration-changes">6.2. Configuration Changes</a></li>
+<li><a href="#transactional-behavior">6.3. Transactional Behavior</a></li>
+<li><a href="#handlers-removed">6.4. Handlers Removed</a></li>
+<li><a href="#actor-closure">6.5. Actor Closure</a></li>
+<li><a href="#stampable-trait">6.6. Stampable Trait</a></li>
 </ul>
 </li>
-<li><a href="#usage">7. Usage</a>
+<li><a href="#configuration">7. Configuration</a>
 <ul class="sectlevel2">
-<li><a href="#basic">7.1. Basic</a></li>
-<li><a href="#context-overrides">7.2. Context Overrides</a></li>
-<li><a href="#domain-overrides">7.3. Domain Overrides</a></li>
-<li><a href="#customized-auditable-trait">7.4. Customized Auditable Trait</a></li>
-<li><a href="#request-resolvers">7.5. Request Resolvers</a></li>
+<li><a href="#verbose-mode">7.1. Verbose mode</a></li>
+<li><a href="#logging-of-associated-ids">7.2. Logging of Associated Ids</a></li>
+<li><a href="#property-value-masking">7.3. Property Value Masking</a></li>
+<li><a href="#verbose-log-truncation-length">7.4. Verbose Log Truncation Length</a></li>
+<li><a href="#disable-all-auditing">7.5. Disable All Auditing</a></li>
+<li><a href="#log-full-class-name">7.6. Log Full Class Name</a></li>
+<li><a href="#ignoring-specific-events">7.7. Ignoring Specific Events</a></li>
+<li><a href="#runtime-overrides">7.8. Runtime Overrides</a></li>
+<li><a href="#example-configuration">7.9. Example Configuration</a></li>
 </ul>
 </li>
-<li><a href="#stamping">8. Stamping</a>
+<li><a href="#usage">8. Usage</a>
 <ul class="sectlevel2">
-<li><a href="#stamping-configuration">8.1. Stamping Configuration</a></li>
+<li><a href="#basic">8.1. Basic</a></li>
+<li><a href="#context-overrides">8.2. Context Overrides</a></li>
+<li><a href="#domain-overrides">8.3. Domain Overrides</a></li>
+<li><a href="#customized-auditable-trait">8.4. Customized Auditable Trait</a></li>
+<li><a href="#request-resolvers">8.5. Request Resolvers</a></li>
 </ul>
 </li>
-<li><a href="#implementation">9. Implementation</a></li>
-<li><a href="#auditing-and-transactions">10. Auditing and Transactions</a>
+<li><a href="#stamping">9. Stamping</a>
 <ul class="sectlevel2">
-<li><a href="#auditlogeventlistener">10.1. AuditLogEventListener</a></li>
-<li><a href="#stampeventlistener">10.2. StampEventListener</a></li>
-<li><a href="#plugin-descriptor">10.3. Plugin Descriptor</a></li>
-<li><a href="#auditable-trait">10.4. Auditable trait</a></li>
-<li><a href="#stampable-trait-2">10.5. Stampable trait</a></li>
+<li><a href="#stamping-configuration">9.1. Stamping Configuration</a></li>
 </ul>
 </li>
-<li><a href="#change-log">11. Change Log</a></li>
+<li><a href="#implementation">10. Implementation</a></li>
+<li><a href="#auditing-and-transactions">11. Auditing and Transactions</a>
+<ul class="sectlevel2">
+<li><a href="#auditlogeventlistener">11.1. AuditLogEventListener</a></li>
+<li><a href="#stampeventlistener">11.2. StampEventListener</a></li>
+<li><a href="#plugin-descriptor">11.3. Plugin Descriptor</a></li>
+<li><a href="#auditable-trait">11.4. Auditable trait</a></li>
+<li><a href="#stampable-trait-2">11.5. Stampable trait</a></li>
+</ul>
+</li>
+<li><a href="#change-log">12. Change Log</a></li>
 </ul>
 </div>
 </div>
@@ -609,7 +619,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Other formats: <a href="audit-logging-6.0.1-SNAPSHOT.pdf">PDF</a>, <a href="audit-logging-6.0.1-SNAPSHOT.epub">EPUB</a></p>
+<p>Other formats: <a href="audit-logging-7.0.0-SNAPSHOT.pdf">PDF</a>, <a href="audit-logging-7.0.0-SNAPSHOT.epub">EPUB</a></p>
 </div>
 </div>
 </div>
@@ -617,13 +627,19 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h2 id="description"><a class="anchor" href="#description"></a>1. Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Audit Logging plugin makes it easy to add customizable audit tracking by simply having your domain classes extend the <code>Auditable</code> trait.</p>
-</div>
-<div class="paragraph">
-<p>It also provides a convenient way to add Update and Create user stamping by extending the <code>Stampable</code> trait.</p>
+<p>The Audit Logging plugin adds customizable audit tracking when domain classes implement the <code>Auditable</code> trait. It also supports create and update user stamping with the <code>Stampable</code> trait.</p>
 </div>
 <div class="sect2">
-<h3 id="compatibility"><a class="anchor" href="#compatibility"></a>1.1. Compatibility</h3>
+<h3 id="grails-8-runtime-and-cli-architecture"><a class="anchor" href="#grails-8-runtime-and-cli-architecture"></a>1.1. Grails 8 Runtime and CLI Architecture</h3>
+<div class="paragraph">
+<p>Plugin 7.x supports Grails 8 and Java 21 only. Applications declare the runtime <code>audit-logging</code> artifact. Its <code>Grails-Cli-Artifact</code> manifest entry identifies <code>org.grails.plugins:audit-logging-cli</code>, which Grails 8 provisions only for CLI execution. This keeps CLI dependencies out of application startup and packaged artifacts while making <code>audit-quickstart</code> available from the direct Grails CLI and interactive shell.</p>
+</div>
+<div class="paragraph">
+<p>Plugin 7.x does not support Grails 7. Use plugin 6.x for Grails 7 applications. Existing historical plugin lines remain available for earlier Grails releases.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compatibility"><a class="anchor" href="#compatibility"></a>1.2. Compatibility</h3>
 <table class="tableblock frame-all grid-all" style="width: 50%;">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -637,16 +653,16 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8.0.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.0.x, Java 21 required</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.0.x</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.0.x</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.0.0 and later</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0 (participating in Transactions). This is the recommended version if you use Grails 4.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.0.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.0.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x recommended; 4.0.x maintenance also remains available through Grails 4.0.9</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3.3.x</p></td>
@@ -674,18 +690,9 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </table>
 </div>
 <div class="sect2">
-<h3 id="gorm-compatibility"><a class="anchor" href="#gorm-compatibility"></a>1.2. GORM Compatibility</h3>
+<h3 id="gorm-compatibility"><a class="anchor" href="#gorm-compatibility"></a>1.3. GORM Compatibility</h3>
 <div class="paragraph">
-<p>This plugin is GORM agnostic, so you can use it with the GORM implementation of your choice
-(Hibernate 5, MongoDB, etc.).</p>
-</div>
-<div class="paragraph">
-<p>Please note, that only Hibernate5 is tested during development. If an issue occurs with your ORM mapper,
-please file a GitHub issue.</p>
-</div>
-<div class="paragraph">
-<p>While the plugin can log transactions for a MongoDB DataSource, it currently does not support MongoDB as an audit logging backend.
-If you use this plugin to log MongoDB transactions, you must configure a SQL DataSource for Audit Logging. See Ticket #181.</p>
+<p>Since plugin 5.x, auditing participates in the current Hibernate transaction and requires a Hibernate datastore. Persistence events from non-Hibernate datastores are not audited. The audit domain may use the same Hibernate datasource as the audited entity or another configured Hibernate datasource.</p>
 </div>
 </div>
 </div>
@@ -694,125 +701,152 @@ If you use this plugin to log MongoDB transactions, you must configure a SQL Dat
 <h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="dependencies"><a class="anchor" href="#dependencies"></a>2.1. Dependencies</h3>
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>2.1. Prerequisites</h3>
 <div class="paragraph">
-<p>Add to your build.gradle project dependencies block:</p>
+<p>The 7.x plugin line supports Grails 8 and Java 21 only. Use the 6.x plugin line for Grails 7 applications.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="repository-and-runtime-dependency"><a class="anchor" href="#repository-and-runtime-dependency"></a>2.2. Repository and Runtime Dependency</h3>
+<div class="paragraph">
+<p>Applications use only the runtime plugin dependency. During 7.0.x snapshot development, configure the Grails restricted repository and add the snapshot version in <code>build.gradle</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
-   compile <span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins:audit-logging:{VERSION}</span><span class="delimiter">'</span></span>
+<pre class="CodeRay highlight"><code data-lang="groovy">repositories {
+    maven { url = uri(<span class="string"><span class="delimiter">'</span><span class="content">https://repo.grails.org/grails/restricted</span><span class="delimiter">'</span></span>) }
+}
+
+dependencies {
+    implementation <span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins:audit-logging:7.0.0-SNAPSHOT</span><span class="delimiter">'</span></span>
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then run the following to refresh gradle dependencies:</p>
+<p>When released 7.x artifacts are available, use the released version from Maven Central. The snapshot is not a final release, and availability depends on publication.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="automatic-cli-companion"><a class="anchor" href="#automatic-cli-companion"></a>2.3. Automatic CLI Companion</h3>
+<div class="paragraph">
+<p>Do not add <code>org.grails.plugins:audit-logging-cli</code> to the application. The runtime JAR advertises that companion with the <code>Grails-Cli-Artifact</code> manifest entry. Grails 8 provisions the companion only for CLI execution, so its dependencies stay out of <code>bootRun</code>, <code>bootJar</code>, and <code>bootWar</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-the-audit-domain-artifact"><a class="anchor" href="#create-the-audit-domain-artifact"></a>2.4. Create the Audit Domain Artifact</h3>
+<div class="paragraph">
+<p>For a new application, run quickstart once with the direct Grails CLI:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="gradle">gradle classes</code></pre>
+<pre class="CodeRay highlight"><code data-lang="shell">grails audit-quickstart org.example.audit AuditLogEvent</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-After installing the plugin, you must perform the following command to let the plugin create the audit-logging domain class and register it in application.groovy within your project.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Or start the interactive shell and run the same command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="shell">./gradlew shell
+grails&gt; audit-quickstart org.example.audit AuditLogEvent</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command creates the audit domain class and registers it with <code>grails.plugin.auditLog.auditDomainClassName</code>. Open the generated class to adjust mappings and constraints for the application. Preserve its required nullability constraints, then update the database schema through DDL or the database-migration plugin.</p>
+</div>
+<div class="paragraph">
+<p>The generated <code>dateCreated</code> and <code>lastUpdated</code> properties default to <code>java.util.Date</code>. Both properties may use any type supported by Grails' <code>DefaultTimestampProvider</code>, but they must use the same type.</p>
+</div>
+<div class="paragraph">
+<p><code>audit-quickstart</code> is a legacy script packaged in <code>META-INF/commands</code>, not an <code>ApplicationCommand</code>. Do not use <code>runCommand</code> or expect a generated <code>auditQuickstart</code> Gradle task.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="create-audit-domain-artifact"><a class="anchor" href="#create-audit-domain-artifact"></a>2.2. Create Audit Domain Artifact</h3>
-<div class="literalblock">
-<div class="content">
-<pre>grails audit-quickstart &lt;your.package.name&gt; &lt;YourAuditLogEventClassName&gt;</pre>
-</div>
-</div>
+<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>2.5. Next Steps</h3>
 <div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>grails audit-quickstart org.myaudit.example AuditTrail</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will create the Audit Domain class and adds to application.groovy:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>grails.plugin.auditLog.auditDomainClassName = 'org.myaudit.example.AuditTrail'</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once created, you should open the generated file to adjust the <code>mappings</code> and <code>constraints</code> to suit your needs. Next, setup additional plugin config. See</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Be sure to respect the existing nullability constraints or the plugin may not work correctly. You must update your db schema either by DDL, or using the database-migration plugin (recommended)
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Since version 4.0.2 the dateCreated / lastUpdated fields can be of any type which is supported by the Grails DefaultTimestampProvider. By default, they are defined as java.util.Date in the created audit domain artifact. Both fields must be of same type.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="prepare-your-domain-classes-for-auditing"><a class="anchor" href="#prepare-your-domain-classes-for-auditing"></a>2.3. Prepare your Domain classes for Auditing</h3>
-<div class="paragraph">
-<p>For every Domain class you want to be audited, implement the Auditable Trait.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
+<p>Add the <code>Auditable</code> trait to every domain class that should be audited:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
 
 <span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable {
-    <span class="predefined-type">String</span> whatever
-    ...
+    <span class="predefined-type">String</span> value
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you additionally want to enable stamping, implement the Stampable Trait:</p>
+<p>To enable stamping, add the <code>Stampable</code> trait as well:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Auditable</span>
+<span class="keyword">import</span> <span class="include">grails.plugins.orm.auditable.Stampable</span>
 
- <span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable, Stampable {
-     <span class="predefined-type">String</span> whatever
-     ...
- }</code></pre>
+<span class="type">class</span> <span class="class">MyDomain</span> <span class="directive">implements</span> Auditable, Stampable {
+    <span class="predefined-type">String</span> value
+}</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>See <a href="#configuration">Configuration</a> to configure audit behavior.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrading-to-5-0-x"><a class="anchor" href="#upgrading-to-5-0-x"></a>3. Upgrading to 5.0.x</h2>
+<h2 id="upgrading-to-7-0-x"><a class="anchor" href="#upgrading-to-7-0-x"></a>3. Upgrading to 7.0.x</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="6-x-to-7-x-checklist"><a class="anchor" href="#6-x-to-7-x-checklist"></a>3.1. 6.x to 7.x Checklist</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upgrade the application to Grails 8 and Java 21.</p>
+</li>
+<li>
+<p>Replace the 6.x runtime dependency with <code>org.grails.plugins:audit-logging:7.0.0-SNAPSHOT</code> while the 7.x snapshot is the available development artifact.</p>
+</li>
+<li>
+<p>Add <code>https://repo.grails.org/grails/restricted</code> to the build repositories when resolving the snapshot. Use Maven Central and a released version when a released 7.x artifact is available.</p>
+</li>
+<li>
+<p>Keep the existing <code>AuditLogEvent</code> class, its mappings and constraints, and all <code>grails.plugin.auditLog.*</code> configuration.</p>
+</li>
+<li>
+<p>Do not rerun <code>audit-quickstart</code>. It does not overwrite the existing class and can append duplicate configuration. If you intentionally redesign the audit domain, update the class and configuration manually.</p>
+</li>
+<li>
+<p>Run <code>./gradlew --refresh-dependencies shell</code> if the CLI companion is not discovered.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="breaking-changes"><a class="anchor" href="#breaking-changes"></a>3.2. Breaking Changes</h3>
+<div class="paragraph">
+<p>Plugin 7.x supports Grails 8 and Java 21 only. It does not support Grails 7.</p>
+</div>
+<div class="paragraph">
+<p>The CLI companion is now a separate artifact. Consumer applications still declare only <code>org.grails.plugins:audit-logging</code>. The runtime JAR advertises <code>org.grails.plugins:audit-logging-cli</code> through <code>Grails-Cli-Artifact</code>, and Grails 8 provisions it only when executing CLI commands. Do not add the companion directly.</p>
+</div>
+<div class="paragraph">
+<p><code>audit-quickstart</code> remains available as <code>grails audit-quickstart &lt;package&gt; &lt;DomainClass&gt;</code>, or from <code>./gradlew shell</code> followed by <code>audit-quickstart &lt;package&gt; &lt;DomainClass&gt;</code>. It is a legacy script in <code>META-INF/commands</code>, not an <code>ApplicationCommand</code>, so do not use <code>runCommand</code> or a generated <code>auditQuickstart</code> task.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unchanged-behavior"><a class="anchor" href="#unchanged-behavior"></a>3.3. Unchanged Behavior</h3>
+<div class="paragraph">
+<p>The audit domain class remains application-owned. Existing customizations continue to be the source of truth, and configuration keys remain under <code>grails.plugin.auditLog.*</code>.</p>
+</div>
+<div class="paragraph">
+<p>The auditing and stamping traits, including <code>Auditable</code> and <code>Stampable</code>, keep their established usage. Follow the configuration guide for supported settings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="upgrading-to-5-0-x"><a class="anchor" href="#upgrading-to-5-0-x"></a>4. Upgrading to 5.0.x</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -834,7 +868,7 @@ Since version 4.0.2 the dateCreated / lastUpdated fields can be of any type whic
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrading-to-4-0-x"><a class="anchor" href="#upgrading-to-4-0-x"></a>4. Upgrading to 4.0.x</h2>
+<h2 id="upgrading-to-4-0-x"><a class="anchor" href="#upgrading-to-4-0-x"></a>5. Upgrading to 4.0.x</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The 4.0.0 version of the plugin is backwards compatible with 3.0.x. Any existing configuration and customization should work out of the box.</p>
@@ -842,13 +876,13 @@ Since version 4.0.2 the dateCreated / lastUpdated fields can be of any type whic
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrading-to-3-0-x"><a class="anchor" href="#upgrading-to-3-0-x"></a>5. Upgrading to 3.0.x</h2>
+<h2 id="upgrading-to-3-0-x"><a class="anchor" href="#upgrading-to-3-0-x"></a>6. Upgrading to 3.0.x</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The 3.0.x version of the plugin is a major rewrite of the codebase. Therefore you need to upgrade your code for this version.</p>
 </div>
 <div class="sect2">
-<h3 id="domain-classes"><a class="anchor" href="#domain-classes"></a>5.1. Domain Classes</h3>
+<h3 id="domain-classes"><a class="anchor" href="#domain-classes"></a>6.1. Domain Classes</h3>
 <div class="paragraph">
 <p>Prior versions of the plugin used a static property syntax to enable and customize logging:</p>
 </div>
@@ -900,7 +934,7 @@ The getter methods on <code>Auditable</code> all follow the <code>getLog*()</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration-changes"><a class="anchor" href="#configuration-changes"></a>5.2. Configuration Changes</h3>
+<h3 id="configuration-changes"><a class="anchor" href="#configuration-changes"></a>6.2. Configuration Changes</h3>
 <div class="paragraph">
 <p>To support unifying the configuration, trait, and context usage, some of the configuration properties have been renamed. The following table should help to map old values and types to the new ones:</p>
 </div>
@@ -979,7 +1013,7 @@ The getter methods on <code>Auditable</code> all follow the <code>getLog*()</cod
 </table>
 </div>
 <div class="sect2">
-<h3 id="transactional-behavior"><a class="anchor" href="#transactional-behavior"></a>5.3. Transactional Behavior</h3>
+<h3 id="transactional-behavior"><a class="anchor" href="#transactional-behavior"></a>6.3. Transactional Behavior</h3>
 <div class="paragraph">
 <p>Previously, the audit logging plugin had a <code>transactional</code> flag that indicated whether to include the audit log saves in a transaction. However, the audit logging plugin should really just participate (or not) in existing transactions and not make any attempts to control transactionality at that grain. For most usage, you want your Audit domain instances to be atomically created in the same transaction as the changes that are triggering them. If there&#8217;s no existing transaction for the changes, it&#8217;s not clear why there <em>should</em> be a transaction just for the audit events or vice versa.</p>
 </div>
@@ -988,7 +1022,7 @@ The getter methods on <code>Auditable</code> all follow the <code>getLog*()</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="handlers-removed"><a class="anchor" href="#handlers-removed"></a>5.4. Handlers Removed</h3>
+<h3 id="handlers-removed"><a class="anchor" href="#handlers-removed"></a>6.4. Handlers Removed</h3>
 <div class="paragraph">
 <p>The handler callbacks such as <code>onChange</code>, <code>onSave</code>, etc. have been removed starting with version 3.0.0.</p>
 </div>
@@ -1009,7 +1043,7 @@ The getter methods on <code>Auditable</code> all follow the <code>getLog*()</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="actor-closure"><a class="anchor" href="#actor-closure"></a>5.5. Actor Closure</h3>
+<h3 id="actor-closure"><a class="anchor" href="#actor-closure"></a>6.5. Actor Closure</h3>
 <div class="paragraph">
 <p>The actor closure has been replaced with a more formalized <code>AuditRequestResolver</code> strategy for resolving actor and URI information.</p>
 </div>
@@ -1024,7 +1058,7 @@ The getter methods on <code>Auditable</code> all follow the <code>getLog*()</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="stampable-trait"><a class="anchor" href="#stampable-trait"></a>5.6. Stampable Trait</h3>
+<h3 id="stampable-trait"><a class="anchor" href="#stampable-trait"></a>6.6. Stampable Trait</h3>
 <div class="paragraph">
 <p>The <code>@Stamp</code> annotation was removed in favor of a <code>Stampable</code> trait. This keeps the usage more in line with the direction of Grails in general as well as simplifying the implementation and usage.</p>
 </div>
@@ -1067,7 +1101,7 @@ The getter methods on <code>Auditable</code> all follow the <code>getLog*()</cod
 </div>
 </div>
 <div class="sect1">
-<h2 id="configuration"><a class="anchor" href="#configuration"></a>6. Configuration</h2>
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>7. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The plugin configuration can be specified in the application.groovy file.
@@ -1081,7 +1115,7 @@ It supports Environments blocks for environment-specific configuration.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Since version 2.0.0, the configuration key has changed from "auditLog" to "grails.plugins.auditLog".
+<p>Since version 2.0.0, the configuration key has changed from <code>auditLog</code> to <code>grails.plugin.auditLog</code>.
 If you use the old configuration key, the plugin will log a notice.</p>
 </div>
 </td>
@@ -1104,7 +1138,7 @@ If you use the old configuration key, the plugin will log a notice.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.auditDomainClassName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>(Required)</strong> Use <code>grails audit-quickstart</code> to create</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>(Required)</strong> Use <code>grails audit-quickstart &lt;package&gt; &lt;DomainClass&gt;</code> to create the artifact in a new application. Existing applications should retain their configured audit domain class.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Domain Class Name for the Audit Domain class.</p></td>
 </tr>
 <tr>
@@ -1197,7 +1231,7 @@ You can view the above defaults in the <code>DefaultAuditLogConfig.groovy</code>
 </table>
 </div>
 <div class="sect2">
-<h3 id="verbose-mode"><a class="anchor" href="#verbose-mode"></a>6.1. Verbose mode</h3>
+<h3 id="verbose-mode"><a class="anchor" href="#verbose-mode"></a>7.1. Verbose mode</h3>
 <div class="paragraph">
 <p>When enabled (default), per-property logging is enabled for all operations.</p>
 </div>
@@ -1238,7 +1272,7 @@ currently not possible. See issue #153</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-of-associated-ids"><a class="anchor" href="#logging-of-associated-ids"></a>6.2. Logging of Associated Ids</h3>
+<h3 id="logging-of-associated-ids"><a class="anchor" href="#logging-of-associated-ids"></a>7.2. Logging of Associated Ids</h3>
 <div class="paragraph">
 <p>You can log the object-ids of associated objects. Logging will be performed in the format: "[id:&lt;objId&gt;]objDetails".</p>
 </div>
@@ -1252,7 +1286,7 @@ currently not possible. See issue #153</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="property-value-masking"><a class="anchor" href="#property-value-masking"></a>6.3. Property Value Masking</h3>
+<h3 id="property-value-masking"><a class="anchor" href="#property-value-masking"></a>7.3. Property Value Masking</h3>
 <div class="paragraph">
 <p>You can configure properties to mask on a per-Domain-Class base. If properties are defined as masked, their values are not stored into the audit log table if verbose mode is enabled. Instead, a mask of "<strong><strong></strong><strong></strong></strong>" will be logged.</p>
 </div>
@@ -1269,7 +1303,7 @@ currently not possible. See issue #153</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="verbose-log-truncation-length"><a class="anchor" href="#verbose-log-truncation-length"></a>6.4. Verbose Log Truncation Length</h3>
+<h3 id="verbose-log-truncation-length"><a class="anchor" href="#verbose-log-truncation-length"></a>7.4. Verbose Log Truncation Length</h3>
 <div class="paragraph">
 <p>If you enabled verbose mode, you can configure the truncation length of detail information in the oldValue and newValue
 columns (Default is 255). Configure the truncateLength in application.groovy:</p>
@@ -1308,7 +1342,7 @@ a truncation warning may occur and only partial information is logged.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="disable-all-auditing"><a class="anchor" href="#disable-all-auditing"></a>6.5. Disable All Auditing</h3>
+<h3 id="disable-all-auditing"><a class="anchor" href="#disable-all-auditing"></a>7.5. Disable All Auditing</h3>
 <div class="paragraph">
 <p>You can disable auditing by config. If you disable auditing, event handlers are still triggered but no changes are comitted to the audit log table. This can be used e.g. if you need to bootstrap many objects and want to programmatically disable auditing to not slow down the bootstrap process or if you want to audit log by Enviroment.</p>
 </div>
@@ -1322,7 +1356,7 @@ a truncation warning may occur and only partial information is logged.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="log-full-class-name"><a class="anchor" href="#log-full-class-name"></a>6.6. Log Full Class Name</h3>
+<h3 id="log-full-class-name"><a class="anchor" href="#log-full-class-name"></a>7.6. Log Full Class Name</h3>
 <div class="paragraph">
 <p>By default, only the entity class name is logged. If you want to log the entity full name (including the package name), you can enable full logging. Thanks to tcrossland for this feature.</p>
 </div>
@@ -1336,7 +1370,7 @@ a truncation warning may occur and only partial information is logged.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ignoring-specific-events"><a class="anchor" href="#ignoring-specific-events"></a>6.7. Ignoring Specific Events</h3>
+<h3 id="ignoring-specific-events"><a class="anchor" href="#ignoring-specific-events"></a>7.7. Ignoring Specific Events</h3>
 <div class="paragraph">
 <p>To ignore certain events on a per-domain base, override the <code>getLogIgnoreEvents()</code> method:</p>
 </div>
@@ -1370,13 +1404,13 @@ a truncation warning may occur and only partial information is logged.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="runtime-overrides"><a class="anchor" href="#runtime-overrides"></a>6.8. Runtime Overrides</h3>
+<h3 id="runtime-overrides"><a class="anchor" href="#runtime-overrides"></a>7.8. Runtime Overrides</h3>
 <div class="paragraph">
 <p>See the <a href="#context-overrides">Context Overrides</a> for help using <code>AuditLogContext</code> to override configuration for a block.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="example-configuration"><a class="anchor" href="#example-configuration"></a>6.9. Example Configuration</h3>
+<h3 id="example-configuration"><a class="anchor" href="#example-configuration"></a>7.9. Example Configuration</h3>
 <div class="paragraph">
 <p>Example <code>application.groovy</code> configuration with various settings as described above:</p>
 </div>
@@ -1403,13 +1437,13 @@ grails {
 </div>
 </div>
 <div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>7. Usage</h2>
+<h2 id="usage"><a class="anchor" href="#usage"></a>8. Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can use the grails-audit-logging plugin in several ways.</p>
 </div>
 <div class="sect2">
-<h3 id="basic"><a class="anchor" href="#basic"></a>7.1. Basic</h3>
+<h3 id="basic"><a class="anchor" href="#basic"></a>8.1. Basic</h3>
 <div class="paragraph">
 <p>To enable auditing using the default configuration, simply implement the <code>Auditable</code> trait.</p>
 </div>
@@ -1431,7 +1465,7 @@ grails {
 </div>
 </div>
 <div class="sect2">
-<h3 id="context-overrides"><a class="anchor" href="#context-overrides"></a>7.2. Context Overrides</h3>
+<h3 id="context-overrides"><a class="anchor" href="#context-overrides"></a>8.2. Context Overrides</h3>
 <div class="paragraph">
 <p>There are many scenarios where you want to use a default configuration for most operations, but need to explicitly override for certain scenarios.</p>
 </div>
@@ -1439,7 +1473,7 @@ grails {
 <p>One fairly common example is the need to disable audit logging completely for a particular set of changes. This is often the case for bulk operations or operations that might be performed "by the system" such as cleanup, purge, expiration jobs, etc.</p>
 </div>
 <div class="sect3">
-<h4 id="audit-log-context"><a class="anchor" href="#audit-log-context"></a>7.2.1. Audit Log Context</h4>
+<h4 id="audit-log-context"><a class="anchor" href="#audit-log-context"></a>8.2.1. Audit Log Context</h4>
 <div class="paragraph">
 <p>You can use the <code>AuditLogContext</code> object to override almost any configuration parameter for a given block</p>
 </div>
@@ -1487,7 +1521,7 @@ AuditLogContext.withoutAuditLog { ... }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="domain-overrides"><a class="anchor" href="#domain-overrides"></a>7.3. Domain Overrides</h3>
+<h3 id="domain-overrides"><a class="anchor" href="#domain-overrides"></a>8.3. Domain Overrides</h3>
 <div class="paragraph">
 <p>The context gives you programmatic control over configuration of auditing but you can go even finer grained, if needed, to control auditing on a per-entity basis.</p>
 </div>
@@ -1553,7 +1587,7 @@ Most of the <code>Auditable</code> methods rely on the AuditLogContext for defau
 </div>
 </div>
 <div class="sect2">
-<h3 id="customized-auditable-trait"><a class="anchor" href="#customized-auditable-trait"></a>7.4. Customized Auditable Trait</h3>
+<h3 id="customized-auditable-trait"><a class="anchor" href="#customized-auditable-trait"></a>8.4. Customized Auditable Trait</h3>
 <div class="paragraph">
 <p>You could also extend the trait entirely to override the default auditing behavior:</p>
 </div>
@@ -1579,7 +1613,7 @@ Most of the <code>Auditable</code> methods rely on the AuditLogContext for defau
 </div>
 </div>
 <div class="sect2">
-<h3 id="request-resolvers"><a class="anchor" href="#request-resolvers"></a>7.5. Request Resolvers</h3>
+<h3 id="request-resolvers"><a class="anchor" href="#request-resolvers"></a>8.5. Request Resolvers</h3>
 <div class="paragraph">
 <p>Audit logging usually requires auditing the user and/or request context for a specific action. The plugin supports a pluggable method of resolving request context by registering an <code>auditRequestResolver</code> bean that applications can override if needed.</p>
 </div>
@@ -1599,7 +1633,7 @@ Most of the <code>Auditable</code> methods rely on the AuditLogContext for defau
 </table>
 </div>
 <div class="sect3">
-<h4 id="audit-request-resolvers"><a class="anchor" href="#audit-request-resolvers"></a>7.5.1. Audit Request Resolvers</h4>
+<h4 id="audit-request-resolvers"><a class="anchor" href="#audit-request-resolvers"></a>8.5.1. Audit Request Resolvers</h4>
 <div class="paragraph">
 <p>The plugin ships with two resolvers:</p>
 </div>
@@ -1710,7 +1744,7 @@ Most of the <code>Auditable</code> methods rely on the AuditLogContext for defau
 </div>
 </div>
 <div class="sect1">
-<h2 id="stamping"><a class="anchor" href="#stamping"></a>8. Stamping</h2>
+<h2 id="stamping"><a class="anchor" href="#stamping"></a>9. Stamping</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Stamping adds the following attributes to a domain object via the <code>Stampable</code> trait:</p>
@@ -1733,7 +1767,7 @@ Most of the <code>Auditable</code> methods rely on the AuditLogContext for defau
 <p>You can configure the <code>constraints</code> and <code>mappings</code> block as usual in your domain class to customize the stampable properties.</p>
 </div>
 <div class="sect2">
-<h3 id="stamping-configuration"><a class="anchor" href="#stamping-configuration"></a>8.1. Stamping Configuration</h3>
+<h3 id="stamping-configuration"><a class="anchor" href="#stamping-configuration"></a>9.1. Stamping Configuration</h3>
 <div class="paragraph">
 <p>Previous versions used an AST transformation to apply the stamping and could allow more configuration.
 For now, the stamping support has been boiled down to just the basic trait attributes and the ability to disable the plugin globally.</p>
@@ -1779,7 +1813,7 @@ If you disable stamping but have <code>Stampable</code> entities, they will like
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="anchor" href="#implementation"></a>9. Implementation</h2>
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>10. Implementation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Most of the plugin code is marked as @CompileStatic.</p>
@@ -1787,7 +1821,7 @@ If you disable stamping but have <code>Stampable</code> entities, they will like
 </div>
 </div>
 <div class="sect1">
-<h2 id="auditing-and-transactions"><a class="anchor" href="#auditing-and-transactions"></a>10. Auditing and Transactions</h2>
+<h2 id="auditing-and-transactions"><a class="anchor" href="#auditing-and-transactions"></a>11. Auditing and Transactions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>All audit events for the current transaction are queued up.
@@ -1795,19 +1829,19 @@ They are flushed after the transaction has successfully been committed.
 This allows the AuditLogListener to use its own session and transaction.</p>
 </div>
 <div class="sect2">
-<h3 id="auditlogeventlistener"><a class="anchor" href="#auditlogeventlistener"></a>10.1. AuditLogEventListener</h3>
+<h3 id="auditlogeventlistener"><a class="anchor" href="#auditlogeventlistener"></a>11.1. AuditLogEventListener</h3>
 <div class="paragraph">
 <p>The Audit Logging plugin registers a PersistenceEventListener (<code>AuditLogListener</code>) bean per datasource, which listens to GORM events.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="stampeventlistener"><a class="anchor" href="#stampeventlistener"></a>10.2. StampEventListener</h3>
+<h3 id="stampeventlistener"><a class="anchor" href="#stampeventlistener"></a>11.2. StampEventListener</h3>
 <div class="paragraph">
 <p>The plugin registers a separate StampEventListener that responds to validate events. Ideally, we would stamp when an insert or update event occurs, but since the attributes are non-null by default, we need to populate them before the default validation is triggered.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="plugin-descriptor"><a class="anchor" href="#plugin-descriptor"></a>10.3. Plugin Descriptor</h3>
+<h3 id="plugin-descriptor"><a class="anchor" href="#plugin-descriptor"></a>11.3. Plugin Descriptor</h3>
 <div class="paragraph">
 <p>The Plugin Descriptor (AuditLogListenerGrailsPlugin) configures the plugin during startup.</p>
 </div>
@@ -1823,13 +1857,13 @@ This allows the AuditLogListener to use its own session and transaction.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auditable-trait"><a class="anchor" href="#auditable-trait"></a>10.4. Auditable trait</h3>
+<h3 id="auditable-trait"><a class="anchor" href="#auditable-trait"></a>11.4. Auditable trait</h3>
 <div class="paragraph">
 <p>Enabling auditing on a Domain class is done by implementing the <code>Auditable</code> trait.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="stampable-trait-2"><a class="anchor" href="#stampable-trait-2"></a>10.5. Stampable trait</h3>
+<h3 id="stampable-trait-2"><a class="anchor" href="#stampable-trait-2"></a>11.5. Stampable trait</h3>
 <div class="paragraph">
 <p>Enabling stamping on a Domain class is done by implementing the <code>Stampable</code> trait.
 This trait adds the properties dateCreated, lastUpdated, createdBy and lastUpdatedBy
@@ -1839,10 +1873,38 @@ to the domain class.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="change-log"><a class="anchor" href="#change-log"></a>11. Change Log</h2>
+<h2 id="change-log"><a class="anchor" href="#change-log"></a>12. Change Log</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
+<li>
+<p>7.0.0-SNAPSHOT</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Raised the supported baseline to Grails 8 and Java 21. Grails 7 applications should remain on plugin 6.x.</p>
+</li>
+<li>
+<p>Split CLI support into the <code>audit-logging-cli</code> companion. The runtime plugin advertises the companion so Grails provisions it for CLI commands without adding CLI dependencies to application runtime or packaged artifacts.</p>
+</li>
+<li>
+<p>Updated plugin registration for the Grails 8 BeanRegistrar lifecycle.</p>
+</li>
+<li>
+<p>Updated the build toolchain, example application, and CI to the Grails 8 and Java 21 baseline.</p>
+</li>
+<li>
+<p>Improved configuration reload behavior so runtime configuration changes are applied consistently.</p>
+</li>
+<li>
+<p>Fixed Windows wrapper termination and diagnostics when Java cannot be discovered.</p>
+</li>
+<li>
+<p>Existing audit domain customizations and <code>grails.plugin.auditLog.*</code> configuration remain supported. Do not rerun quickstart during an upgrade; manage any intentional audit-domain redesign manually.</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p>6.0.0</p>
 <div class="ulist">
@@ -2390,8 +2452,8 @@ to the domain class.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 6.0.1-SNAPSHOT<br>
-Last updated 2026-01-31 16:25:13 UTC
+Version 7.0.0-SNAPSHOT<br>
+Last updated 2026-08-07 23:50:38 UTC
 </div>
 </div>
 </body>
