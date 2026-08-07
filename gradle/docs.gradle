@@ -39,6 +39,10 @@ asciidoctor {
     revdate: buildDate()
 }
 
+tasks.matching { it.name in ['javadocJar', 'cliJavadocJar'] }.configureEach {
+  mustRunAfter tasks.named('asciidoctor')
+}
+
 task docs(dependsOn: 'asciidoctor') {
   doLast {
     File dir = new File(buildDir, 'docs')
