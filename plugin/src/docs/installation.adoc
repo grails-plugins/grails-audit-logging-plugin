@@ -1,13 +1,17 @@
 == Installation
 === Dependencies
-Add to your build.gradle project dependencies block:
+Grails 8.0.x applications require Java 21 and the 7.0.x plugin line. During 7.0.x development, add the runtime dependency to your build.gradle dependencies block:
 
 [source,groovy]
 ----
 dependencies {
-   compile 'org.grails.plugins:audit-logging:{VERSION}'
+    implementation 'org.grails.plugins:audit-logging:{version}'
 }
 ----
+
+The 7.0.0-SNAPSHOT coordinate is published to the configured Grails snapshot repository only after CI receives a push to the `7.0.x` branch. It is not a released artifact.
+
+The `audit-logging-cli` companion is discovered automatically from the runtime dependency. Consumers must declare only `org.grails.plugins:audit-logging`; do not add an explicit CLI dependency.
 Then run the following to refresh gradle dependencies: 
 
 [source,gradle]
@@ -19,7 +23,7 @@ NOTE: After installing the plugin, you must perform the following command to let
 
 === Create Audit Domain Artifact
 
-    grails audit-quickstart <your.package.name> <YourAuditLogEventClassName>
+    grails audit-quickstart <package> <DomainClass>
 
 For example:
 
