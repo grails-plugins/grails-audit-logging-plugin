@@ -53,9 +53,17 @@ jobs:
         with:
           name: testreport-audit-test-single-datasource-21
           path: examples/audit-test/build/reports/tests
+  test-gradle-wrapper:
+    runs-on: windows-latest
+    steps:
+      - name: "📥 Checkout the repository"
+        uses: actions/checkout@v4
+      - name: "Test Gradle wrapper Java discovery"
+        shell: pwsh
+        run: pwsh -NoProfile -File .github/scripts/Test-GradleWrapper.ps1
   publish:
     if: github.event_name == 'push' && github.ref == 'refs/heads/7.0.x'
-    needs: build
+    needs: [build, test-gradle-wrapper]
     runs-on: ubuntu-latest
     permissions:
       contents: read
