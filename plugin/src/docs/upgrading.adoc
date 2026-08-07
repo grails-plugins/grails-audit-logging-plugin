@@ -1,3 +1,10 @@
+== Upgrading to 7.0.x
+
+* The 7.0.x plugin line supports Grails 8.0.x and requires Java 21.
+* During development, use the `org.grails.plugins:audit-logging:7.0.0-SNAPSHOT` runtime dependency after it has been published by CI from a push to the `7.0.x` branch.
+* The `audit-logging-cli` companion is discovered automatically. Declare only the runtime dependency in consumer applications.
+* The quickstart command is unchanged: `grails audit-quickstart <package> <DomainClass>`.
+
 == Upgrading to 5.0.x
 
 ** The 5.0.0 version has some significant changes to the 4.0.x version.
