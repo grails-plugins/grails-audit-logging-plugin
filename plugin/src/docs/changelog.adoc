@@ -1,4 +1,8 @@
 == Change Log
+* 7.0.0-SNAPSHOT
+** Development line for Grails 8.0.x and Java 21.
+** Added automatic discovery of the `audit-logging-cli` companion from the runtime plugin dependency.
+
 * 6.0.0
 ** Updated for Grails 7
 
