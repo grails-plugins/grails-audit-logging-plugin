@@ -5,7 +5,7 @@ It supports Environments blocks for environment-specific configuration.
 
 [WARNING]
 ====
-Since version 2.0.0, the configuration key has changed from "auditLog" to "grails.plugins.auditLog".
+Since version 2.0.0, the configuration key has changed from `auditLog` to `grails.plugin.auditLog`.
 If you use the old configuration key, the plugin will log a notice.
 ====
 
@@ -14,7 +14,7 @@ If you use the old configuration key, the plugin will log a notice.
 | *Property* | *Default Value* | *Meaning*
 
 |grails.plugin.auditLog.auditDomainClassName
-|*(Required)* Use `grails audit-quickstart` to create
+|*(Required)* Use `grails audit-quickstart <package> <DomainClass>` to create the artifact in a new application. Existing applications should retain their configured audit domain class.
 |Domain Class Name for the Audit Domain class.
 
 |grails.plugin.auditLog.disabled
@@ -102,9 +102,10 @@ Verbose logging will insert 1 row of data per property of your domain object for
 === Logging of Associated Ids
 You can log the object-ids of associated objects. Logging will be performed in the format: "[id:<objId>]objDetails".
 
-```groovy
+[source,groovy]
+----
 grails.plugin.auditLog.logIds = true
-```
+----
 
 This setting is enabled by default.
 
@@ -113,32 +114,35 @@ You can configure properties to mask on a per-Domain-Class base. If properties a
 
 By default, "password" properties are masked. You can mask property fields in domain classes like this:
 
-```groovy
+[source,groovy]
+----
 @Override
 Collection<String> getLogMask() {
     ['password', 'otherField']
 }
-```
+----
 
 === Verbose Log Truncation Length
 If you enabled verbose mode, you can configure the truncation length of detail information in the oldValue and newValue
 columns (Default is 255). Configure the truncateLength in application.groovy:
 
-```groovy
+[source,groovy]
+----
 truncateLength = 400
-```
+----
 
 [WARNING]
 ====
 When you set truncateLength to a value > 255 you must ensure that oldValue and newValue fields in your audit-log domain class are large enough. Example setting with the same maxSize constraints as the former "largeValueColumnTypes" setting:
 
-```groovy
+[source,groovy]
+----
 static constraints = {
     // For large column support (as in < 1.0.6 plugin versions)
     oldValue(nullable: true, maxSize: 65534)
     newValue(nullable: true, maxSize: 65534)
 }
-```
+----
 When you forget to set the constraints in your AuditLog class while setting truncateLength > 255,
 a truncation warning may occur and only partial information is logged.
 ====
@@ -146,18 +150,20 @@ a truncation warning may occur and only partial information is logged.
 === Disable All Auditing
 You can disable auditing by config. If you disable auditing, event handlers are still triggered but no changes are comitted to the audit log table. This can be used e.g. if you need to bootstrap many objects and want to programmatically disable auditing to not slow down the bootstrap process or if you want to audit log by Enviroment.
 
-```groovy
+[source,groovy]
+----
 grails.plugin.auditLog.disabled = true
-```
+----
 
 This setting is "false" by default (auditing is enabled).
 
 === Log Full Class Name
 By default, only the entity class name is logged. If you want to log the entity full name (including the package name), you can enable full logging. Thanks to tcrossland for this feature.
 
-```groovy
+[source,groovy]
+----
 grails.plugin.auditLog.logFullClassName = true
-```
+----
 
 This setting is "true" by default (full name is logged).
 
@@ -165,28 +171,31 @@ This setting is "true" by default (full name is logged).
 === Ignoring Specific Events
 To ignore certain events on a per-domain base, override the `getLogIgnoreEvents()` method:
 
-```groovy
+[source,groovy]
+----
 @Override
 Collection<AuditEventType> getLogIgnoreEvents() {
     [AuditEventType.INSERT]
 }
-```
+----
 
 You can also ignore them either globally with:
 
-```groovy
+[source,groovy]
+----
 grails.plugin.auditLog.ignoreEvents = [AuditEventType.INSERT]
-```
+----
 
 Or for a specific logging context by using:
 
-```groovy
+[source,groovy]
+----
 AuditLogContext.withConfig(ignoreEvents = [AuditEventType.INSERT]) {
     //
     // Anything here will only log UPDATE and DELETE events
     // 
 }
-```
+----
 
 === Runtime Overrides
 See the <<context-overrides,Context Overrides>> for help using `AuditLogContext` to override configuration for a block.
@@ -194,7 +203,8 @@ See the <<context-overrides,Context Overrides>> for help using `AuditLogContext`
 === Example Configuration
 Example `application.groovy` configuration with various settings as described above:
 
-```groovy
+[source,groovy]
+----
 // AuditLog Plugin config
 grails {
     plugin {
@@ -210,4 +220,4 @@ grails {
         }
     }
 }
-```
+----

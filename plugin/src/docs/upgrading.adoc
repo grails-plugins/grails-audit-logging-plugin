@@ -1,9 +1,27 @@
 == Upgrading to 7.0.x
 
-* The 7.0.x plugin line supports Grails 8.0.x and requires Java 21.
-* During development, use the `org.grails.plugins:audit-logging:7.0.0-SNAPSHOT` runtime dependency after it has been published by CI from a push to the `7.0.x` branch.
-* The `audit-logging-cli` companion is discovered automatically. Declare only the runtime dependency in consumer applications.
-* The quickstart command is unchanged: `grails audit-quickstart <package> <DomainClass>`.
+=== 6.x to 7.x Checklist
+
+. Upgrade the application to Grails 8 and Java 21.
+. Replace the 6.x runtime dependency with `org.grails.plugins:audit-logging:7.0.0-SNAPSHOT` while the 7.x snapshot is the available development artifact.
+. Add `https://repo.grails.org/grails/restricted` to the build repositories when resolving the snapshot. Use Maven Central and a released version when a released 7.x artifact is available.
+. Keep the existing `AuditLogEvent` class, its mappings and constraints, and all `grails.plugin.auditLog.*` configuration.
+. Do not rerun `audit-quickstart`. It does not overwrite the existing class and can append duplicate configuration. If you intentionally redesign the audit domain, update the class and configuration manually.
+. Run `./gradlew --refresh-dependencies shell` if the CLI companion is not discovered.
+
+=== Breaking Changes
+
+Plugin 7.x supports Grails 8 and Java 21 only. It does not support Grails 7.
+
+The CLI companion is now a separate artifact. Consumer applications still declare only `org.grails.plugins:audit-logging`. The runtime JAR advertises `org.grails.plugins:audit-logging-cli` through `Grails-Cli-Artifact`, and Grails 8 provisions it only when executing CLI commands. Do not add the companion directly.
+
+`audit-quickstart` remains available as `grails audit-quickstart <package> <DomainClass>`, or from `./gradlew shell` followed by `audit-quickstart <package> <DomainClass>`. It is a legacy script in `META-INF/commands`, not an `ApplicationCommand`, so do not use `runCommand` or a generated `auditQuickstart` task.
+
+=== Unchanged Behavior
+
+The audit domain class remains application-owned. Existing customizations continue to be the source of truth, and configuration keys remain under `grails.plugin.auditLog.*`.
+
+The auditing and stamping traits, including `Auditable` and `Stampable`, keep their established usage. Follow the configuration guide for supported settings.
 
 == Upgrading to 5.0.x
 
@@ -22,33 +40,36 @@ The 3.0.x version of the plugin is a major rewrite of the codebase. Therefore yo
 === Domain Classes
 Prior versions of the plugin used a static property syntax to enable and customize logging:
 
-```groovy
+[source,groovy]
+----
 // Legacy enable/disable
 static auditable = true
 
 // Legacy whitelist
 static auditable = [auditableProperties: ['name', 'famous', 'lastUpdated']]
-```
+----
 
 Starting with version 3.0.0, the plugin uses an `Auditable` trait and/or a `Stampable` trait as both a marker as well as a way to configure and override auditing behavior.
 
 For the first example, just adding `implements Auditable` will enable the default behavior.
 
-```groovy
+[source,groovy]
+----
 import grails.plugins.orm.auditable.Auditable
 class MyDomain implements Auditable {
   ..
 }
-```
+----
 
 For the second example above, you simply override the appropriate method on the `Auditable` trait, in this case the method is `getLogIncluded()`:
 
-```groovy
+[source,groovy]
+----
 @Override
 Collection<String> getLogIncluded() {
     ['name', 'famous', 'lastUpdated']
 }
-```
+----
 
 NOTE: The getter methods on `Auditable` all follow the `getLog*()` format to minimize collisions with user methods. Typically they are `getLog<Configuration Name>()` followed by whatever the configurable value (included, excluded, mask) with a few exceptions.
 
@@ -115,13 +136,14 @@ This behavior is already provided by Grails now using the `before*` and `after*`
 
 For example, you could do something like:
 
-```groovy
+[source,groovy]
+----
 def beforeInsert() {
     def dirtyAudit = getAuditableDirtyPropertyNames()
     
     // Do something special if certain properties are dirty, etc.
 }
-```
+----
 
 === Actor Closure
 The actor closure has been replaced with a more formalized `AuditRequestResolver` strategy for resolving actor and URI information.
@@ -143,7 +165,8 @@ However, there are some limitations to implementing this as a trait:
 
 The `stampAlways` has been removed. If you want to mark *all* of your domain objects as stampable, you could define the following `TraitInjector`:
 
-```groovy
+[source,groovy]
+----
 @CompileStatic
 class StampableTraitInjector implements TraitInjector {
     @Override
@@ -156,4 +179,4 @@ class StampableTraitInjector implements TraitInjector {
         ['Domain'] as String[]
     }
 }
-```
+----
