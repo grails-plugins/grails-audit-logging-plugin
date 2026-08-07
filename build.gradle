@@ -57,7 +57,7 @@ subprojects { Project project ->
         name = 'Apache-2.0'
       }
       title = "Grails Audit-Logging Plugin"
-      desc = "Grails Audit-Logging Plugin for Grails 7+"
+      desc = "Grails Audit-Logging Plugin for Grails 8"
       developers = [robertoschwald:"Robert Oschwald", longwa:"Aaron Long", elkr:"Elmar Kretzer",
                     jamesfredley:"James Fredley", jdaugherty:"James Daugherty"]
     }
