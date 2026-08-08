@@ -11,11 +11,18 @@ Plugin 7.x supports Grails 8 and Java 21 only. Use plugin 6.x for Grails 7 appli
 
 ## Installation
 
-Normal applications declare only the runtime plugin. While using the 7.0.0 snapshot, add the Grails restricted repository and dependency to `build.gradle`:
+Normal applications declare only the runtime plugin. While using the 7.0.0 snapshot, add the scoped Maven Central Snapshots repository and dependency to `build.gradle`:
 
 ```groovy
 repositories {
-    maven { url = uri('https://repo.grails.org/grails/restricted') }
+    maven {
+        url = uri('https://central.sonatype.com/repository/maven-snapshots/')
+        mavenContent { snapshotsOnly() }
+        content {
+            includeModule('org.grails.plugins', 'audit-logging')
+            includeModule('org.grails.plugins', 'audit-logging-cli')
+        }
+    }
 }
 
 dependencies {
@@ -77,7 +84,7 @@ This separation is intentional. It avoids pulling CLI-only dependencies into app
 If `audit-quickstart` is unavailable:
 
 1. Confirm that the application declares the runtime `audit-logging` dependency, not the CLI companion.
-2. For snapshots, confirm that `https://repo.grails.org/grails/restricted` is configured.
+2. For snapshots, confirm that `https://central.sonatype.com/repository/maven-snapshots/` is configured.
 3. Keep `grails.cliAutoProvision` enabled.
 4. Refresh the CLI classpath with `./gradlew --refresh-dependencies shell`.
 5. Inspect resolved CLI dependencies with `./gradlew dependencies --configuration grailsCli`.

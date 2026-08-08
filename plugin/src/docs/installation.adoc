@@ -6,12 +6,19 @@ The 7.x plugin line supports Grails 8 and Java 21 only. Use the 6.x plugin line 
 
 === Repository and Runtime Dependency
 
-Applications use only the runtime plugin dependency. During 7.0.x snapshot development, configure the Grails restricted repository and add the snapshot version in `build.gradle`:
+Applications use only the runtime plugin dependency. During 7.0.x snapshot development, configure the scoped Maven Central Snapshots repository and add the snapshot version in `build.gradle`:
 
 [source,groovy,subs="attributes+"]
 ----
 repositories {
-    maven { url = uri('https://repo.grails.org/grails/restricted') }
+    maven {
+        url = uri('https://central.sonatype.com/repository/maven-snapshots/')
+        mavenContent { snapshotsOnly() }
+        content {
+            includeModule('org.grails.plugins', 'audit-logging')
+            includeModule('org.grails.plugins', 'audit-logging-cli')
+        }
+    }
 }
 
 dependencies {
