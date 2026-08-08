@@ -534,7 +534,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="details">
 <span id="author" class="author">Robert Oschwald</span><br>
 <span id="revnumber">version 7.0.0-SNAPSHOT,</span>
-<span id="revdate">2026-08-07</span>
+<span id="revdate">2026-08-08</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -709,12 +709,19 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="sect2">
 <h3 id="repository-and-runtime-dependency"><a class="anchor" href="#repository-and-runtime-dependency"></a>2.2. Repository and Runtime Dependency</h3>
 <div class="paragraph">
-<p>Applications use only the runtime plugin dependency. During 7.0.x snapshot development, configure the Grails restricted repository and add the snapshot version in <code>build.gradle</code>:</p>
+<p>Applications use only the runtime plugin dependency. During 7.0.x snapshot development, configure the scoped Maven Central Snapshots repository and add the snapshot version in <code>build.gradle</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">repositories {
-    maven { url = uri(<span class="string"><span class="delimiter">'</span><span class="content">https://repo.grails.org/grails/restricted</span><span class="delimiter">'</span></span>) }
+    maven {
+        url = uri(<span class="string"><span class="delimiter">'</span><span class="content">https://central.sonatype.com/repository/maven-snapshots/</span><span class="delimiter">'</span></span>)
+        mavenContent { snapshotsOnly() }
+        content {
+            includeModule(<span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">audit-logging</span><span class="delimiter">'</span></span>)
+            includeModule(<span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">audit-logging-cli</span><span class="delimiter">'</span></span>)
+        }
+    }
 }
 
 dependencies {
@@ -808,7 +815,7 @@ grails&gt; audit-quickstart org.example.audit AuditLogEvent</code></pre>
 <p>Replace the 6.x runtime dependency with <code>org.grails.plugins:audit-logging:7.0.0-SNAPSHOT</code> while the 7.x snapshot is the available development artifact.</p>
 </li>
 <li>
-<p>Add <code>https://repo.grails.org/grails/restricted</code> to the build repositories when resolving the snapshot. Use Maven Central and a released version when a released 7.x artifact is available.</p>
+<p>Add <code>https://central.sonatype.com/repository/maven-snapshots/</code> to the build repositories when resolving the snapshot. Use Maven Central and a released version when a released 7.x artifact is available.</p>
 </li>
 <li>
 <p>Keep the existing <code>AuditLogEvent</code> class, its mappings and constraints, and all <code>grails.plugin.auditLog.*</code> configuration.</p>
@@ -2453,7 +2460,7 @@ to the domain class.</p>
 <div id="footer">
 <div id="footer-text">
 Version 7.0.0-SNAPSHOT<br>
-Last updated 2026-08-07 23:50:38 UTC
+Last updated 2026-08-08 00:40:57 UTC
 </div>
 </div>
 </body>
