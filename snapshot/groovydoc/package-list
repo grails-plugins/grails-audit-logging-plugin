@@ -1,2 +1,3 @@
 grails.plugins.orm.auditable
 grails.plugins.orm.auditable.resolvers
+grails.plugins.orm.auditable.testing
