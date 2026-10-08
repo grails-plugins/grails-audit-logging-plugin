@@ -533,7 +533,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Grails Audit Logging Plugin</h1>
 <div class="details">
 <span id="author" class="author">Robert Oschwald</span><br>
-<span id="revnumber">version 7.0.0-RC2,</span>
+<span id="revnumber">version 7.0.0-RC3,</span>
 <span id="revdate">2026-10-08</span>
 </div>
 <div id="toc" class="toc2">
@@ -560,6 +560,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#6-x-to-7-x-checklist">3.1. 6.x to 7.x Checklist</a></li>
 <li><a href="#breaking-changes">3.2. Breaking Changes</a></li>
 <li><a href="#unchanged-behavior">3.3. Unchanged Behavior</a></li>
+<li><a href="#unit-tests">3.4. Unit Tests</a></li>
 </ul>
 </li>
 <li><a href="#upgrading-to-5-0-x">4. Upgrading to 5.0.x</a></li>
@@ -619,7 +620,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Other formats: <a href="audit-logging-7.0.0-RC2.pdf">PDF</a>, <a href="audit-logging-7.0.0-RC2.epub">EPUB</a></p>
+<p>Other formats: <a href="audit-logging-7.0.0-RC3.pdf">PDF</a>, <a href="audit-logging-7.0.0-RC3.epub">EPUB</a></p>
 </div>
 </div>
 </div>
@@ -725,7 +726,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 }
 
 dependencies {
-    implementation <span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins:audit-logging:7.0.0-RC2</span><span class="delimiter">'</span></span>
+    implementation <span class="string"><span class="delimiter">'</span><span class="content">org.grails.plugins:audit-logging:7.0.0-RC3</span><span class="delimiter">'</span></span>
 }</code></pre>
 </div>
 </div>
@@ -848,6 +849,15 @@ grails&gt; audit-quickstart org.example.audit AuditLogEvent</code></pre>
 </div>
 <div class="paragraph">
 <p>The auditing and stamping traits, including <code>Auditable</code> and <code>Stampable</code>, keep their established usage. Follow the configuration guide for supported settings.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unit-tests"><a class="anchor" href="#unit-tests"></a>3.4. Unit Tests</h3>
+<div class="paragraph">
+<p>Reading audit configuration before the plugin has initialized now fails with an <code>IllegalStateException</code>, instead of silently falling back to <code>Holders</code>. Unit tests never load the plugin, so the plugin ships a Spock extension that keeps them working without any changes: for every spec implementing <code>GrailsUnitTest</code> (for example through <code>DataTest</code>, <code>DomainUnitTest</code> or <code>ControllerUnitTest</code>), audit configuration is read from that spec&#8217;s own application, including anything it sets in <code>doWithConfig</code>. The application is only resolved when audit configuration is first read, and it is cleared once the spec finishes.</p>
+</div>
+<div class="paragraph">
+<p>The extension registers itself through <code>META-INF/services</code> and only activates when Grails testing support is on the test classpath. Code outside a unit test that reads audit configuration too early still fails.</p>
 </div>
 </div>
 </div>
@@ -2459,8 +2469,8 @@ to the domain class.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 7.0.0-RC2<br>
-Last updated 2026-10-08 13:51:44 UTC
+Version 7.0.0-RC3<br>
+Last updated 2026-10-08 17:29:01 UTC
 </div>
 </div>
 </body>
