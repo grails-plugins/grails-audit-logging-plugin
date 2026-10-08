@@ -22,18 +22,18 @@ class AuditLoggingStartupSpec extends Specification {
         AuditLoggingConfigUtils.auditConfig.verbose
     }
 
-    void 'fails clearly when audit configuration is accessed before plugin initialization'() {
+    void 'resolves audit configuration from Holders when the plugin static application is unset'() {
         given:
         GrailsApplication application = ReflectionUtils.application
         AuditLoggingConfigUtils.resetAuditConfig()
         ReflectionUtils.application = null
 
         when:
-        AuditLoggingConfigUtils.auditConfig
+        def auditConfig = AuditLoggingConfigUtils.auditConfig
 
         then:
-        IllegalStateException exception = thrown()
-        exception.message == 'AuditLoggingGrailsPlugin/BeanRegistrar initialization must complete before accessing audit configuration'
+        auditConfig.defaultActor == 'SYS'
+        grailsApplication.mainContext.environment.propertySources.contains('AuditConfig')
 
         cleanup:
         ReflectionUtils.application = application

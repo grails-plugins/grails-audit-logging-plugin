@@ -16,6 +16,7 @@ package grails.plugins.orm.auditable
 
 import grails.config.Config
 import grails.core.GrailsApplication
+import grails.util.Holders
 import groovy.util.logging.Slf4j
 import org.grails.config.NavigableMap
 import org.grails.config.PropertySourcesConfig
@@ -57,10 +58,7 @@ class ReflectionUtils {
     }
 
     static Config getApplicationConfig() {
-        if (!application) {
-            throw new IllegalStateException('AuditLoggingGrailsPlugin/BeanRegistrar initialization must complete before accessing audit configuration')
-        }
-        application.config
+        requireApplication().config
     }
 
     static ConfigObject getAuditConfig() {
@@ -75,24 +73,40 @@ class ReflectionUtils {
     }
 
     static Config removeAuditConfigPropertySource(Config config) {
-        if (config.is(application?.config)) {
-            MutablePropertySources propertySources = application.mainContext.environment.propertySources
+        GrailsApplication app = findApplication()
+        if (app != null && config.is(app.config)) {
+            MutablePropertySources propertySources = app.mainContext.environment.propertySources
             propertySources.remove('AuditConfig')
-            application.config = new PropertySourcesConfig(propertySources)
-            return application.config
+            app.config = new PropertySourcesConfig(propertySources)
+            return app.config
         }
         config
     }
 
     static void setAuditConfig(ConfigObject c) {
+        GrailsApplication app = requireApplication()
         ConfigObject config = new ConfigObject()
         config.grails.plugin.auditLog = c
 
         PropertySource propertySource = new MapPropertySource('AuditConfig', [:] << config)
-        def propertySources = application.mainContext.environment.propertySources
+        MutablePropertySources propertySources = app.mainContext.environment.propertySources
         propertySources.addFirst propertySource
 
-        application.config = new PropertySourcesConfig(propertySources)
+        app.config = new PropertySourcesConfig(propertySources)
+    }
+
+    // Do not assign the resolved application back onto the static field. Unit-test cleanup
+    // closes that context and clears Holders; caching it here would keep the closed application.
+    private static GrailsApplication findApplication() {
+        application ?: Holders.findApplication()
+    }
+
+    private static GrailsApplication requireApplication() {
+        GrailsApplication app = findApplication()
+        if (app == null) {
+            throw new IllegalStateException('AuditLoggingGrailsPlugin/BeanRegistrar initialization must complete before accessing audit configuration')
+        }
+        app
     }
 
 }
