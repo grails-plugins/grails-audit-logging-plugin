@@ -25,44 +25,72 @@ class AuditLogEventController {
     static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
     def index() {
-        redirect(action: 'list', params: params)
+        whenEnabled {
+            redirect(action: 'list', params: params)
+        }
     }
 
     def list() {
-        if (!params.max) {
-            params.max = 10
-        }
+        whenEnabled {
+            if (!params.max) {
+                params.max = 10
+            }
 
-        [auditLogEventInstanceList: AuditLogEvent.list(params), auditLogEventInstanceTotal: AuditLogEvent.count()]
+            [auditLogEventInstanceList: AuditLogEvent.list(params), auditLogEventInstanceTotal: AuditLogEvent.count()]
+        }
     }
 
     def show() {
-        def auditLogEvent = AuditLogEvent.get(params.id)
-        if (auditLogEvent == null) {
-            flash.message = "AuditLogEvent not found with id ${params.id}"
-            redirect(action: 'list')
-            return
+        whenEnabled {
+            def auditLogEvent = AuditLogEvent.get(params.id)
+            if (auditLogEvent == null) {
+                flash.message = "AuditLogEvent not found with id ${params.id}"
+                redirect(action: 'list')
+                return
+            }
+            [auditLogEventInstance: auditLogEvent]
         }
-        [auditLogEventInstance: auditLogEvent]
     }
 
     def delete() {
-        redirect(action: 'list')
+        whenEnabled {
+            redirect(action: 'list')
+        }
     }
 
     def edit() {
-        redirect(action: 'list')
+        whenEnabled {
+            redirect(action: 'list')
+        }
     }
 
     def update() {
-        redirect(action: 'list')
+        whenEnabled {
+            redirect(action: 'list')
+        }
     }
 
     def create() {
-        redirect(action: 'list')
+        whenEnabled {
+            redirect(action: 'list')
+        }
     }
 
     def save() {
-        redirect(action: 'list')
+        whenEnabled {
+            redirect(action: 'list')
+        }
+    }
+
+    /**
+     * Runs the action only when grails.plugin.auditLog.controllerEnabled is true, and responds with 404 otherwise.
+     * This controller does no authorization, so it would show the audit log to anyone who can reach it.
+     */
+    private whenEnabled(Closure action) {
+        if (!AuditLogContext.context.controllerEnabled) {
+            render(status: 404)
+            return null
+        }
+        action.call()
     }
 }

@@ -1,0 +1,27 @@
+grails:
+    profile: web
+    codegen:
+        defaultPackage: audit.test
+info:
+    app:
+        name: '@info.app.name@'
+        version: '@info.app.version@'
+        grailsVersion: '@info.app.grailsVersion@'
+
+---
+dataSource:
+    pooled: true
+    driverClassName: "org.h2.Driver"
+    username: "sa"
+    password: ""
+    dbCreate: "update"
+    url: "jdbc:h2:mem:hibernate7Db;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+dataSources:
+    second:
+        dbCreate: "update"
+        url: "jdbc:h2:mem:hibernate7Db2;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+hibernate:
+    cache:
+        queries: false
+        use_second_level_cache: false
+        use_query_cache: false

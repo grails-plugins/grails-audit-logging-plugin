@@ -139,6 +139,28 @@ class AuditableSpec extends Specification {
         false | [AuditEventType.UPDATE] as Set<AuditEventType>
     }
 
+    void "event types given as names are converted"() {
+        when:
+        def (verboseEvents, ignoreEvents) = AuditLogContext.withConfig(verbose: false, verboseEvents: ['UPDATE'], ignoreEvents: ['DELETE']) {
+            [entity.getLogVerboseEvents(), entity.getLogIgnoreEvents()]
+        }
+
+        then:
+        verboseEvents as List == [AuditEventType.UPDATE]
+        ignoreEvents as List == [AuditEventType.DELETE]
+    }
+
+    void "an unknown event type name fails"() {
+        when:
+        AuditLogContext.withConfig(ignoreEvents: ['REMOVE']) {
+            entity.getLogIgnoreEvents()
+        }
+
+        then:
+        IllegalArgumentException e = thrown()
+        e.message == "Unknown event type 'REMOVE' in ignoreEvents, expected one of [INSERT, UPDATE, DELETE]"
+    }
+
     void "auditable property names omit excluded properties"() {
         given:
         Author author = new Author(name: 'Aaron', age: 41, famous: false)

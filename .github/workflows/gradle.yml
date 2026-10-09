@@ -31,6 +31,8 @@ jobs:
           :examples:audit-test:integrationTest
           :examples:audit-test-allow-update-outside-transaction:check
           :examples:audit-test-allow-update-outside-transaction:integrationTest
+          :examples:audit-test-hibernate7:check
+          :examples:audit-test-hibernate7:integrationTest
           --continue
       - name: "☄️ Upload Base Tests Results - audit-test"
         if: ${{ always() }}
@@ -44,6 +46,12 @@ jobs:
         with:
           name: testreport-audit-test-allow-update-outside-transaction-21
           path: examples/audit-test-allow-update-outside-transaction/build/reports/tests
+      - name: "☄️ Upload Base Tests Results - audit-test-hibernate7"
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: testreport-audit-test-hibernate7-21
+          path: examples/audit-test-hibernate7/build/reports/tests
       - name: "🔨 Run audit-test Outside of Transaction Tests"
         if: ${{ always() }}
         run: ./gradlew --system-prop audit-test.AuditTrail.datasource=default :examples:audit-test:check --continue

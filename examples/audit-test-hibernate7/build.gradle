@@ -1,0 +1,41 @@
+version = project.projectVersion
+group = 'audit.test'
+
+apply plugin: 'org.apache.grails.gradle.grails-web'
+
+dependencies {
+    implementation platform("org.apache.grails:grails-hibernate7-bom:$grailsVersion")
+
+    // grails-rest-transforms is left out on purpose: the application only starts when the
+    // plugin declares the modules its controller needs
+    implementation "org.apache.grails:grails-core"
+    implementation "org.apache.grails:grails-logging"
+    implementation "org.apache.grails:grails-databinding"
+    implementation "org.apache.grails:grails-services"
+    implementation "org.apache.grails:grails-url-mappings"
+    implementation "org.apache.grails:grails-web-boot"
+    implementation "org.apache.grails:grails-data-hibernate7"
+
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-logging"
+    implementation "org.springframework.boot:spring-boot-starter-tomcat"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    runtimeOnly "com.h2database:h2"
+    runtimeOnly "com.zaxxer:HikariCP"
+    integrationTestImplementation "org.apache.grails.testing:grails-testing-support-core"
+    testImplementation "org.spockframework:spock-core"
+
+    implementation project(":audit-logging")
+}
+
+compileJava.options.release = 21
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+        events = ["passed", "failed", "skipped", 'standardOut', 'standardError']
+    }
+}

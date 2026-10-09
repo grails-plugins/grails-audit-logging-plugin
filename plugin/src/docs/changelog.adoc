@@ -6,6 +6,12 @@
 ** Updated the build toolchain, example application, and CI to the Grails 8 and Java 21 baseline.
 ** Improved configuration reload behavior so runtime configuration changes are applied consistently.
 ** Fixed Windows wrapper termination and diagnostics when Java cannot be discovered.
+** Added support for Hibernate 7 (`grails-data-hibernate7`). Before, the first audited save in a transaction failed with a `NoSuchMethodError`.
+** Fixed a rolled back transaction leaving its audit queue in memory. Later transactions in the same session added their audit entries to that queue and were never written.
+** A masked property is no longer converted to a string before it is masked, so a masked association does not initialize a proxy during the flush.
+** `verboseEvents` and `ignoreEvents` accept event type names, which is how a list from `application.yml` arrives. Before, names matched no event. An unknown name now fails with an error.
+** Fixed `AuditLogEventController`, which failed every request with `MissingPropertyException: No such property: auditDomainClass`. The controller is now off by default and responds with 404 until `grails.plugin.auditLog.controllerEnabled` is set to `true`; an application that enables it must secure it.
+** Declared the runtime dependency on `grails-rest-transforms`. Without it, an application failed at startup with `NoClassDefFoundError: grails/artefact/controller/RestResponder`.
 ** Existing audit domain customizations and `grails.plugin.auditLog.*` configuration remain supported. Do not rerun quickstart during an upgrade; manage any intentional audit-domain redesign manually.
 
 * 6.0.0

@@ -27,11 +27,11 @@ If you use the old configuration key, the plugin will log a notice.
 
 |grails.plugin.auditLog.verboseEvents
 |`[INSERT, UPDATE, DELETE]`
-|Set of `AuditEventType` enums. Enables verbose logging on a per-event type basis. If `verbose = true` (default), all event types are logged verbosely, regardless of this setting.
+|Set of `AuditEventType` enums or their names. Enables verbose logging on a per-event type basis. If `verbose = true` (default), all event types are logged verbosely, regardless of this setting.
 
 |grails.plugin.auditLog.ignoreEvents
 |`[]`
-|Set of `AuditEventType` enums that can be used to disable logging on a per-event type basis. For example, setting `[AuditEventType.DELETE]` would disable audit logging for all DELETE events only.
+|Set of `AuditEventType` enums or their names that can be used to disable logging on a per-event type basis. For example, setting `[AuditEventType.DELETE]` would disable audit logging for all DELETE events only.
 
 |grails.plugin.auditLog.failOnError
 |`false`
@@ -76,6 +76,10 @@ If you use the old configuration key, the plugin will log a notice.
 |grails.plugin.auditLog.usePersistentDirtyPropertyValues
 |`true`
 |By default, the old persistent value is obtained using getPersistentValue(). On newer Grails versions, this could fail. If the original value is always NULL in your case, you can set this property to "false", so getOriginalValue() is used.
+
+|grails.plugin.auditLog.controllerEnabled
+|`false`
+|Serve the audit log at `/auditLogEvent/list` and `/auditLogEvent/show/<id>`. While this is `false`, every action of `AuditLogEventController` responds with 404. The controller does no authorization of its own, so an application that enables it must secure these URLs, for example with Spring Security.
 |====================
 NOTE: You can view the above defaults in the `DefaultAuditLogConfig.groovy`
 
@@ -87,6 +91,17 @@ When enabled (default), per-property logging is enabled for all operations.
 or you can enable verbose logging for specific event types using:
 
     grails.plugin.auditLog.verboseEvents = [AuditEventType.UPDATE]
+
+In `application.yml`, list the names of the event types. This applies to `ignoreEvents` as well. An unknown name fails with an `IllegalArgumentException`.
+
+[source,yaml]
+----
+grails:
+    plugin:
+        auditLog:
+            verboseEvents:
+                - UPDATE
+----
 
 If both verbose=true and verboseEvents are set, verbose has precedence.
 

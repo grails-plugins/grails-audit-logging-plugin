@@ -31,4 +31,6 @@ defaultAuditLog {
 
     // Enable support for Stampable
     stampEnabled = true
+    // AuditLogEventController shows the audit log to anyone who can reach it, so it is off by default
+    controllerEnabled = false
 }
