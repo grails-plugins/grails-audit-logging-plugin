@@ -190,53 +190,59 @@ extends org.grails.datastore.mapping.engine.event.AbstractPersistenceEventListen
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>protected&nbsp;java.lang.String</code></td>
+                            <td class="colLast"><code><strong><a href="#convertMaskAndTruncate(grails.plugins.orm.auditable.Auditable, java.lang.String, java.lang.Object)">convertMaskAndTruncate</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.lang.String propertyName, java.lang.Object value)</code><br>A masked value is logged as the mask without being converted first. </td>
+                        </tr>
+                        
+                        <tr class="rowColor">
+                            <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;org.grails.datastore.gorm.GormEntity</code></td>
                             <td class="colLast"><code><strong><a href="#createAuditLogDomainInstance(java.util.Map)">createAuditLogDomainInstance</a></strong>(java.util.Map params)</code><br> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the domain instance</DD></DL></td>
                         </tr>
                         
-                        <tr class="rowColor">
+                        <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;java.lang.Class&lt;org.grails.datastore.gorm.GormEntity&gt;</code></td>
                             <td class="colLast"><code><strong><a href="#getAuditDomainClass()">getAuditDomainClass</a></strong>()</code><br> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the domain instance</DD></DL></td>
                         </tr>
                         
-                        <tr class="altColor">
+                        <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;java.lang.Long</code></td>
                             <td class="colLast"><code><strong><a href="#getPersistedObjectVersion(grails.plugins.orm.auditable.Auditable, Map, Map)">getPersistedObjectVersion</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.util.Map&lt;java.lang.String, java.lang.Object&gt; newMap, java.util.Map&lt;java.lang.String, java.lang.Object&gt; oldMap)</code><br></td>
                         </tr>
                         
-                        <tr class="rowColor">
+                        <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
                             <td class="colLast"><code><strong><a href="#handleInsertAndDelete(grails.plugins.orm.auditable.Auditable, grails.plugins.orm.auditable.AuditEventType, org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent)">handleInsertAndDelete</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, <a href='../../../../grails/plugins/orm/auditable/AuditEventType.html'>AuditEventType</a> auditEventType, org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent event)</code><br>We must use the preDelete event if we want to capture what the old object was like.</td>
                         </tr>
                         
-                        <tr class="altColor">
+                        <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
                             <td class="colLast"><code><strong><a href="#handleUpdate(grails.plugins.orm.auditable.Auditable, grails.plugins.orm.auditable.AuditEventType, org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent)">handleUpdate</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, <a href='../../../../grails/plugins/orm/auditable/AuditEventType.html'>AuditEventType</a> auditEventType, org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent event)</code><br>Look at persistent and transient state for the object and log differences</td>
                         </tr>
                         
-                        <tr class="rowColor">
+                        <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;boolean</code></td>
                             <td class="colLast"><code><strong><a href="#isVerboseEnabled(grails.plugins.orm.auditable.Auditable, grails.plugins.orm.auditable.AuditEventType)">isVerboseEnabled</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, <a href='../../../../grails/plugins/orm/auditable/AuditEventType.html'>AuditEventType</a> eventType)</code><br></td>
                         </tr>
                         
-                        <tr class="altColor">
+                        <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
                             <td class="colLast"><code><strong><a href="#logChanges(grails.plugins.orm.auditable.Auditable, Map, Map, grails.plugins.orm.auditable.AuditEventType, org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent)">logChanges</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.util.Map&lt;java.lang.String, java.lang.Object&gt; newMap, java.util.Map&lt;java.lang.String, java.lang.Object&gt; oldMap, <a href='../../../../grails/plugins/orm/auditable/AuditEventType.html'>AuditEventType</a> eventType, org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent event)</code><br>Generate log events and add to the queue. </td>
                         </tr>
                         
-                        <tr class="rowColor">
+                        <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
                             <td class="colLast"><code><strong><a href="#onPersistenceEvent(org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent)">onPersistenceEvent</a></strong>(org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent event)</code><br></td>
                         </tr>
                         
-                        <tr class="altColor">
+                        <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>boolean</code></td>
                             <td class="colLast"><code><strong><a href="#supportsEventType(Class)">supportsEventType</a></strong>(java.lang.Class&lt;? extends org.springframework.context.ApplicationEvent&gt; eventType)</code><br></td>
@@ -309,6 +315,15 @@ extends org.grails.datastore.mapping.engine.event.AbstractPersistenceEventListen
                     <!--   -->
                 </a>
                     <h3>Method Detail</h3>
+                    
+                        <a name="convertMaskAndTruncate(grails.plugins.orm.auditable.Auditable, java.lang.String, java.lang.Object)"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>protected&nbsp;java.lang.String <strong>convertMaskAndTruncate</strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.lang.String propertyName, java.lang.Object value)</h4>
+                                <p> A masked value is logged as the mask without being converted first. Converting an association calls
+ toString() on it, which initializes a proxy during the flush.</p>
+                            </li>
+                        </ul>
                     
                         <a name="createAuditLogDomainInstance(java.util.Map)"><!-- --></a>
                         <ul class="blockListLast">

@@ -217,6 +217,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block"> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the auditable domain object</DD></DL></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/Auditable.html#convertLoggedPropertyToString(java.lang.String, java.lang.Object)" title="Method in Auditable">convertLoggedPropertyToString(java.lang.String, java.lang.Object)</a></span> - Method in <a href="grails/plugins/orm/auditable/Auditable.html">Auditable</a>
 </dt><dd> <div class="block">Domain classes can override to apply special formatting on a per-property basis</div></dd>
+<dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListener.html#convertMaskAndTruncate(grails.plugins.orm.auditable.Auditable, java.lang.String, java.lang.Object)" title="Method in AuditLogListener">convertMaskAndTruncate(grails.plugins.orm.auditable.Auditable, java.lang.String, java.lang.Object)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListener.html">AuditLogListener</a>
+</dt><dd> <div class="block">A masked value is logged as the mask without being converted first. </div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogEventController.html#create()" title="Method in AuditLogEventController">create()</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogEventController.html">AuditLogEventController</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListener.html#createAuditLogDomainInstance(java.util.Map)" title="Method in AuditLogListener">createAuditLogDomainInstance(java.util.Map)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListener.html">AuditLogListener</a>
@@ -268,6 +270,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditEventType.html#forEventType(org.grails.datastore.mapping.engine.event.EventType)" title="Method in AuditEventType">forEventType(org.grails.datastore.mapping.engine.event.EventType)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditEventType.html">AuditEventType</a>
 </dt><dd> <div class="block"></div></dd>
+<dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditEventType.html#fromConfig(java.lang.Object, java.lang.String)" title="Method in AuditEventType">fromConfig(java.lang.Object, java.lang.String)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditEventType.html">AuditEventType</a>
+</dt><dd> <div class="block">Resolves configured event types. </div></dd>
 </dl>
 
     
@@ -287,6 +291,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListener.html#getAuditDomainClass()" title="Method in AuditLogListener">getAuditDomainClass()</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListener.html">AuditLogListener</a>
 </dt><dd> <div class="block"> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the domain instance</DD></DL></div></dd>
+<dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html#getAuditDomainClass(grails.core.GrailsApplication)" title="Method in AuditLogListenerUtil">getAuditDomainClass(grails.core.GrailsApplication)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html">AuditLogListenerUtil</a>
+</dt><dd> <div class="block"> <DL><DT><B>Parameters:</B></DT><DD><code>grailsApplication</code> -  the application that holds the audit domain class</DD></DL></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/ReflectionUtils.html#getConfigProperty(java.lang.String, java.lang.Object)" title="Method in ReflectionUtils">getConfigProperty(java.lang.String, java.lang.Object)</a></span> - Method in <a href="grails/plugins/orm/auditable/ReflectionUtils.html">ReflectionUtils</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogContext.html#getContext()" title="Method in AuditLogContext">getContext()</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogContext.html">AuditLogContext</a>
@@ -325,6 +331,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html#getPersistentEntity(java.lang.Object)" title="Method in AuditLogListenerUtil">getPersistentEntity(java.lang.Object)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html">AuditLogListenerUtil</a>
 </dt><dd> <div class="block">Return the grails domain class for the given domain object.</div></dd>
+<dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html#getPropertyMask()" title="Method in AuditLogListenerUtil">getPropertyMask()</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html">AuditLogListenerUtil</a>
+</dt><dd> <div class="block"> <DL><DT><B>Returns:</B></DT><DD>the value logged in place of a masked property</DD></DL></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLoggingGrailsPlugin.html#grailsVersion" title="Property in AuditLoggingGrailsPlugin">grailsVersion</a></span> - Property in <a href="grails/plugins/orm/auditable/AuditLoggingGrailsPlugin.html">AuditLoggingGrailsPlugin</a>
 </dt><dd> <div class="block"></div></dd>
 </dl>
@@ -357,6 +365,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block">If false, this entity will not be logged</div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/Auditable.html#isLogAssociatedIds()" title="Method in Auditable">isLogAssociatedIds()</a></span> - Method in <a href="grails/plugins/orm/auditable/Auditable.html">Auditable</a>
 </dt><dd> <div class="block">Enable logging of associated id changes in the format: "[id:<objId>]objDetails".</div></dd>
+<dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html#isMasked(grails.plugins.orm.auditable.Auditable, java.lang.String)" title="Method in AuditLogListenerUtil">isMasked(grails.plugins.orm.auditable.Auditable, java.lang.String)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListenerUtil.html">AuditLogListenerUtil</a>
+</dt><dd> <div class="block"> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the auditable domain object</DD></DL></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLoggingGrailsPlugin.html#issueManagement" title="Property in AuditLoggingGrailsPlugin">issueManagement</a></span> - Property in <a href="grails/plugins/orm/auditable/AuditLoggingGrailsPlugin.html">AuditLoggingGrailsPlugin</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugins/orm/auditable/AuditLogListener.html#isVerboseEnabled(grails.plugins.orm.auditable.Auditable, grails.plugins.orm.auditable.AuditEventType)" title="Method in AuditLogListener">isVerboseEnabled(grails.plugins.orm.auditable.Auditable, grails.plugins.orm.auditable.AuditEventType)</a></span> - Method in <a href="grails/plugins/orm/auditable/AuditLogListener.html">AuditLogListener</a>

@@ -214,6 +214,12 @@ extends java.lang.Enum</pre>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>static&nbsp;java.util.Set&lt;<a href='../../../../grails/plugins/orm/auditable/AuditEventType.html' title='AuditEventType'>AuditEventType</a>&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#fromConfig(java.lang.Object, java.lang.String)">fromConfig</a></strong>(java.lang.Object value, java.lang.String key)</code><br>Resolves configured event types. </td>
+                        </tr>
+                        
+                        <tr class="altColor">
+                            <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>java.lang.String</code></td>
                             <td class="colLast"><code><strong><a href="#toString()">toString</a></strong>()</code><br></td>
                         </tr>
@@ -333,6 +339,15 @@ extends java.lang.Enum</pre>
                             <li class="blockList">
                                 <h4>static&nbsp;<a href='../../../../grails/plugins/orm/auditable/AuditEventType.html'>AuditEventType</a> <strong>forEventType</strong>(org.grails.datastore.mapping.engine.event.EventType type)</h4>
                                 <p></p>
+                            </li>
+                        </ul>
+                    
+                        <a name="fromConfig(java.lang.Object, java.lang.String)"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>static&nbsp;java.util.Set&lt;<a href='../../../../grails/plugins/orm/auditable/AuditEventType.html' title='AuditEventType'>AuditEventType</a>&gt; <strong>fromConfig</strong>(java.lang.Object value, java.lang.String key)</h4>
+                                <p> Resolves configured event types. A list from application.yml holds the names as strings,
+ so a name is accepted as well as an AuditEventType.<DL><DT><B>throws:</B></DT><DD>IllegalArgumentException if a name does not match an AuditEventType</DD></DL> <DL><DT><B>Parameters:</B></DT><DD><code>value</code> -  the configured event types, or a single event type</DD><DD><code>key</code> -  the configuration key, for the error message</DD></DL><DL><DT><B>Returns:</B></DT><DD>the event types, empty if none are configured</DD></DL></p>
                             </li>
                         </ul>
                     

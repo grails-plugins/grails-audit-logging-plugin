@@ -534,7 +534,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="details">
 <span id="author" class="author">Robert Oschwald</span><br>
 <span id="revnumber">version 7.0.0-SNAPSHOT,</span>
-<span id="revdate">2026-10-08</span>
+<span id="revdate">2026-11-19</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -693,7 +693,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="sect2">
 <h3 id="gorm-compatibility"><a class="anchor" href="#gorm-compatibility"></a>1.3. GORM Compatibility</h3>
 <div class="paragraph">
-<p>Since plugin 5.x, auditing participates in the current Hibernate transaction and requires a Hibernate datastore. Persistence events from non-Hibernate datastores are not audited. The audit domain may use the same Hibernate datasource as the audited entity or another configured Hibernate datasource.</p>
+<p>Since plugin 5.x, auditing participates in the current Hibernate transaction and requires a Hibernate datastore. Plugin 7.x supports both <code>grails-data-hibernate5</code> and <code>grails-data-hibernate7</code>. Persistence events from non-Hibernate datastores are not audited. The audit domain may use the same Hibernate datasource as the audited entity or another configured Hibernate datasource.</p>
 </div>
 </div>
 </div>
@@ -1171,12 +1171,12 @@ If you use the old configuration key, the plugin will log a notice.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.verboseEvents</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[INSERT, UPDATE, DELETE]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums. Enables verbose logging on a per-event type basis. If <code>verbose = true</code> (default), all event types are logged verbosely, regardless of this setting.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums or their names. Enables verbose logging on a per-event type basis. If <code>verbose = true</code> (default), all event types are logged verbosely, regardless of this setting.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.ignoreEvents</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums that can be used to disable logging on a per-event type basis. For example, setting <code>[AuditEventType.DELETE]</code> would disable audit logging for all DELETE events only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set of <code>AuditEventType</code> enums or their names that can be used to disable logging on a per-event type basis. For example, setting <code>[AuditEventType.DELETE]</code> would disable audit logging for all DELETE events only.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.failOnError</p></td>
@@ -1233,6 +1233,11 @@ If you use the old configuration key, the plugin will log a notice.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">By default, the old persistent value is obtained using getPersistentValue(). On newer Grails versions, this could fail. If the original value is always NULL in your case, you can set this property to "false", so getOriginalValue() is used.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grails.plugin.auditLog.controllerEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serve the audit log at <code>/auditLogEvent/list</code> and <code>/auditLogEvent/show/&lt;id&gt;</code>. Only <code>true</code>, or the string <code>true</code> as a properties file or a system property supplies it, enables the controller; with any other value, every action of <code>AuditLogEventController</code> responds with 404. The controller does no authorization of its own, so an application that enables it must secure these URLs, for example with Spring Security.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="admonitionblock note">
@@ -1263,6 +1268,18 @@ You can view the above defaults in the <code>DefaultAuditLogConfig.groovy</code>
 <div class="literalblock">
 <div class="content">
 <pre>grails.plugin.auditLog.verboseEvents = [AuditEventType.UPDATE]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In <code>application.yml</code>, list the names of the event types. This applies to <code>ignoreEvents</code> as well. An unknown name fails with an <code>IllegalArgumentException</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">grails</span>:
+    <span class="key">plugin</span>:
+        <span class="key">auditLog</span>:
+            <span class="key">verboseEvents</span>:
+                - <span class="string"><span class="content">UPDATE</span></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1917,6 +1934,24 @@ to the domain class.</p>
 <p>Fixed Windows wrapper termination and diagnostics when Java cannot be discovered.</p>
 </li>
 <li>
+<p>Added support for Hibernate 7 (<code>grails-data-hibernate7</code>). Before, the first audited save in a transaction failed with a <code>NoSuchMethodError</code>.</p>
+</li>
+<li>
+<p>Fixed a rolled back transaction leaving its audit queue in memory. Later transactions in the same session added their audit entries to that queue and were never written.</p>
+</li>
+<li>
+<p>A masked property is no longer converted to a string before it is masked, so a masked association does not initialize a proxy during the flush.</p>
+</li>
+<li>
+<p><code>verboseEvents</code> and <code>ignoreEvents</code> accept event type names, which is how a list from <code>application.yml</code> arrives. Before, names matched no event. An unknown name now fails with an error.</p>
+</li>
+<li>
+<p>Fixed <code>AuditLogEventController</code>, which failed every request with <code>MissingPropertyException: No such property: auditDomainClass</code>. The controller is now off by default and responds with 404 until <code>grails.plugin.auditLog.controllerEnabled</code> is set to <code>true</code>; an application that enables it must secure it.</p>
+</li>
+<li>
+<p>Declared the runtime dependency on <code>grails-rest-transforms</code>. Without it, an application failed at startup with <code>NoClassDefFoundError: grails/artefact/controller/RestResponder</code>.</p>
+</li>
+<li>
 <p>Existing audit domain customizations and <code>grails.plugin.auditLog.*</code> configuration remain supported. Do not rerun quickstart during an upgrade; manage any intentional audit-domain redesign manually.</p>
 </li>
 </ul>
@@ -2470,7 +2505,7 @@ to the domain class.</p>
 <div id="footer">
 <div id="footer-text">
 Version 7.0.0-SNAPSHOT<br>
-Last updated 2026-10-08 17:32:10 UTC
+Last updated 2026-11-19 18:53:44 UTC
 </div>
 </div>
 </body>

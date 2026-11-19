@@ -183,6 +183,18 @@ extends java.lang.Object</pre>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>static&nbsp;java.lang.Class&lt;org.grails.datastore.gorm.GormEntity&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#getAuditDomainClass()">getAuditDomainClass</a></strong>()</code><br> <DL><DT><B>Returns:</B></DT><DD>the configured audit domain class</DD></DL></td>
+                        </tr>
+                        
+                        <tr class="rowColor">
+                            <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>static&nbsp;java.lang.Class&lt;org.grails.datastore.gorm.GormEntity&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#getAuditDomainClass(grails.core.GrailsApplication)">getAuditDomainClass</a></strong>(grails.core.GrailsApplication grailsApplication)</code><br> <DL><DT><B>Parameters:</B></DT><DD><code>grailsApplication</code> -  the application that holds the audit domain class</DD></DL></td>
+                        </tr>
+                        
+                        <tr class="altColor">
+                            <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>static&nbsp;java.lang.Object</code></td>
                             <td class="colLast"><code><strong><a href="#getOriginalValue(grails.plugins.orm.auditable.Auditable, java.lang.String)">getOriginalValue</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.lang.String propertyName)</code><br>Get the original or persistent or original value for the given domain.property. </td>
                         </tr>
@@ -191,6 +203,18 @@ extends java.lang.Object</pre>
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>static&nbsp;org.grails.datastore.mapping.model.PersistentEntity</code></td>
                             <td class="colLast"><code><strong><a href="#getPersistentEntity(java.lang.Object)">getPersistentEntity</a></strong>(java.lang.Object domain)</code><br>Return the grails domain class for the given domain object.</td>
+                        </tr>
+                        
+                        <tr class="altColor">
+                            <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>static&nbsp;java.lang.String</code></td>
+                            <td class="colLast"><code><strong><a href="#getPropertyMask()">getPropertyMask</a></strong>()</code><br> <DL><DT><B>Returns:</B></DT><DD>the value logged in place of a masked property</DD></DL></td>
+                        </tr>
+                        
+                        <tr class="rowColor">
+                            <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>static&nbsp;boolean</code></td>
+                            <td class="colLast"><code><strong><a href="#isMasked(grails.plugins.orm.auditable.Auditable, java.lang.String)">isMasked</a></strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.lang.String propertyName)</code><br> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the auditable domain object</DD></DL></td>
                         </tr>
                         
                         <tr class="altColor">
@@ -284,6 +308,22 @@ extends java.lang.Object</pre>
                             </li>
                         </ul>
                     
+                        <a name="getAuditDomainClass()"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>static&nbsp;java.lang.Class&lt;org.grails.datastore.gorm.GormEntity&gt; <strong>getAuditDomainClass</strong>()</h4>
+                                <p> <DL><DT><B>Returns:</B></DT><DD>the configured audit domain class</DD></DL></p>
+                            </li>
+                        </ul>
+                    
+                        <a name="getAuditDomainClass(grails.core.GrailsApplication)"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>static&nbsp;java.lang.Class&lt;org.grails.datastore.gorm.GormEntity&gt; <strong>getAuditDomainClass</strong>(grails.core.GrailsApplication grailsApplication)</h4>
+                                <p> <DL><DT><B>Parameters:</B></DT><DD><code>grailsApplication</code> -  the application that holds the audit domain class</DD></DL><DL><DT><B>Returns:</B></DT><DD>the configured audit domain class</DD></DL></p>
+                            </li>
+                        </ul>
+                    
                         <a name="getOriginalValue(grails.plugins.orm.auditable.Auditable, java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
@@ -302,6 +342,22 @@ extends java.lang.Object</pre>
                             <li class="blockList">
                                 <h4>static&nbsp;org.grails.datastore.mapping.model.PersistentEntity <strong>getPersistentEntity</strong>(java.lang.Object domain)</h4>
                                 <p> Return the grails domain class for the given domain object. <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the domain instance</DD></DL></p>
+                            </li>
+                        </ul>
+                    
+                        <a name="getPropertyMask()"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>static&nbsp;java.lang.String <strong>getPropertyMask</strong>()</h4>
+                                <p> <DL><DT><B>Returns:</B></DT><DD>the value logged in place of a masked property</DD></DL></p>
+                            </li>
+                        </ul>
+                    
+                        <a name="isMasked(grails.plugins.orm.auditable.Auditable, java.lang.String)"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>static&nbsp;boolean <strong>isMasked</strong>(<a href='../../../../grails/plugins/orm/auditable/Auditable.html'>Auditable</a> domain, java.lang.String propertyName)</h4>
+                                <p> <DL><DT><B>Parameters:</B></DT><DD><code>domain</code> -  the auditable domain object</DD><DD><code>propertyName</code> -  property name</DD></DL><DL><DT><B>Returns:</B></DT><DD>true if the value of the property is logged as the mask</DD></DL></p>
                             </li>
                         </ul>
                     
