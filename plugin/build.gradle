@@ -18,6 +18,10 @@ compileJava.options.release = 21
 dependencies {
     compileOnly "org.apache.grails:grails-dependencies-starter-web"
 
+    // AuditLogEventController is compiled with the RestResponder trait, so an application
+    // without grails-rest-transforms fails to load it at startup
+    runtimeOnly "org.apache.grails:grails-rest-transforms"
+
     // TODO: We need to make this configurable/pluggable
     compileOnly "org.apache.grails:grails-data-hibernate5"
 

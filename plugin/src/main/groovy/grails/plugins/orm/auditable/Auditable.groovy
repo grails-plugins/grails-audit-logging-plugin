@@ -46,7 +46,7 @@ trait Auditable {
             AuditEventType.values() as Set<AuditEventType>
         }
         else if (AuditLogContext.context.verboseEvents) {
-            AuditLogContext.context.verboseEvents as Set<AuditEventType>
+            AuditEventType.fromConfig(AuditLogContext.context.verboseEvents, 'verboseEvents')
         }
         else {
             Collections.EMPTY_SET
@@ -90,7 +90,7 @@ trait Auditable {
      */
     @Transient
     Collection<AuditEventType> getLogIgnoreEvents() {
-        (AuditLogContext.context.ignoreEvents ?: Collections.EMPTY_SET) as Set<AuditEventType>
+        AuditEventType.fromConfig(AuditLogContext.context.ignoreEvents, 'ignoreEvents')
     }
 
     /**

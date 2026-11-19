@@ -205,11 +205,11 @@ class AuditLogListener extends AbstractPersistenceEventListener {
                 // This indicates a change
                 Object newVal = newMap[propertyName]
                 if (newVal != null) {
-                    newValueAsString = conditionallyMaskAndTruncate(domain, propertyName, domain.convertLoggedPropertyToString(propertyName, newVal), truncateLength)
+                    newValueAsString = convertMaskAndTruncate(domain, propertyName, newVal)
                 }
                 Object oldVal = oldMap[propertyName]
                 if (newVal != oldVal) {
-                    oldValueAsString = conditionallyMaskAndTruncate(domain, propertyName, domain.convertLoggedPropertyToString(propertyName, oldVal), truncateLength)
+                    oldValueAsString = convertMaskAndTruncate(domain, propertyName, oldVal)
                 }
 
                 // Create a new entity for each property
@@ -234,6 +234,17 @@ class AuditLogListener extends AbstractPersistenceEventListener {
                 AuditLogQueueManager.addToQueue(audit, event)
             }
         }
+    }
+
+    /**
+     * A masked value is logged as the mask without being converted first. Converting an association calls
+     * toString() on it, which initializes a proxy during the flush.
+     */
+    protected String convertMaskAndTruncate(Auditable domain, String propertyName, Object value) {
+        if (value != null && isMasked(domain, propertyName)) {
+            return getPropertyMask()
+        }
+        conditionallyMaskAndTruncate(domain, propertyName, domain.convertLoggedPropertyToString(propertyName, value), truncateLength)
     }
 
     /**
@@ -270,17 +281,7 @@ class AuditLogListener extends AbstractPersistenceEventListener {
      * @return configured AuditLogEvent class
      */
     protected Class<GormEntity> getAuditDomainClass() {
-        String auditLogClassName = AuditLogContext.context['auditDomainClassName'] as String
-        if (!auditLogClassName) {
-            throw new IllegalArgumentException("grails.plugin.auditLog.auditDomainClassName could not be found in application.groovy. Have you performed 'grails audit-quickstart' after installation?")
-        }
-
-        Class domainClass = grailsApplication.getClassForName(auditLogClassName)
-        if (!GormEntity.isAssignableFrom(domainClass)) {
-            throw new IllegalArgumentException("The specified audit domain class $auditLogClassName is not a GORM entity")
-        }
-
-        domainClass as Class<GormEntity>
+        AuditLogListenerUtil.getAuditDomainClass(grailsApplication)
     }
 
     protected Long getPersistedObjectVersion(Auditable domain, Map<String, Object> newMap, Map<String, Object> oldMap) {

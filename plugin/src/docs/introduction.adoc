@@ -41,4 +41,4 @@ Plugin 7.x does not support Grails 7. Use plugin 6.x for Grails 7 applications. 
 
 === GORM Compatibility
 
-Since plugin 5.x, auditing participates in the current Hibernate transaction and requires a Hibernate datastore. Persistence events from non-Hibernate datastores are not audited. The audit domain may use the same Hibernate datasource as the audited entity or another configured Hibernate datasource.
+Since plugin 5.x, auditing participates in the current Hibernate transaction and requires a Hibernate datastore. Plugin 7.x supports both `grails-data-hibernate5` and `grails-data-hibernate7`. Persistence events from non-Hibernate datastores are not audited. The audit domain may use the same Hibernate datasource as the audited entity or another configured Hibernate datasource.

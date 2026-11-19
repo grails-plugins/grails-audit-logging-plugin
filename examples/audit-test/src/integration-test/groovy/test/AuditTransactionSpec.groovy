@@ -22,6 +22,7 @@ import grails.plugins.orm.auditable.AuditLogContext
 import grails.testing.mixin.integration.Integration
 import groovy.util.logging.Slf4j
 import org.hibernate.Session
+import org.hibernate.Transaction
 import org.springframework.transaction.TransactionStatus
 import spock.lang.Specification
 
@@ -85,6 +86,39 @@ class AuditTransactionSpec extends Specification {
         AuditTrail.withNewTransaction {
             AuditTrail.count
         } == 1
+    }
+
+    void "Test rollback does not stop auditing of later transactions in the same session"() {
+        when:
+        List<Session> sessions = []
+        List<Transaction> transactions = []
+        Author.withNewSession {
+            Author.withTransaction { TransactionStatus transactionStatus ->
+                Author.findByName("Aaron").age = 1
+                Author.withSession { Session session ->
+                    session.flush()
+                    sessions << session
+                    transactions << session.transaction
+                }
+                transactionStatus.setRollbackOnly()
+            }
+            Author.withTransaction {
+                Author.findByName("Aaron").age = 3
+                Author.withSession { Session session ->
+                    sessions << session
+                    transactions << session.transaction
+                }
+            }
+        }
+
+        then: "the second transaction ran in the same session, with the same Hibernate transaction"
+        sessions[0].is(sessions[1])
+        transactions[0].is(transactions[1])
+
+        and:
+        AuditTrail.withNewTransaction {
+            AuditTrail.list().collect { [it.propertyName, it.oldValue, it.newValue] }
+        } == [['age', '37', '3']]
     }
 
     void "Test nested transactions"() {

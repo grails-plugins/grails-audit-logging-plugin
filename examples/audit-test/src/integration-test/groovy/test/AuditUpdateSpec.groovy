@@ -21,6 +21,7 @@ package test
 import grails.plugins.orm.auditable.AuditLogContext
 import grails.testing.mixin.integration.Integration
 import groovy.util.logging.Slf4j
+import org.hibernate.Hibernate
 import org.hibernate.Session
 import org.springframework.transaction.TransactionStatus
 import spock.lang.Specification
@@ -120,6 +121,71 @@ class AuditUpdateSpec extends Specification {
         first.oldValue == null
         first.newValue ==~ /\[id:ABC123\|Random House]test\.Publisher : \d+/
         first.eventName == "UPDATE"
+    }
+
+    void "Test masked to-one association is not converted"() {
+        given:
+        Long newPublisherId = Publisher.withNewTransaction {
+            AuditLogContext.withoutAuditLog {
+                def author = Author.findByName("Aaron")
+                author.publisher = Publisher.findByName("Random House")
+                author.save(flush: true, failOnError: true)
+                new Publisher(code: 'XYZ789', name: 'Penguin', active: true).save(flush: true, failOnError: true).id
+            }
+        }
+
+        when:
+        List<Boolean> initialized = Author.withNewTransaction {
+            def author = Author.findByName("Aaron")
+            def oldPublisher = author.publisher
+            def newPublisher = Publisher.load(newPublisherId)
+            AuditLogContext.withConfig(mask: ['publisher']) {
+                author.publisher = newPublisher
+                author.save(flush: true, failOnError: true)
+            }
+            [Hibernate.isInitialized(oldPublisher), Hibernate.isInitialized(newPublisher)]
+        }
+
+        then: "the mask is logged without initializing either publisher"
+        initialized == [false, false]
+
+        def events = AuditTrail.withCriteria { eq('className', 'test.Author') }
+        events.size() == 1
+
+        def first = events.first()
+        first.propertyName == 'publisher'
+        first.oldValue == '**********'
+        first.newValue == '**********'
+    }
+
+    void "Test verboseEvents given as names"() {
+        when:
+        Author.withNewTransaction {
+            AuditLogContext.withConfig(verbose: false, verboseEvents: ['UPDATE']) {
+                def author = Author.findByName("Aaron")
+                author.age = 50
+                author.famous = false
+                author.save(flush: true, failOnError: true)
+            }
+        }
+
+        then: "one row for each changed property"
+        def events = AuditTrail.withCriteria { eq('className', 'test.Author') }
+        events*.propertyName.sort() == ['age', 'famous']
+    }
+
+    void "Test ignoreEvents given as names"() {
+        when:
+        Author.withNewTransaction {
+            AuditLogContext.withConfig(ignoreEvents: ['UPDATE']) {
+                def author = Author.findByName("Aaron")
+                author.age = 50
+                author.save(flush: true, failOnError: true)
+            }
+        }
+
+        then:
+        AuditTrail.withCriteria { eq('className', 'test.Author') }.empty
     }
 
     void "Test two saves, one flush"() {
